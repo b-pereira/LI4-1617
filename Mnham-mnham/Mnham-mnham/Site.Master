@@ -1,0 +1,175 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Mnham_mnham.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="Content/simple-sidebar.css" rel="stylesheet">
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <%--FB integration--%>
+        <div id="fb-root">
+        </div>
+        <script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+                (document, 'script', 'facebook-jssdk'));
+
+        </script>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">Mnham-mnham</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/About">About</a></li>
+                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                    </ul>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Register">Register</a></li>
+                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+        <div id="wrapper">
+            <!-- Sidebar -->
+
+
+            <div id="sidebar-wrapper">
+                <br />
+                <ul class="sidebar-nav">
+                    <li><div style="text-align: center; background-image: url(Images/bg.jpg); height: 170px;">
+
+                        <br />
+
+                        <asp:Image runat="server" ImageUrl="~/Images/hitesh.png"
+                            ID="profileimg" />
+
+                    </div></li>
+                    <li class="sidebar-brand"><a href="#">Start Bootstrap </a></li>
+
+                    <li><a href="Music.aspx"><span class="glyphicon glyphicon-music"></span>&nbsp;&nbsp;Music</a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Search</a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Contacts</a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete it!</a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-cloud"></span>&nbsp;&nbsp;Cloud</a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Refresh</a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;Printing</a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Logout !!!!</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Simple Sidebar</h1>
+                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="Scripts/jquery-1.10.2.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+
+        <script src="Scripts/bootstrap.min.js"></script>
+
+        <!-- Menu Toggle Script -->
+
+        <script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+        </script>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="Share" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Mnham-mnham</p>
+            </footer>
+        </div>
+
+</body>
+</html>
