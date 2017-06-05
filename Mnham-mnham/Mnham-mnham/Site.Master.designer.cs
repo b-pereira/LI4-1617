@@ -13,22 +13,13 @@ namespace Mnham_mnham {
     public partial class SiteMaster {
         
         /// <summary>
-        /// profileimg control.
+        /// SideBarContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image profileimg;
-        
-        /// <summary>
-        /// Share control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Share;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder SideBarContent;
         
         /// <summary>
         /// MainContent control.
@@ -38,5 +29,14 @@ namespace Mnham_mnham {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        
+        /// <summary>
+        /// Share control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder Share;
     }
 }
