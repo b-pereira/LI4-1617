@@ -1,0 +1,205 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+	<PropertyGroup>
+		<ProjectType>Local</ProjectType>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<SchemaVersion>2.0</SchemaVersion>
+		<AssemblyName>Base de Dados - MM</AssemblyName>
+		<DefaultClientScript>JScript</DefaultClientScript>
+		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+		<DefaultTargetSchema>IE50</DefaultTargetSchema>
+		<DelaySign>false</DelaySign>
+		<OutputType>Exe</OutputType>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<StartupObject>SampleCenterControl</StartupObject>
+		<FileUpgradeFlags />
+		<UpgradeBackupLocation />
+		<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<OutputPath>bin\Debug\</OutputPath>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<OutputPath>bin\Release\</OutputPath>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="System">
+			<Name>System</Name>
+			<HintPath>C:\Windows\Microsoft.NET\Framework64\v2.0.50727\System.dll</HintPath>
+		</Reference>
+		<Reference Include="System.Data">
+			<Name>System.Data</Name>
+			<HintPath>C:\Windows\Microsoft.NET\Framework64\v2.0.50727\System.Data.dll</HintPath>
+		</Reference>
+		
+		<Reference Include="Antlr3.Runtime">
+			<Name>Antlr3.Runtime</Name>
+			<HintPath>..\lib\Antlr3.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Iesi.Collections">
+			<Name>Iesi.Collections</Name>
+			<HintPath>..\lib\Iesi.Collections.dll</HintPath>
+		</Reference>
+		<Reference Include="NHibernate.Caches.SysCache2">
+			<Name>NHibernate.Caches.SysCache2</Name>
+			<HintPath>..\lib\NHibernate.Caches.SysCache2.dll</HintPath>
+		</Reference>
+		<Reference Include="NHibernate">
+			<Name>NHibernate</Name>
+			<HintPath>..\lib\NHibernate.dll</HintPath>
+		</Reference>
+		<Reference Include="Remotion.Linq">
+			<Name>Remotion.Linq</Name>
+			<HintPath>..\lib\Remotion.Linq.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="EstabelecimentoSetCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Estabelecimento.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="EstabelecimentoCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="IguariaSetCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Iguaria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="IguariaCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="ClienteCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Utilizador.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="UtilizadorCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Categoria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="CategoriaCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_critica_IguariaSetCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_critica_Iguaria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_critica_IguariaCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_seleciona_iguariaSetCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_seleciona_iguaria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_seleciona_iguariaCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SelecaoIguariaSetCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SelecaoIguaria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SelecaoIguariaCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="HorarioEstabelecimentoSetCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="HorarioEstabelecimento.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="HorarioEstabelecimentoCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_seleciona_EstabelecimentoSetCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_seleciona_Estabelecimento.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_seleciona_EstabelecimentoCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_avalia_EstabelecimentoSetCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_avalia_Estabelecimento.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Cliente_avalia_EstabelecimentoCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SelecaoEstabelecimentoSetCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SelecaoEstabelecimento.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SelecaoEstabelecimentoCriteria.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="orm\BasedeDadosMMPersistentManager.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="orm\ORMConstants.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="CreateBasedeDadosMMDatabaseSchema.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="CreateBasedeDadosMMData.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="RetrieveAndUpdateBasedeDadosMMData.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="ListBasedeDadosMMData.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DeleteBasedeDadosMMData.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DropBasedeDadosMMDatabaseSchema.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SampleCenterControl.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<EmbeddedResource Include="ormmapping\Estabelecimento.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\Iguaria.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\Cliente.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\Utilizador.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\Categoria.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\Cliente_critica_Iguaria.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\Cliente_seleciona_iguaria.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\SelecaoIguaria.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\HorarioEstabelecimento.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\Cliente_seleciona_Estabelecimento.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\Cliente_avalia_Estabelecimento.hbm.xml" />
+		<EmbeddedResource Include="ormmapping\SelecaoEstabelecimento.hbm.xml" />
+		<None Include="App.config" />
+		<None Include="hibernate.cfg.xml" />
+	</ItemGroup>
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+	<PropertyGroup>
+		<PreBuildEvent />
+		<PostBuildEvent>copy "$(ProjectDir)hibernate.cfg.xml" "$(TargetDir)"</PostBuildEvent>
+	</PropertyGroup>
+</Project>
