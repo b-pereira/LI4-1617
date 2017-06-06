@@ -26,7 +26,7 @@ public class Cliente_avalia_Estabelecimento {
 	}
 	
 	public static Cliente_avalia_Estabelecimento LoadCliente_avalia_EstabelecimentoByORMID(Estabelecimento estabelecimento, Cliente cliente) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadCliente_avalia_EstabelecimentoByORMID(session,estabelecimento, cliente);
 	}
 	
@@ -39,7 +39,7 @@ public class Cliente_avalia_Estabelecimento {
 	}
 	
 	public static Cliente_avalia_Estabelecimento[] ListCliente_avalia_EstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return ListCliente_avalia_EstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -68,7 +68,7 @@ public class Cliente_avalia_Estabelecimento {
 	}
 	
 	public static Cliente_avalia_Estabelecimento LoadCliente_avalia_EstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadCliente_avalia_EstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -81,7 +81,7 @@ public class Cliente_avalia_Estabelecimento {
 	}
 	
 	public static global::System.Collections.IEnumerable IterateCliente_avalia_EstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return IterateCliente_avalia_EstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -150,9 +150,9 @@ public class Cliente_avalia_Estabelecimento {
 		return new Cliente_avalia_Estabelecimento();
 	}
 	
-	public bool Save() {
+	public virtual bool Save() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().SaveObject(this);
+			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -162,9 +162,9 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public bool Delete() {
+	public virtual bool Delete() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
+			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -174,9 +174,9 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public bool Refresh() {
+	public virtual bool Refresh() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
+			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -186,7 +186,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public bool DeleteAndDissociate() {
+	public virtual bool DeleteAndDissociate() {
 		try {
 			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
@@ -207,7 +207,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
@@ -235,11 +235,11 @@ public class Cliente_avalia_Estabelecimento {
 	}
 	
 	private void This_SetOwner(object owner, int key) {
-		if (key == orm.ORMConstants.KEY_CLIENTE_AVALIA_ESTABELECIMENTO_CLIENTE) {
+		if (key == ORMConstants.KEY_CLIENTE_AVALIA_ESTABELECIMENTO_CLIENTE) {
 			this.__cliente = (Cliente) owner;
 		}
 		
-		else if (key == orm.ORMConstants.KEY_CLIENTE_AVALIA_ESTABELECIMENTO_ESTABELECIMENTO) {
+		else if (key == ORMConstants.KEY_CLIENTE_AVALIA_ESTABELECIMENTO_ESTABELECIMENTO) {
 			this.__estabelecimento = (Estabelecimento) owner;
 		}
 	}
@@ -263,7 +263,7 @@ public class Cliente_avalia_Estabelecimento {
 	
 	private int __estabelecimentoId;
 	
-	public int EstabelecimentoId {
+	public virtual int EstabelecimentoId {
 		set {
 			this.__estabelecimentoId = value;			
 		}
@@ -276,7 +276,7 @@ public class Cliente_avalia_Estabelecimento {
 	
 	private int __clienteId;
 	
-	public int ClienteId {
+	public virtual int ClienteId {
 		set {
 			this.__clienteId = value;			
 		}
@@ -289,7 +289,7 @@ public class Cliente_avalia_Estabelecimento {
 	
 	private DateTime __data_avaliacao;
 	
-	public float Rating_est {
+	public virtual float Rating_est {
 		set {
 			this.__rating_est = value;			
 		}
@@ -298,7 +298,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public DateTime Data_avaliacao {
+	public virtual DateTime Data_avaliacao {
 		set {
 			this.__data_avaliacao = value;			
 		}
@@ -307,7 +307,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public Cliente Cliente {
+	public virtual Cliente Cliente {
 		set {
 			if(__cliente!= null) {
 				__cliente.cliente_avalia_Estabelecimento.Remove(this);
@@ -322,7 +322,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	private Cliente ORM_Cliente {
+	public virtual Cliente ORM_Cliente {
 		set {
 			this.__cliente = value;			
 		}
@@ -332,7 +332,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public Estabelecimento Estabelecimento {
+	public virtual Estabelecimento Estabelecimento {
 		set {
 			if(__estabelecimento!= null) {
 				__estabelecimento.cliente_avalia_Estabelecimento.Remove(this);
@@ -347,7 +347,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	private Estabelecimento ORM_Estabelecimento {
+	public virtual Estabelecimento ORM_Estabelecimento {
 		set {
 			this.__estabelecimento = value;			
 		}
@@ -363,17 +363,17 @@ public class Cliente_avalia_Estabelecimento {
 	
 	private bool _saved = false;
 	
-	public void onSave() {
+	public virtual void onSave() {
 		_saved=true;
 	}
 	
 	
-	public void onLoad() {
+	public virtual void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public bool isSaved() {
+	public virtual bool isSaved() {
 		return _saved;
 	}
 	

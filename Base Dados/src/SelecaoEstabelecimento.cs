@@ -26,7 +26,7 @@ public class SelecaoEstabelecimento {
 	}
 	
 	public static SelecaoEstabelecimento LoadSelecaoEstabelecimentoByORMID(int id_avaliacao, Cliente_seleciona_Estabelecimento estabelecimento) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadSelecaoEstabelecimentoByORMID(session,id_avaliacao, estabelecimento);
 	}
 	
@@ -39,7 +39,7 @@ public class SelecaoEstabelecimento {
 	}
 	
 	public static SelecaoEstabelecimento[] ListSelecaoEstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return ListSelecaoEstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -68,7 +68,7 @@ public class SelecaoEstabelecimento {
 	}
 	
 	public static SelecaoEstabelecimento LoadSelecaoEstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadSelecaoEstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -81,7 +81,7 @@ public class SelecaoEstabelecimento {
 	}
 	
 	public static global::System.Collections.IEnumerable IterateSelecaoEstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return IterateSelecaoEstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -149,9 +149,9 @@ public class SelecaoEstabelecimento {
 		return new SelecaoEstabelecimento();
 	}
 	
-	public bool Save() {
+	public virtual bool Save() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().SaveObject(this);
+			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -161,9 +161,9 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public bool Delete() {
+	public virtual bool Delete() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
+			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -173,9 +173,9 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public bool Refresh() {
+	public virtual bool Refresh() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
+			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -185,7 +185,7 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public bool DeleteAndDissociate() {
+	public virtual bool DeleteAndDissociate() {
 		try {
 			Cliente_seleciona_Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
@@ -201,7 +201,7 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			Cliente_seleciona_Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
@@ -224,7 +224,7 @@ public class SelecaoEstabelecimento {
 	}
 	
 	private void This_SetOwner(object owner, int key) {
-		if (key == orm.ORMConstants.KEY_SELECAOESTABELECIMENTO_ESTABELECIMENTO) {
+		if (key == ORMConstants.KEY_SELECAOESTABELECIMENTO_ESTABELECIMENTO) {
 			this.__estabelecimento = (Cliente_seleciona_Estabelecimento) owner;
 		}
 	}
@@ -250,7 +250,7 @@ public class SelecaoEstabelecimento {
 	
 	private DateTime __data_hora_selecao;
 	
-	public int Id_avaliacao {
+	public virtual int Id_avaliacao {
 		set {
 			this.__id_avaliacao = value;			
 		}
@@ -259,7 +259,7 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public DateTime Data_hora_selecao {
+	public virtual DateTime Data_hora_selecao {
 		set {
 			this.__data_hora_selecao = value;			
 		}
@@ -268,7 +268,7 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public Cliente_seleciona_Estabelecimento Estabelecimento {
+	public virtual Cliente_seleciona_Estabelecimento Estabelecimento {
 		set {
 			if(__estabelecimento!= null) {
 				__estabelecimento.selecaoEstabelecimento.Remove(this);
@@ -283,7 +283,7 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	private Cliente_seleciona_Estabelecimento ORM_Estabelecimento {
+	public virtual Cliente_seleciona_Estabelecimento ORM_Estabelecimento {
 		set {
 			this.__estabelecimento = value;			
 		}
@@ -299,17 +299,17 @@ public class SelecaoEstabelecimento {
 	
 	private bool _saved = false;
 	
-	public void onSave() {
+	public virtual void onSave() {
 		_saved=true;
 	}
 	
 	
-	public void onLoad() {
+	public virtual void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public bool isSaved() {
+	public virtual bool isSaved() {
 		return _saved;
 	}
 	

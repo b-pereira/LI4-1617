@@ -25,7 +25,7 @@ public class Utilizador {
 	}
 	
 	public static Utilizador LoadUtilizadorByORMID(string email) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadUtilizadorByORMID(session,email);
 	}
 	
@@ -34,7 +34,7 @@ public class Utilizador {
 	}
 	
 	public static Utilizador[] ListUtilizadorByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return ListUtilizadorByQuery(session, condition, orderBy);
 	}
 	
@@ -63,7 +63,7 @@ public class Utilizador {
 	}
 	
 	public static Utilizador LoadUtilizadorByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadUtilizadorByQuery(session, condition, orderBy);
 	}
 	
@@ -76,7 +76,7 @@ public class Utilizador {
 	}
 	
 	public static global::System.Collections.IEnumerable IterateUtilizadorByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return IterateUtilizadorByQuery(session, condition, orderBy);
 	}
 	
@@ -117,9 +117,9 @@ public class Utilizador {
 		return new Utilizador();
 	}
 	
-	public bool Save() {
+	public virtual bool Save() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().SaveObject(this);
+			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -129,9 +129,9 @@ public class Utilizador {
 		}
 	}
 	
-	public bool Delete() {
+	public virtual bool Delete() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
+			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -141,9 +141,9 @@ public class Utilizador {
 		}
 	}
 	
-	public bool Refresh() {
+	public virtual bool Refresh() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
+			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -153,7 +153,7 @@ public class Utilizador {
 		}
 	}
 	
-	public bool DeleteAndDissociate() {
+	public virtual bool DeleteAndDissociate() {
 		try {
 			if(Estabelecimento != null) {
 				Estabelecimento.Utilizador = null;
@@ -170,7 +170,7 @@ public class Utilizador {
 		}
 	}
 	
-	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			if(Estabelecimento != null) {
 				Estabelecimento.Utilizador = null;
@@ -203,7 +203,7 @@ public class Utilizador {
 	
 	private Cliente __cliente;
 	
-	public string Email {
+	public virtual string Email {
 		set {
 			this.__email = value;			
 		}
@@ -212,13 +212,13 @@ public class Utilizador {
 		}
 	}
 	
-	public string ORMID {
+	public virtual string ORMID {
 		get {
 			return Email;			
 		}
 	}
 	
-	public string Password {
+	public virtual string Password {
 		set {
 			this.__password = value;			
 		}
@@ -227,7 +227,7 @@ public class Utilizador {
 		}
 	}
 	
-	public byte Tipo {
+	public virtual byte Tipo {
 		set {
 			this.__tipo = value;			
 		}
@@ -236,7 +236,7 @@ public class Utilizador {
 		}
 	}
 	
-	public Estabelecimento Estabelecimento {
+	public virtual Estabelecimento Estabelecimento {
 		set {
 			if (this.__estabelecimento != value) {
 				Estabelecimento l__estabelecimento = this.__estabelecimento;
@@ -254,7 +254,7 @@ public class Utilizador {
 		}
 	}
 	
-	public Cliente Cliente {
+	public virtual Cliente Cliente {
 		set {
 			if (this.__cliente != value) {
 				Cliente l__cliente = this.__cliente;
@@ -278,17 +278,17 @@ public class Utilizador {
 	
 	private bool _saved = false;
 	
-	public void onSave() {
+	public virtual void onSave() {
 		_saved=true;
 	}
 	
 	
-	public void onLoad() {
+	public virtual void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public bool isSaved() {
+	public virtual bool isSaved() {
 		return _saved;
 	}
 	

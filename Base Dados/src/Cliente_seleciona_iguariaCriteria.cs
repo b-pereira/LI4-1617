@@ -24,7 +24,7 @@ public class Cliente_seleciona_iguariaCriteria : AbstractORMCriteria {
 	public Cliente_seleciona_iguariaCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(Cliente_seleciona_iguaria))) {
 	}
 	
-	public Cliente_seleciona_iguariaCriteria() : this(global::orm.BasedeDadosMMPersistentManager.Instance().GetSession()) {
+	public Cliente_seleciona_iguariaCriteria() : this(BasedeDadosMMPersistentManager.Instance().GetSession()) {
 	}
 	
 	public ClienteCriteria CreateClienteCriteria() {

@@ -26,7 +26,7 @@ public class HorarioEstabelecimento {
 	}
 	
 	public static HorarioEstabelecimento LoadHorarioEstabelecimentoByORMID(int id_horario, Estabelecimento estabelecimento) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadHorarioEstabelecimentoByORMID(session,id_horario, estabelecimento);
 	}
 	
@@ -39,7 +39,7 @@ public class HorarioEstabelecimento {
 	}
 	
 	public static HorarioEstabelecimento[] ListHorarioEstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return ListHorarioEstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -68,7 +68,7 @@ public class HorarioEstabelecimento {
 	}
 	
 	public static HorarioEstabelecimento LoadHorarioEstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadHorarioEstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -81,7 +81,7 @@ public class HorarioEstabelecimento {
 	}
 	
 	public static global::System.Collections.IEnumerable IterateHorarioEstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return IterateHorarioEstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -146,9 +146,9 @@ public class HorarioEstabelecimento {
 		return new HorarioEstabelecimento();
 	}
 	
-	public bool Save() {
+	public virtual bool Save() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().SaveObject(this);
+			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -158,9 +158,9 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public bool Delete() {
+	public virtual bool Delete() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
+			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -170,9 +170,9 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public bool Refresh() {
+	public virtual bool Refresh() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
+			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -182,7 +182,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public bool DeleteAndDissociate() {
+	public virtual bool DeleteAndDissociate() {
 		try {
 			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
@@ -198,7 +198,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
@@ -221,7 +221,7 @@ public class HorarioEstabelecimento {
 	}
 	
 	private void This_SetOwner(object owner, int key) {
-		if (key == orm.ORMConstants.KEY_HORARIOESTABELECIMENTO_ESTABELECIMENTO) {
+		if (key == ORMConstants.KEY_HORARIOESTABELECIMENTO_ESTABELECIMENTO) {
 			this.__estabelecimento = (Estabelecimento) owner;
 		}
 	}
@@ -247,7 +247,7 @@ public class HorarioEstabelecimento {
 	
 	private int __estabelecimentoId;
 	
-	public int EstabelecimentoId {
+	public virtual int EstabelecimentoId {
 		set {
 			this.__estabelecimentoId = value;			
 		}
@@ -262,7 +262,7 @@ public class HorarioEstabelecimento {
 	
 	private DateTime __hora_fecho;
 	
-	public int Id_horario {
+	public virtual int Id_horario {
 		set {
 			this.__id_horario = value;			
 		}
@@ -271,7 +271,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public byte Dia {
+	public virtual byte Dia {
 		set {
 			this.__dia = value;			
 		}
@@ -280,7 +280,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public DateTime Hora_abertura {
+	public virtual DateTime Hora_abertura {
 		set {
 			this.__hora_abertura = value;			
 		}
@@ -289,7 +289,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public DateTime Hora_fecho {
+	public virtual DateTime Hora_fecho {
 		set {
 			this.__hora_fecho = value;			
 		}
@@ -298,7 +298,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public Estabelecimento Estabelecimento {
+	public virtual Estabelecimento Estabelecimento {
 		set {
 			if(__estabelecimento!= null) {
 				__estabelecimento.horarioEstabelecimento.Remove(this);
@@ -313,7 +313,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	private Estabelecimento ORM_Estabelecimento {
+	public virtual Estabelecimento ORM_Estabelecimento {
 		set {
 			this.__estabelecimento = value;			
 		}
@@ -329,17 +329,17 @@ public class HorarioEstabelecimento {
 	
 	private bool _saved = false;
 	
-	public void onSave() {
+	public virtual void onSave() {
 		_saved=true;
 	}
 	
 	
-	public void onLoad() {
+	public virtual void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public bool isSaved() {
+	public virtual bool isSaved() {
 		return _saved;
 	}
 	

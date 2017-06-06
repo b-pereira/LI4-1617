@@ -23,14 +23,14 @@ using NHibernate;
 public class Estabelecimento {
 	public Estabelecimento() {
 		_OrmAdapter = new EstabelecimentoORMAdapter(this);
-		iguaria = new IguariaSetCollection<Estabelecimento>(this, _OrmAdapter, orm.ORMConstants.KEY_ESTABELECIMENTO_IGUARIA, orm.ORMConstants.KEY_IGUARIA_ESTABELECIMENTO, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
-		horarioEstabelecimento = new HorarioEstabelecimentoSetCollection<Estabelecimento>(this, _OrmAdapter, orm.ORMConstants.KEY_ESTABELECIMENTO_HORARIOESTABELECIMENTO, orm.ORMConstants.KEY_HORARIOESTABELECIMENTO_ESTABELECIMENTO, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
-		cliente_seleciona_Estabelecimento = new Cliente_seleciona_EstabelecimentoSetCollection<Estabelecimento>(this, _OrmAdapter, orm.ORMConstants.KEY_ESTABELECIMENTO_CLIENTE_SELECIONA_ESTABELECIMENTO, orm.ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_ESTABELECIMENTO, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
-		cliente_avalia_Estabelecimento = new Cliente_avalia_EstabelecimentoSetCollection<Estabelecimento>(this, _OrmAdapter, orm.ORMConstants.KEY_ESTABELECIMENTO_CLIENTE_AVALIA_ESTABELECIMENTO, orm.ORMConstants.KEY_CLIENTE_AVALIA_ESTABELECIMENTO_ESTABELECIMENTO, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
+		iguaria = new IguariaSetCollection<Estabelecimento>(this, _OrmAdapter, ORMConstants.KEY_ESTABELECIMENTO_IGUARIA, ORMConstants.KEY_IGUARIA_ESTABELECIMENTO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+		horarioEstabelecimento = new HorarioEstabelecimentoSetCollection<Estabelecimento>(this, _OrmAdapter, ORMConstants.KEY_ESTABELECIMENTO_HORARIOESTABELECIMENTO, ORMConstants.KEY_HORARIOESTABELECIMENTO_ESTABELECIMENTO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+		cliente_seleciona_Estabelecimento = new Cliente_seleciona_EstabelecimentoSetCollection<Estabelecimento>(this, _OrmAdapter, ORMConstants.KEY_ESTABELECIMENTO_CLIENTE_SELECIONA_ESTABELECIMENTO, ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_ESTABELECIMENTO, ORMConstants.KEY_MUL_ONE_TO_MANY);
+		cliente_avalia_Estabelecimento = new Cliente_avalia_EstabelecimentoSetCollection<Estabelecimento>(this, _OrmAdapter, ORMConstants.KEY_ESTABELECIMENTO_CLIENTE_AVALIA_ESTABELECIMENTO, ORMConstants.KEY_CLIENTE_AVALIA_ESTABELECIMENTO_ESTABELECIMENTO, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	}
 	
 	public static Estabelecimento LoadEstabelecimentoByORMID(int id_estabelecimento) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadEstabelecimentoByORMID(session,id_estabelecimento);
 	}
 	
@@ -39,7 +39,7 @@ public class Estabelecimento {
 	}
 	
 	public static Estabelecimento[] ListEstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return ListEstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -68,7 +68,7 @@ public class Estabelecimento {
 	}
 	
 	public static Estabelecimento LoadEstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadEstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -81,7 +81,7 @@ public class Estabelecimento {
 	}
 	
 	public static global::System.Collections.IEnumerable IterateEstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return IterateEstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -122,9 +122,9 @@ public class Estabelecimento {
 		return new Estabelecimento();
 	}
 	
-	public bool Save() {
+	public virtual bool Save() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().SaveObject(this);
+			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -134,9 +134,9 @@ public class Estabelecimento {
 		}
 	}
 	
-	public bool Delete() {
+	public virtual bool Delete() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
+			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -146,9 +146,9 @@ public class Estabelecimento {
 		}
 	}
 	
-	public bool Refresh() {
+	public virtual bool Refresh() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
+			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -158,7 +158,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public bool DeleteAndDissociate() {
+	public virtual bool DeleteAndDissociate() {
 		try {
 			if(Categoria1 != null) {
 				Categoria1.estabelecimento1.Remove(this);
@@ -191,7 +191,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			if(Categoria1 != null) {
 				Categoria1.estabelecimento1.Remove(this);
@@ -230,24 +230,24 @@ public class Estabelecimento {
 		}
 	}
 	
-	private System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
-		if (key == orm.ORMConstants.KEY_ESTABELECIMENTO_IGUARIA)
+	public virtual System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
+		if (key == ORMConstants.KEY_ESTABELECIMENTO_IGUARIA)
 			return (System.Collections.Generic.ISet<T>) __iguaria;
-		else if (key == orm.ORMConstants.KEY_ESTABELECIMENTO_HORARIOESTABELECIMENTO)
+		else if (key == ORMConstants.KEY_ESTABELECIMENTO_HORARIOESTABELECIMENTO)
 			return (System.Collections.Generic.ISet<T>) __horarioEstabelecimento;
-		else if (key == orm.ORMConstants.KEY_ESTABELECIMENTO_CLIENTE_SELECIONA_ESTABELECIMENTO)
+		else if (key == ORMConstants.KEY_ESTABELECIMENTO_CLIENTE_SELECIONA_ESTABELECIMENTO)
 			return (System.Collections.Generic.ISet<T>) __cliente_seleciona_Estabelecimento;
-		else if (key == orm.ORMConstants.KEY_ESTABELECIMENTO_CLIENTE_AVALIA_ESTABELECIMENTO)
+		else if (key == ORMConstants.KEY_ESTABELECIMENTO_CLIENTE_AVALIA_ESTABELECIMENTO)
 			return (System.Collections.Generic.ISet<T>) __cliente_avalia_Estabelecimento;
 		return null;
 	}
 	
 	private void This_SetOwner(object owner, int key) {
-		if (key == orm.ORMConstants.KEY_ESTABELECIMENTO_UTILIZADOR) {
+		if (key == ORMConstants.KEY_ESTABELECIMENTO_UTILIZADOR) {
 			this.__utilizador = (Utilizador) owner;
 		}
 		
-		else if (key == orm.ORMConstants.KEY_ESTABELECIMENTO_CATEGORIA1) {
+		else if (key == ORMConstants.KEY_ESTABELECIMENTO_CATEGORIA1) {
 			this.__categoria1 = (Categoria) owner;
 		}
 	}
@@ -307,7 +307,7 @@ public class Estabelecimento {
 	
 	private System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> __cliente_avalia_Estabelecimento = new System.Collections.Generic.HashSet<Cliente_avalia_Estabelecimento>();
 	
-	private int Id_estabelecimento {
+	public virtual int Id_estabelecimento {
 		set {
 			this.__id_estabelecimento = value;			
 		}
@@ -316,13 +316,13 @@ public class Estabelecimento {
 		}
 	}
 	
-	public int ORMID {
+	public virtual int ORMID {
 		get {
 			return Id_estabelecimento;			
 		}
 	}
 	
-	public string Nome_estabelecimento {
+	public virtual string Nome_estabelecimento {
 		set {
 			this.__nome_estabelecimento = value;			
 		}
@@ -331,7 +331,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public string Desc_ambiente {
+	public virtual string Desc_ambiente {
 		set {
 			this.__desc_ambiente = value;			
 		}
@@ -340,7 +340,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public float Rating_medio_estabelecimento {
+	public virtual float Rating_medio_estabelecimento {
 		set {
 			this.__rating_medio_estabelecimento = value;			
 		}
@@ -349,7 +349,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public int Telefone {
+	public virtual int Telefone {
 		set {
 			this.__telefone = value;			
 		}
@@ -358,7 +358,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public int Visual_estabelecimento {
+	public virtual int Visual_estabelecimento {
 		set {
 			this.__visual_estabelecimento = value;			
 		}
@@ -367,7 +367,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public float Longitude {
+	public virtual float Longitude {
 		set {
 			this.__longitude = value;			
 		}
@@ -376,7 +376,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public float Latitude {
+	public virtual float Latitude {
 		set {
 			this.__latitude = value;			
 		}
@@ -385,7 +385,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public string Rua {
+	public virtual string Rua {
 		set {
 			this.__rua = value;			
 		}
@@ -394,7 +394,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public int Numero {
+	public virtual int Numero {
 		set {
 			this.__numero = value;			
 		}
@@ -403,7 +403,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public string Localidade {
+	public virtual string Localidade {
 		set {
 			this.__localidade = value;			
 		}
@@ -412,7 +412,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public string Cod_postal {
+	public virtual string Cod_postal {
 		set {
 			this.__cod_postal = value;			
 		}
@@ -421,7 +421,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public Utilizador Utilizador {
+	public virtual Utilizador Utilizador {
 		set {
 			if (this.__utilizador != value) {
 				Utilizador l__utilizador = this.__utilizador;
@@ -439,7 +439,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public Categoria Categoria1 {
+	public virtual Categoria Categoria1 {
 		set {
 			if(__categoria1!= null) {
 				__categoria1.estabelecimento1.Remove(this);
@@ -454,7 +454,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	private Categoria ORM_Categoria1 {
+	public virtual Categoria ORM_Categoria1 {
 		set {
 			this.__categoria1 = value;			
 		}
@@ -464,7 +464,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	private System.Collections.Generic.ISet<Iguaria> ORM_Iguaria {
+	public virtual System.Collections.Generic.ISet<Iguaria> ORM_Iguaria {
 		get  {
 			return __iguaria;			
 		}
@@ -476,7 +476,7 @@ public class Estabelecimento {
 	
 	public readonly IguariaSetCollection<Estabelecimento> iguaria;
 	
-	private System.Collections.Generic.ISet<HorarioEstabelecimento> ORM_HorarioEstabelecimento {
+	public virtual System.Collections.Generic.ISet<HorarioEstabelecimento> ORM_HorarioEstabelecimento {
 		get  {
 			return __horarioEstabelecimento;			
 		}
@@ -488,7 +488,7 @@ public class Estabelecimento {
 	
 	public readonly HorarioEstabelecimentoSetCollection<Estabelecimento> horarioEstabelecimento;
 	
-	private System.Collections.Generic.ISet<Cliente_seleciona_Estabelecimento> ORM_Cliente_seleciona_Estabelecimento {
+	public virtual System.Collections.Generic.ISet<Cliente_seleciona_Estabelecimento> ORM_Cliente_seleciona_Estabelecimento {
 		get  {
 			return __cliente_seleciona_Estabelecimento;			
 		}
@@ -500,7 +500,7 @@ public class Estabelecimento {
 	
 	public readonly Cliente_seleciona_EstabelecimentoSetCollection<Estabelecimento> cliente_seleciona_Estabelecimento;
 	
-	private System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> ORM_Cliente_avalia_Estabelecimento {
+	public virtual System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> ORM_Cliente_avalia_Estabelecimento {
 		get  {
 			return __cliente_avalia_Estabelecimento;			
 		}

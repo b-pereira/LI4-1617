@@ -87,7 +87,7 @@ public class ClienteCriteria : AbstractORMCriteria {
 	public ClienteCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(Cliente))) {
 	}
 	
-	public ClienteCriteria() : this(global::orm.BasedeDadosMMPersistentManager.Instance().GetSession()) {
+	public ClienteCriteria() : this(BasedeDadosMMPersistentManager.Instance().GetSession()) {
 	}
 	
 	public UtilizadorCriteria CreateUtilizadorCriteria() {

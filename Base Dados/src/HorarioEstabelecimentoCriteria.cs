@@ -60,7 +60,7 @@ public class HorarioEstabelecimentoCriteria : AbstractORMCriteria {
 	public HorarioEstabelecimentoCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(HorarioEstabelecimento))) {
 	}
 	
-	public HorarioEstabelecimentoCriteria() : this(global::orm.BasedeDadosMMPersistentManager.Instance().GetSession()) {
+	public HorarioEstabelecimentoCriteria() : this(BasedeDadosMMPersistentManager.Instance().GetSession()) {
 	}
 	
 	public EstabelecimentoCriteria CreateEstabelecimentoCriteria() {

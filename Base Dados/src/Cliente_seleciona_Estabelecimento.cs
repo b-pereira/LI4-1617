@@ -23,11 +23,11 @@ using NHibernate;
 public class Cliente_seleciona_Estabelecimento {
 	public Cliente_seleciona_Estabelecimento() {
 		_OrmAdapter = new Cliente_seleciona_EstabelecimentoORMAdapter(this);
-		selecaoEstabelecimento = new SelecaoEstabelecimentoSetCollection<Cliente_seleciona_Estabelecimento>(this, _OrmAdapter, orm.ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_SELECAOESTABELECIMENTO, orm.ORMConstants.KEY_SELECAOESTABELECIMENTO_ESTABELECIMENTO, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
+		selecaoEstabelecimento = new SelecaoEstabelecimentoSetCollection<Cliente_seleciona_Estabelecimento>(this, _OrmAdapter, ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_SELECAOESTABELECIMENTO, ORMConstants.KEY_SELECAOESTABELECIMENTO_ESTABELECIMENTO, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	}
 	
 	public static Cliente_seleciona_Estabelecimento LoadCliente_seleciona_EstabelecimentoByORMID(Estabelecimento estabelecimento, Cliente cliente) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadCliente_seleciona_EstabelecimentoByORMID(session,estabelecimento, cliente);
 	}
 	
@@ -40,7 +40,7 @@ public class Cliente_seleciona_Estabelecimento {
 	}
 	
 	public static Cliente_seleciona_Estabelecimento[] ListCliente_seleciona_EstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return ListCliente_seleciona_EstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -69,7 +69,7 @@ public class Cliente_seleciona_Estabelecimento {
 	}
 	
 	public static Cliente_seleciona_Estabelecimento LoadCliente_seleciona_EstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadCliente_seleciona_EstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -82,7 +82,7 @@ public class Cliente_seleciona_Estabelecimento {
 	}
 	
 	public static global::System.Collections.IEnumerable IterateCliente_seleciona_EstabelecimentoByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return IterateCliente_seleciona_EstabelecimentoByQuery(session, condition, orderBy);
 	}
 	
@@ -151,9 +151,9 @@ public class Cliente_seleciona_Estabelecimento {
 		return new Cliente_seleciona_Estabelecimento();
 	}
 	
-	public bool Save() {
+	public virtual bool Save() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().SaveObject(this);
+			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -163,9 +163,9 @@ public class Cliente_seleciona_Estabelecimento {
 		}
 	}
 	
-	public bool Delete() {
+	public virtual bool Delete() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
+			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -175,9 +175,9 @@ public class Cliente_seleciona_Estabelecimento {
 		}
 	}
 	
-	public bool Refresh() {
+	public virtual bool Refresh() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
+			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -187,7 +187,7 @@ public class Cliente_seleciona_Estabelecimento {
 		}
 	}
 	
-	public bool DeleteAndDissociate() {
+	public virtual bool DeleteAndDissociate() {
 		try {
 			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
@@ -212,7 +212,7 @@ public class Cliente_seleciona_Estabelecimento {
 		}
 	}
 	
-	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
@@ -243,18 +243,18 @@ public class Cliente_seleciona_Estabelecimento {
 		}
 	}
 	
-	private System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
-		if (key == orm.ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_SELECAOESTABELECIMENTO)
+	public virtual System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
+		if (key == ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_SELECAOESTABELECIMENTO)
 			return (System.Collections.Generic.ISet<T>) __selecaoEstabelecimento;
 		return null;
 	}
 	
 	private void This_SetOwner(object owner, int key) {
-		if (key == orm.ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_ESTABELECIMENTO) {
+		if (key == ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_ESTABELECIMENTO) {
 			this.__estabelecimento = (Estabelecimento) owner;
 		}
 		
-		else if (key == orm.ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_CLIENTE) {
+		else if (key == ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_CLIENTE) {
 			this.__cliente = (Cliente) owner;
 		}
 	}
@@ -282,7 +282,7 @@ public class Cliente_seleciona_Estabelecimento {
 	
 	private int __estabelecimentoId;
 	
-	public int EstabelecimentoId {
+	public virtual int EstabelecimentoId {
 		set {
 			this.__estabelecimentoId = value;			
 		}
@@ -295,7 +295,7 @@ public class Cliente_seleciona_Estabelecimento {
 	
 	private int __clienteId;
 	
-	public int ClienteId {
+	public virtual int ClienteId {
 		set {
 			this.__clienteId = value;			
 		}
@@ -306,7 +306,7 @@ public class Cliente_seleciona_Estabelecimento {
 	
 	private System.Collections.Generic.ISet<SelecaoEstabelecimento> __selecaoEstabelecimento = new System.Collections.Generic.HashSet<SelecaoEstabelecimento>();
 	
-	public Estabelecimento Estabelecimento {
+	public virtual Estabelecimento Estabelecimento {
 		set {
 			if(__estabelecimento!= null) {
 				__estabelecimento.cliente_seleciona_Estabelecimento.Remove(this);
@@ -321,7 +321,7 @@ public class Cliente_seleciona_Estabelecimento {
 		}
 	}
 	
-	private Estabelecimento ORM_Estabelecimento {
+	public virtual Estabelecimento ORM_Estabelecimento {
 		set {
 			this.__estabelecimento = value;			
 		}
@@ -331,7 +331,7 @@ public class Cliente_seleciona_Estabelecimento {
 		}
 	}
 	
-	public Cliente Cliente {
+	public virtual Cliente Cliente {
 		set {
 			if(__cliente!= null) {
 				__cliente.cliente_seleciona_Estabelecimento.Remove(this);
@@ -346,7 +346,7 @@ public class Cliente_seleciona_Estabelecimento {
 		}
 	}
 	
-	private Cliente ORM_Cliente {
+	public virtual Cliente ORM_Cliente {
 		set {
 			this.__cliente = value;			
 		}
@@ -356,7 +356,7 @@ public class Cliente_seleciona_Estabelecimento {
 		}
 	}
 	
-	private System.Collections.Generic.ISet<SelecaoEstabelecimento> ORM_SelecaoEstabelecimento {
+	public virtual System.Collections.Generic.ISet<SelecaoEstabelecimento> ORM_SelecaoEstabelecimento {
 		get  {
 			return __selecaoEstabelecimento;			
 		}
@@ -374,17 +374,17 @@ public class Cliente_seleciona_Estabelecimento {
 	
 	private bool _saved = false;
 	
-	public void onSave() {
+	public virtual void onSave() {
 		_saved=true;
 	}
 	
 	
-	public void onLoad() {
+	public virtual void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public bool isSaved() {
+	public virtual bool isSaved() {
 		return _saved;
 	}
 	

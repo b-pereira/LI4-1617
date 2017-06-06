@@ -42,7 +42,7 @@ public class CategoriaCriteria : AbstractORMCriteria {
 	public CategoriaCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(Categoria))) {
 	}
 	
-	public CategoriaCriteria() : this(global::orm.BasedeDadosMMPersistentManager.Instance().GetSession()) {
+	public CategoriaCriteria() : this(BasedeDadosMMPersistentManager.Instance().GetSession()) {
 	}
 	
 	public EstabelecimentoCriteria CreateEstabelecimento1Criteria() {

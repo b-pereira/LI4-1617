@@ -4,7 +4,7 @@ using Orm;
 public class CreateBasedeDadosMMDatabaseSchema {
 	[STAThread]
 	public static void Main(string[] args) {
-		ORMDatabaseInitiator.CreateSchema(orm.BasedeDadosMMPersistentManager.Instance());
+		ORMDatabaseInitiator.CreateSchema(BasedeDadosMMPersistentManager.Instance());
 	}
 	
 }

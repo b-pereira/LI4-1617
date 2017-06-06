@@ -3,7 +3,7 @@ using Orm;
 
 public class RetrieveAndUpdateBasedeDadosMMData {
 	private void RetrieveAndUpdateData() {
-		PersistentTransaction t = orm.BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
+		PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
 		try {
 			Estabelecimento estabelecimento = Estabelecimento.LoadEstabelecimentoByQuery(null, null);
 			// Update the properties of the persistent object
@@ -142,7 +142,7 @@ public class RetrieveAndUpdateBasedeDadosMMData {
 //			retrieveAndUpdateBasedeDadosMMData.RetrieveByCriteria();
 		}
 		finally {
-			orm.BasedeDadosMMPersistentManager.Instance().DisposePersistentManager();
+			BasedeDadosMMPersistentManager.Instance().DisposePersistentManager();
 		}
 		
 	}

@@ -3,7 +3,7 @@ using Orm;
 
 public class CreateBasedeDadosMMData {
 	public void CreateData() {
-		PersistentTransaction t = orm.BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
+		PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
 		try {
 			Estabelecimento estabelecimento = Estabelecimento.CreateEstabelecimento();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : cliente_avalia_Estabelecimento, cliente_seleciona_Estabelecimento, horarioEstabelecimento, iguaria, cod_postal, localidade, numero, rua, latitude, longitude, visual_estabelecimento, telefone, rating_medio_estabelecimento, desc_ambiente, nome_estabelecimento, utilizador, categoria1
@@ -57,7 +57,7 @@ public class CreateBasedeDadosMMData {
 			createBasedeDadosMMData.CreateData();
 		}
 		finally {
-			orm.BasedeDadosMMPersistentManager.Instance().DisposePersistentManager();
+			BasedeDadosMMPersistentManager.Instance().DisposePersistentManager();
 		}
 		
 	}

@@ -3,7 +3,7 @@ using Orm;
 
 public class DeleteBasedeDadosMMData {
 	private void DeleteData() {
-		PersistentTransaction t = orm.BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
+		PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
 		try {
 			Estabelecimento estabelecimento = Estabelecimento.LoadEstabelecimentoByQuery(null, null);
 			estabelecimento.Delete();
@@ -45,7 +45,7 @@ public class DeleteBasedeDadosMMData {
 			deleteBasedeDadosMMData.DeleteData();
 		}
 		finally {
-			orm.BasedeDadosMMPersistentManager.Instance().DisposePersistentManager();
+			BasedeDadosMMPersistentManager.Instance().DisposePersistentManager();
 		}
 		
 	}

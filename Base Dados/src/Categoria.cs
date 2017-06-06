@@ -14,6 +14,7 @@
 using System;
 using Orm;
 using System.Collections;
+using System.Collections.Generic;
 using NHibernate;
 
 /// <summary>
@@ -23,11 +24,11 @@ using NHibernate;
 public class Categoria {
 	public Categoria() {
 		_OrmAdapter = new CategoriaORMAdapter(this);
-		estabelecimento1 = new EstabelecimentoSetCollection<Categoria>(this, _OrmAdapter, orm.ORMConstants.KEY_CATEGORIA_ESTABELECIMENTO1, orm.ORMConstants.KEY_ESTABELECIMENTO_CATEGORIA1, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
+		estabelecimento1 = new EstabelecimentoSetCollection<Categoria>(this, _OrmAdapter, ORMConstants.KEY_CATEGORIA_ESTABELECIMENTO1, ORMConstants.KEY_ESTABELECIMENTO_CATEGORIA1, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	}
 	
 	public static Categoria LoadCategoriaByORMID(int id_categoria) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadCategoriaByORMID(session,id_categoria);
 	}
 	
@@ -36,7 +37,7 @@ public class Categoria {
 	}
 	
 	public static Categoria[] ListCategoriaByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return ListCategoriaByQuery(session, condition, orderBy);
 	}
 	
@@ -65,7 +66,7 @@ public class Categoria {
 	}
 	
 	public static Categoria LoadCategoriaByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadCategoriaByQuery(session, condition, orderBy);
 	}
 	
@@ -78,7 +79,7 @@ public class Categoria {
 	}
 	
 	public static global::System.Collections.IEnumerable IterateCategoriaByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return IterateCategoriaByQuery(session, condition, orderBy);
 	}
 	
@@ -119,9 +120,9 @@ public class Categoria {
 		return new Categoria();
 	}
 	
-	public bool Save() {
+	public virtual bool Save() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().SaveObject(this);
+			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -131,9 +132,9 @@ public class Categoria {
 		}
 	}
 	
-	public bool Delete() {
+	public virtual bool Delete() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
+			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -143,9 +144,9 @@ public class Categoria {
 		}
 	}
 	
-	public bool Refresh() {
+	public virtual bool Refresh() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
+			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -155,7 +156,7 @@ public class Categoria {
 		}
 	}
 	
-	public bool DeleteAndDissociate() {
+	public virtual bool DeleteAndDissociate() {
 		try {
 			Estabelecimento[] lEstabelecimento1s = estabelecimento1.ToArray();
 			foreach(Estabelecimento lEstabelecimento1 in lEstabelecimento1s) {
@@ -170,7 +171,7 @@ public class Categoria {
 		}
 	}
 	
-	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			Estabelecimento[] lEstabelecimento1s = estabelecimento1.ToArray();
 			foreach(Estabelecimento lEstabelecimento1 in lEstabelecimento1s) {
@@ -191,8 +192,8 @@ public class Categoria {
 		}
 	}
 	
-	private System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
-		if (key == orm.ORMConstants.KEY_CATEGORIA_ESTABELECIMENTO1)
+	public virtual System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
+		if (key == ORMConstants.KEY_CATEGORIA_ESTABELECIMENTO1)
 			return (System.Collections.Generic.ISet<T>) __estabelecimento1;
 		return null;
 	}
@@ -218,7 +219,7 @@ public class Categoria {
 	
 	private System.Collections.Generic.ISet<Estabelecimento> __estabelecimento1 = new System.Collections.Generic.HashSet<Estabelecimento>();
 	
-	private int Id_categoria {
+	public virtual int Id_categoria {
 		set {
 			this.__id_categoria = value;			
 		}
@@ -227,13 +228,13 @@ public class Categoria {
 		}
 	}
 	
-	public int ORMID {
+	public virtual int ORMID {
 		get {
 			return Id_categoria;			
 		}
 	}
 	
-	public string Descricao {
+	public virtual string Descricao {
 		set {
 			this.__descricao = value;			
 		}
@@ -242,7 +243,7 @@ public class Categoria {
 		}
 	}
 	
-	private System.Collections.Generic.ISet<Estabelecimento> ORM_Estabelecimento1 {
+	public virtual System.Collections.Generic.ISet<Estabelecimento> ORM_Estabelecimento1 {
 		get  {
 			return __estabelecimento1;			
 		}

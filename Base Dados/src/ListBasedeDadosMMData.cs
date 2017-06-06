@@ -301,8 +301,10 @@ public class ListBasedeDadosMMData {
 //			listBasedeDadosMMData.ListByCriteria();
 		}
 		finally {
-			orm.BasedeDadosMMPersistentManager.Instance().DisposePersistentManager();
+			BasedeDadosMMPersistentManager.Instance().DisposePersistentManager();
 		}
+
+        Console.ReadLine();
 		
 	}
 	

@@ -42,7 +42,7 @@ public class Cliente_critica_IguariaCriteria : AbstractORMCriteria {
 	public Cliente_critica_IguariaCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(Cliente_critica_Iguaria))) {
 	}
 	
-	public Cliente_critica_IguariaCriteria() : this(global::orm.BasedeDadosMMPersistentManager.Instance().GetSession()) {
+	public Cliente_critica_IguariaCriteria() : this(BasedeDadosMMPersistentManager.Instance().GetSession()) {
 	}
 	
 	public ClienteCriteria CreateClienteCriteria() {

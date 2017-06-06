@@ -69,7 +69,7 @@ public class IguariaCriteria : AbstractORMCriteria {
 	public IguariaCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(Iguaria))) {
 	}
 	
-	public IguariaCriteria() : this(global::orm.BasedeDadosMMPersistentManager.Instance().GetSession()) {
+	public IguariaCriteria() : this(BasedeDadosMMPersistentManager.Instance().GetSession()) {
 	}
 	
 	public EstabelecimentoCriteria CreateEstabelecimentoCriteria() {

@@ -23,14 +23,14 @@ using NHibernate;
 public class Cliente {
 	public Cliente() {
 		_OrmAdapter = new ClienteORMAdapter(this);
-		cliente_critica_Iguaria = new Cliente_critica_IguariaSetCollection<Cliente>(this, _OrmAdapter, orm.ORMConstants.KEY_CLIENTE_CLIENTE_CRITICA_IGUARIA, orm.ORMConstants.KEY_CLIENTE_CRITICA_IGUARIA_CLIENTE, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
-		cliente_seleciona_iguaria = new Cliente_seleciona_iguariaSetCollection<Cliente>(this, _OrmAdapter, orm.ORMConstants.KEY_CLIENTE_CLIENTE_SELECIONA_IGUARIA, orm.ORMConstants.KEY_CLIENTE_SELECIONA_IGUARIA_CLIENTE, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
-		cliente_seleciona_Estabelecimento = new Cliente_seleciona_EstabelecimentoSetCollection<Cliente>(this, _OrmAdapter, orm.ORMConstants.KEY_CLIENTE_CLIENTE_SELECIONA_ESTABELECIMENTO, orm.ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_CLIENTE, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
-		cliente_avalia_Estabelecimento = new Cliente_avalia_EstabelecimentoSetCollection<Cliente>(this, _OrmAdapter, orm.ORMConstants.KEY_CLIENTE_CLIENTE_AVALIA_ESTABELECIMENTO, orm.ORMConstants.KEY_CLIENTE_AVALIA_ESTABELECIMENTO_CLIENTE, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
+		cliente_critica_Iguaria = new Cliente_critica_IguariaSetCollection<Cliente>(this, _OrmAdapter, ORMConstants.KEY_CLIENTE_CLIENTE_CRITICA_IGUARIA, ORMConstants.KEY_CLIENTE_CRITICA_IGUARIA_CLIENTE, ORMConstants.KEY_MUL_ONE_TO_MANY);
+		cliente_seleciona_iguaria = new Cliente_seleciona_iguariaSetCollection<Cliente>(this, _OrmAdapter, ORMConstants.KEY_CLIENTE_CLIENTE_SELECIONA_IGUARIA, ORMConstants.KEY_CLIENTE_SELECIONA_IGUARIA_CLIENTE, ORMConstants.KEY_MUL_ONE_TO_MANY);
+		cliente_seleciona_Estabelecimento = new Cliente_seleciona_EstabelecimentoSetCollection<Cliente>(this, _OrmAdapter, ORMConstants.KEY_CLIENTE_CLIENTE_SELECIONA_ESTABELECIMENTO, ORMConstants.KEY_CLIENTE_SELECIONA_ESTABELECIMENTO_CLIENTE, ORMConstants.KEY_MUL_ONE_TO_MANY);
+		cliente_avalia_Estabelecimento = new Cliente_avalia_EstabelecimentoSetCollection<Cliente>(this, _OrmAdapter, ORMConstants.KEY_CLIENTE_CLIENTE_AVALIA_ESTABELECIMENTO, ORMConstants.KEY_CLIENTE_AVALIA_ESTABELECIMENTO_CLIENTE, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	}
 	
 	public static Cliente LoadClienteByORMID(int id_cliente) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadClienteByORMID(session,id_cliente);
 	}
 	
@@ -39,7 +39,7 @@ public class Cliente {
 	}
 	
 	public static Cliente[] ListClienteByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return ListClienteByQuery(session, condition, orderBy);
 	}
 	
@@ -68,7 +68,7 @@ public class Cliente {
 	}
 	
 	public static Cliente LoadClienteByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadClienteByQuery(session, condition, orderBy);
 	}
 	
@@ -81,7 +81,7 @@ public class Cliente {
 	}
 	
 	public static global::System.Collections.IEnumerable IterateClienteByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return IterateClienteByQuery(session, condition, orderBy);
 	}
 	
@@ -122,9 +122,9 @@ public class Cliente {
 		return new Cliente();
 	}
 	
-	public bool Save() {
+	public virtual bool Save() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().SaveObject(this);
+			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -134,9 +134,9 @@ public class Cliente {
 		}
 	}
 	
-	public bool Delete() {
+	public virtual bool Delete() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
+			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -146,9 +146,9 @@ public class Cliente {
 		}
 	}
 	
-	public bool Refresh() {
+	public virtual bool Refresh() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
+			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -158,7 +158,7 @@ public class Cliente {
 		}
 	}
 	
-	public bool DeleteAndDissociate() {
+	public virtual bool DeleteAndDissociate() {
 		try {
 			if(Utilizador != null) {
 				Utilizador.Cliente = null;
@@ -188,7 +188,7 @@ public class Cliente {
 		}
 	}
 	
-	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			if(Utilizador != null) {
 				Utilizador.Cliente = null;
@@ -224,14 +224,14 @@ public class Cliente {
 		}
 	}
 	
-	private System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
-		if (key == orm.ORMConstants.KEY_CLIENTE_CLIENTE_CRITICA_IGUARIA)
+	public virtual System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
+		if (key == ORMConstants.KEY_CLIENTE_CLIENTE_CRITICA_IGUARIA)
 			return (System.Collections.Generic.ISet<T>) __cliente_critica_Iguaria;
-		else if (key == orm.ORMConstants.KEY_CLIENTE_CLIENTE_SELECIONA_IGUARIA)
+		else if (key == ORMConstants.KEY_CLIENTE_CLIENTE_SELECIONA_IGUARIA)
 			return (System.Collections.Generic.ISet<T>) __cliente_seleciona_iguaria;
-		else if (key == orm.ORMConstants.KEY_CLIENTE_CLIENTE_SELECIONA_ESTABELECIMENTO)
+		else if (key == ORMConstants.KEY_CLIENTE_CLIENTE_SELECIONA_ESTABELECIMENTO)
 			return (System.Collections.Generic.ISet<T>) __cliente_seleciona_Estabelecimento;
-		else if (key == orm.ORMConstants.KEY_CLIENTE_CLIENTE_AVALIA_ESTABELECIMENTO)
+		else if (key == ORMConstants.KEY_CLIENTE_CLIENTE_AVALIA_ESTABELECIMENTO)
 			return (System.Collections.Generic.ISet<T>) __cliente_avalia_Estabelecimento;
 		return null;
 	}
@@ -275,7 +275,7 @@ public class Cliente {
 	
 	private System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> __cliente_avalia_Estabelecimento = new System.Collections.Generic.HashSet<Cliente_avalia_Estabelecimento>();
 	
-	private int Id_cliente {
+	public virtual int Id_cliente {
 		set {
 			this.__id_cliente = value;			
 		}
@@ -284,13 +284,13 @@ public class Cliente {
 		}
 	}
 	
-	public int ORMID {
+	public virtual int ORMID {
 		get {
 			return Id_cliente;			
 		}
 	}
 	
-	public string Nome_cliente {
+	public virtual string Nome_cliente {
 		set {
 			this.__nome_cliente = value;			
 		}
@@ -299,7 +299,7 @@ public class Cliente {
 		}
 	}
 	
-	public byte Ord_rat_igu {
+	public virtual byte Ord_rat_igu {
 		set {
 			this.__ord_rat_igu = value;			
 		}
@@ -308,7 +308,7 @@ public class Cliente {
 		}
 	}
 	
-	public byte Ord_rat_est {
+	public virtual byte Ord_rat_est {
 		set {
 			this.__ord_rat_est = value;			
 		}
@@ -317,7 +317,7 @@ public class Cliente {
 		}
 	}
 	
-	public byte Ord_dist {
+	public virtual byte Ord_dist {
 		set {
 			this.__ord_dist = value;			
 		}
@@ -326,7 +326,7 @@ public class Cliente {
 		}
 	}
 	
-	public byte Ord_pop_igu {
+	public virtual byte Ord_pop_igu {
 		set {
 			this.__ord_pop_igu = value;			
 		}
@@ -335,7 +335,7 @@ public class Cliente {
 		}
 	}
 	
-	public byte Ord_pop_est {
+	public virtual byte Ord_pop_est {
 		set {
 			this.__ord_pop_est = value;			
 		}
@@ -344,7 +344,7 @@ public class Cliente {
 		}
 	}
 	
-	public Utilizador Utilizador {
+	public virtual Utilizador Utilizador {
 		set {
 			if (this.__utilizador != value) {
 				Utilizador l__utilizador = this.__utilizador;
@@ -362,7 +362,7 @@ public class Cliente {
 		}
 	}
 	
-	private System.Collections.Generic.ISet<Cliente_critica_Iguaria> ORM_Cliente_critica_Iguaria {
+	public virtual System.Collections.Generic.ISet<Cliente_critica_Iguaria> ORM_Cliente_critica_Iguaria {
 		get  {
 			return __cliente_critica_Iguaria;			
 		}
@@ -374,7 +374,7 @@ public class Cliente {
 	
 	public readonly Cliente_critica_IguariaSetCollection<Cliente> cliente_critica_Iguaria;
 	
-	private System.Collections.Generic.ISet<Cliente_seleciona_iguaria> ORM_Cliente_seleciona_iguaria {
+	public virtual System.Collections.Generic.ISet<Cliente_seleciona_iguaria> ORM_Cliente_seleciona_iguaria {
 		get  {
 			return __cliente_seleciona_iguaria;			
 		}
@@ -386,7 +386,7 @@ public class Cliente {
 	
 	public readonly Cliente_seleciona_iguariaSetCollection<Cliente> cliente_seleciona_iguaria;
 	
-	private System.Collections.Generic.ISet<Cliente_seleciona_Estabelecimento> ORM_Cliente_seleciona_Estabelecimento {
+	public virtual System.Collections.Generic.ISet<Cliente_seleciona_Estabelecimento> ORM_Cliente_seleciona_Estabelecimento {
 		get  {
 			return __cliente_seleciona_Estabelecimento;			
 		}
@@ -398,7 +398,7 @@ public class Cliente {
 	
 	public readonly Cliente_seleciona_EstabelecimentoSetCollection<Cliente> cliente_seleciona_Estabelecimento;
 	
-	private System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> ORM_Cliente_avalia_Estabelecimento {
+	public virtual System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> ORM_Cliente_avalia_Estabelecimento {
 		get  {
 			return __cliente_avalia_Estabelecimento;			
 		}

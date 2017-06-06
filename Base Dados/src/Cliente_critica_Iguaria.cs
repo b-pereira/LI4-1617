@@ -26,7 +26,7 @@ public class Cliente_critica_Iguaria {
 	}
 	
 	public static Cliente_critica_Iguaria LoadCliente_critica_IguariaByORMID(Cliente cliente, Iguaria iguaria) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadCliente_critica_IguariaByORMID(session,cliente, iguaria);
 	}
 	
@@ -39,7 +39,7 @@ public class Cliente_critica_Iguaria {
 	}
 	
 	public static Cliente_critica_Iguaria[] ListCliente_critica_IguariaByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return ListCliente_critica_IguariaByQuery(session, condition, orderBy);
 	}
 	
@@ -68,7 +68,7 @@ public class Cliente_critica_Iguaria {
 	}
 	
 	public static Cliente_critica_Iguaria LoadCliente_critica_IguariaByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return LoadCliente_critica_IguariaByQuery(session, condition, orderBy);
 	}
 	
@@ -81,7 +81,7 @@ public class Cliente_critica_Iguaria {
 	}
 	
 	public static global::System.Collections.IEnumerable IterateCliente_critica_IguariaByQuery(string condition, string orderBy) {
-		PersistentSession session = global::orm.BasedeDadosMMPersistentManager.Instance().GetSession();
+		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
 		return IterateCliente_critica_IguariaByQuery(session, condition, orderBy);
 	}
 	
@@ -153,9 +153,9 @@ public class Cliente_critica_Iguaria {
 		return new Cliente_critica_Iguaria();
 	}
 	
-	public bool Save() {
+	public virtual bool Save() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().SaveObject(this);
+			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -165,9 +165,9 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	public bool Delete() {
+	public virtual bool Delete() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
+			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -177,9 +177,9 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	public bool Refresh() {
+	public virtual bool Refresh() {
 		try {
-			global::orm.BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
+			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
 		}
 		catch (Exception e) {
@@ -189,7 +189,7 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	public bool DeleteAndDissociate() {
+	public virtual bool DeleteAndDissociate() {
 		try {
 			Cliente cliente = this.Cliente;
 			if(Cliente != null) {
@@ -210,7 +210,7 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			Cliente cliente = this.Cliente;
 			if(Cliente != null) {
@@ -238,11 +238,11 @@ public class Cliente_critica_Iguaria {
 	}
 	
 	private void This_SetOwner(object owner, int key) {
-		if (key == orm.ORMConstants.KEY_CLIENTE_CRITICA_IGUARIA_CLIENTE) {
+		if (key == ORMConstants.KEY_CLIENTE_CRITICA_IGUARIA_CLIENTE) {
 			this.__cliente = (Cliente) owner;
 		}
 		
-		else if (key == orm.ORMConstants.KEY_CLIENTE_CRITICA_IGUARIA_IGUARIA) {
+		else if (key == ORMConstants.KEY_CLIENTE_CRITICA_IGUARIA_IGUARIA) {
 			this.__iguaria = (Iguaria) owner;
 		}
 	}
@@ -266,7 +266,7 @@ public class Cliente_critica_Iguaria {
 	
 	private int __clienteId;
 	
-	public int ClienteId {
+	public virtual int ClienteId {
 		set {
 			this.__clienteId = value;			
 		}
@@ -283,7 +283,7 @@ public class Cliente_critica_Iguaria {
 	
 	private float __rating_igu = 0f;
 	
-	public string Desc_critica {
+	public virtual string Desc_critica {
 		set {
 			this.__desc_critica = value;			
 		}
@@ -292,7 +292,7 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	public DateTime Data_critica {
+	public virtual DateTime Data_critica {
 		set {
 			this.__data_critica = value;			
 		}
@@ -301,7 +301,7 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	public float Rating_igu {
+	public virtual float Rating_igu {
 		set {
 			this.__rating_igu = value;			
 		}
@@ -310,7 +310,7 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	public Cliente Cliente {
+	public virtual Cliente Cliente {
 		set {
 			if(__cliente!= null) {
 				__cliente.cliente_critica_Iguaria.Remove(this);
@@ -325,7 +325,7 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	private Cliente ORM_Cliente {
+	public virtual Cliente ORM_Cliente {
 		set {
 			this.__cliente = value;			
 		}
@@ -335,7 +335,7 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	public Iguaria Iguaria {
+	public virtual Iguaria Iguaria {
 		set {
 			if(__iguaria!= null) {
 				__iguaria.cliente_critica_Iguaria.Remove(this);
@@ -350,7 +350,7 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	private Iguaria ORM_Iguaria {
+	public virtual Iguaria ORM_Iguaria {
 		set {
 			this.__iguaria = value;			
 		}
@@ -366,17 +366,17 @@ public class Cliente_critica_Iguaria {
 	
 	private bool _saved = false;
 	
-	public void onSave() {
+	public virtual void onSave() {
 		_saved=true;
 	}
 	
 	
-	public void onLoad() {
+	public virtual void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public bool isSaved() {
+	public virtual bool isSaved() {
 		return _saved;
 	}
 	
