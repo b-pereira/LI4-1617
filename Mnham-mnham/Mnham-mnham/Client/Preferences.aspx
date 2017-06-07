@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Mnham-Mnham" MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Mnham_mnham.Client.MainClient" %>
+﻿<%@ Page Title="Mnham-Mnham" MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Mnham_mnham.Client.Preferences" %>
 
 
 <asp:Content runat="server" ID="MainClientSidebar" ContentPlaceHolderID="SideBarContent">
@@ -25,9 +25,18 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="MainContentClient" ContentPlaceHolderID="MainContent">
-    <div>
-
-        <asp:CheckBoxList ID="CheckBoxList1" runat="server" CssClass="checkbox palette-asbestos">
+    <div class="page-header row">
+    <div class="col-sm-3">
+    <i class="fa fa-5x fa-heart" style="color: #ffffff"></i>
+    </div>
+    <div class="col-sm-6">
+    <h2 class="fa fa-2x" style="color: #ffffff">Choose your search preferences</h2>
+    </div>
+    <div class="col-sm-3">
+    </div>
+    </div>
+    <div class="jumbotron">
+        <asp:CheckBoxList ID="CheckBoxList1" runat="server" CssClass="checkbox palette-asbestos fa fa-3x">
             <asp:ListItem>Distância</asp:ListItem>
             <asp:ListItem>Avaliação Iguaria</asp:ListItem>
             <asp:ListItem>Avaliação Estabelecimento</asp:ListItem>

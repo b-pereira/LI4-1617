@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Mnham-Mnham" MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Mnham_mnham.Client.MainClient" %>
+﻿<%@ Page Title="Mnham-Mnham" MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Mnham_mnham.Client.MainEstab" %>
 
 
 <asp:Content runat="server" ID="MainClientSidebar" ContentPlaceHolderID="SideBarContent">

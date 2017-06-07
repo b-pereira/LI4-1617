@@ -10,7 +10,7 @@
 namespace Mnham_mnham.Client {
     
     
-    public partial class MainClient {
+    public partial class Preferences {
         
         /// <summary>
         /// CheckBoxList1 control.

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Mnham-Mnham" MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Mnham_mnham.Client.MainClient" %>
+﻿<%@ Page Title="Mnham-Mnham" MasterPageFile="~/Site.Master" Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="Mnham_mnham.Client.Settings" %>
 
 
 <asp:Content runat="server" ID="MainClientSidebar" ContentPlaceHolderID="SideBarContent">
@@ -27,17 +27,17 @@
 <asp:Content runat="server" ID="MainContentClient" ContentPlaceHolderID="MainContent">
     <div class="panel panel-default">
         <p>Name</p>
-        <asp:TextBox ID="TextBox1" runat="server" CssClass="fa" Height="31px" Width="600px"></asp:TextBox>        
+        <asp:TextBox ID="TextBox1" runat="server" CssClass="fa" Height="31px" Width="1200px"></asp:TextBox>        
         <i class="fa fa-lg fa-edit"></i>
     </div >
     <div class="panel panel-default">
         <p>Email</p>
-        <asp:TextBox ID="TextBox3" runat="server" CssClass="fa" Height="31px" Width="600px"></asp:TextBox>
+        <asp:TextBox ID="TextBox3" runat="server" CssClass="fa" Height="31px" Width="1200px"></asp:TextBox>
         <i class="fa fa-lg fa-edit"></i>
     </div>
     <div class="panel panel-default">
         <p>Password</p>
-        <asp:TextBox ID="TextBox2" runat="server" CssClass="fa" Height="31px" Width="600px"></asp:TextBox>
+        <asp:TextBox ID="TextBox2" runat="server" CssClass="fa" Height="31px" Width="1200px"></asp:TextBox>
         <i class="fa fa-lg fa-edit"></i>
     </div>
     <div>

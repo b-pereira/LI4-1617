@@ -10,7 +10,7 @@
 namespace Mnham_mnham.Client {
     
     
-    public partial class MainClient {
+    public partial class MainEstab {
         
         /// <summary>
         /// TextBox1 control.
