@@ -26,10 +26,14 @@
 
 <asp:Content runat="server" ID="MainContentClient" ContentPlaceHolderID="MainContent">
     <div>
-        <asp:TextBox ID="TextBox1" runat="server" Width="700px" CssClass="form-control flat">Input your search...</asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Submit" CssClass="btn btn-sm" />
-        <asp:DataList ID="DataList1" runat="server" CssClass="list-group">
-        </asp:DataList>
+
+        <asp:CheckBoxList ID="CheckBoxList1" runat="server" CssClass="checkbox palette-asbestos">
+            <asp:ListItem>Distância</asp:ListItem>
+            <asp:ListItem>Avaliação Iguaria</asp:ListItem>
+            <asp:ListItem>Avaliação Estabelecimento</asp:ListItem>
+            <asp:ListItem>Popularidade Estabelecimento</asp:ListItem>
+            <asp:ListItem>Popularidade Iguaria</asp:ListItem>
+        </asp:CheckBoxList>
 
     </div>
 </asp:Content>

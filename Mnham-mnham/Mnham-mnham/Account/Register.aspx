@@ -51,3 +51,65 @@
 
 </asp:Content>
 
+<%--
+<asp:Content runat="server" ID="MainEstab" ContentPlaceHolderID="MainContent">
+    <div class="page-header row">
+    <div class="col-sm-3">
+    <i class="fa fa-5x fa-building" style="color: #ffffff"></i>
+    </div>
+    <div class="col-sm-6">
+    <h2 class="fa fa-2x" style="color: #ffffff">Register your establishment</h2>
+    </div>
+    <div class="col-sm-3">
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel" style="background: rgba(255,255,255,0.3)">
+                <p>Name</p>
+                <asp:TextBox ID="TextBox1" runat="server" CssClass="fa" Height="31px" Width="1200px"></asp:TextBox>
+                <i class="fa fa-lg fa-edit"></i>
+            </div>
+            <div class="panel" style="background: rgba(255,255,255,0.3)">
+                <p class="fa">Image</p>
+                <i class="fa fa-lg fa-file-image-o"></i>
+                <asp:FileUpload ID="FileUpload1" runat="server" CssClass="btn fa" />
+            </div>
+            <div class="panel" style="background: rgba(255,255,255,0.3)">
+                <p>City</p>
+                <asp:TextBox ID="TextBox4" runat="server" CssClass="fa" Height="31px" Width="1200px"></asp:TextBox>
+                <i class="fa fa-lg fa-edit"></i>
+            </div>
+            <div class="panel" style="background: rgba(255,255,255,0.3)">
+                <p>Password</p>
+                <asp:TextBox ID="TextBox7" runat="server" CssClass="fa" Height="31px" Width="1200px"></asp:TextBox>
+                <i class="fa fa-lg fa-edit"></i>
+            </div>
+                <asp:Button ID="Button1" runat="server" CssClass="btn-danger" Text="Remove Account"></asp:Button>
+                <i class="fa fa-lg fa-edit"></i>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel" style="background: rgba(255,255,255,0.3)">
+                <p>Contact</p>
+                <asp:TextBox ID="TextBox2" runat="server" CssClass="fa" Height="31px" Width="1200px"></asp:TextBox>
+                <i class="fa fa-lg fa-edit"></i>
+            </div>
+            <div class="panel" style="background: rgba(255,255,255,0.3)">
+                <p>Street</p>
+                <asp:TextBox ID="TextBox3" runat="server" CssClass="fa" Height="31px" Width="1200px"></asp:TextBox>
+                <i class="fa fa-lg fa-edit"></i>
+            </div>
+            <div class="panel" style="background: rgba(255,255,255,0.3)">
+                <p>Postal Code</p>
+                <asp:TextBox ID="TextBox5" runat="server" CssClass="fa" Height="31px" Width="1200px"></asp:TextBox>
+                <i class="fa fa-lg fa-edit"></i>
+            </div>
+            <div class="panel" style="background: rgba(255,255,255,0.3)">
+                <p>Email</p>
+                <asp:TextBox ID="TextBox6" runat="server" CssClass="fa" Height="31px" Width="1200px"></asp:TextBox>
+                <i class="fa fa-lg fa-edit"></i>
+            </div>
+        </div>
+    </div>--%>
+
+</asp:Content>

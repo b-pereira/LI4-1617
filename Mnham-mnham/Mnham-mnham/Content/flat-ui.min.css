@@ -1292,7 +1292,8 @@ legend {
 textarea {
     padding: 5px 11px;
     font-size: 20px;
-    line-height: 24px
+    line-height: 24px;
+    width: 100px;
 }
 
 input[type=search] {

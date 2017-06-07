@@ -25,11 +25,22 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="MainContentClient" ContentPlaceHolderID="MainContent">
+    <div class="panel panel-default">
+        <p>Name</p>
+        <asp:TextBox ID="TextBox1" runat="server" CssClass="fa" Height="31px" Width="600px"></asp:TextBox>        
+        <i class="fa fa-lg fa-edit"></i>
+    </div >
+    <div class="panel panel-default">
+        <p>Email</p>
+        <asp:TextBox ID="TextBox3" runat="server" CssClass="fa" Height="31px" Width="600px"></asp:TextBox>
+        <i class="fa fa-lg fa-edit"></i>
+    </div>
+    <div class="panel panel-default">
+        <p>Password</p>
+        <asp:TextBox ID="TextBox2" runat="server" CssClass="fa" Height="31px" Width="600px"></asp:TextBox>
+        <i class="fa fa-lg fa-edit"></i>
+    </div>
     <div>
-        <asp:TextBox ID="TextBox1" runat="server" Width="700px" CssClass="form-control flat">Input your search...</asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Submit" CssClass="btn btn-sm" />
-        <asp:DataList ID="DataList1" runat="server" CssClass="list-group">
-        </asp:DataList>
-
+        <asp:Button ID="Button1" runat="server" Text="Remove Account" CssClass="btn-danger btn" />        
     </div>
 </asp:Content>

@@ -233,6 +233,8 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Client\Main.aspx" />
+    <Content Include="Client\Preferences.aspx" />
+    <Content Include="Client\Settings.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -242,7 +244,6 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\simple-sidebar.css" />
-    <Content Include="Content\DeprecatedSite.txt" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Estab\Main.aspx" />
@@ -496,6 +497,20 @@
     </Compile>
     <Compile Include="Client\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Preferences.aspx.cs">
+      <DependentUpon>Preferences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\Preferences.aspx.designer.cs">
+      <DependentUpon>Preferences.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
