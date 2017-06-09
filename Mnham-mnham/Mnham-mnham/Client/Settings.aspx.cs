@@ -13,5 +13,9 @@ namespace Mnham_mnham.Client
         {
 
         }
+        protected void Unnamed_LoggingOut(object sender, EventArgs e)
+        {
+
+        }
     }
 }

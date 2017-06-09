@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Mnham_mnham.Client
+namespace Mnham_mnham.Estab
 {
 
 
-    public partial class Settings
+    public partial class Edit
     {
 
     }

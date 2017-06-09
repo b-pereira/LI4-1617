@@ -15,6 +15,7 @@ namespace Mnham_mnham
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+        private LoginView l;
 
         protected void Page_Init(object sender, EventArgs e)
         {
