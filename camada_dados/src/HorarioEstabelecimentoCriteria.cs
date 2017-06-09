@@ -50,11 +50,20 @@ public class HorarioEstabelecimentoCriteria : AbstractORMCriteria {
 		
 	}
 	
+	private Int32Expression _estabelecimento_id_estabelecimento;
+	public Int32Expression Estabelecimento_id_estabelecimento {
+		get {
+			return  _estabelecimento_id_estabelecimento;
+		}
+		
+	}
+	
 	public HorarioEstabelecimentoCriteria(ICriteria criteria) : base(criteria) {
 		_id_horario =  new Int32Expression("Id_horario", this);
 		_dia =  new ByteExpression("Dia", this);
 		_hora_abertura =  new DateTimeExpression("Hora_abertura", this);
 		_hora_fecho =  new DateTimeExpression("Hora_fecho", this);
+		_estabelecimento_id_estabelecimento =  new Int32Expression("Estabelecimento_id_estabelecimento", this);
 	}
 	
 	public HorarioEstabelecimentoCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(HorarioEstabelecimento))) {

@@ -69,20 +69,6 @@
       <FileName>Critica.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Business.AreaCliente">
-    <Position X="1" Y="10.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAQAAAAAggEQCQAgAADAAQCAAAAAAACgCAAIAABAA=</HashCode>
-      <FileName>AreaCliente.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Business.AreaEstabelecimento">
-    <Position X="3" Y="13" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAEAAAAoAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>AreaEstabelecimento.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Struct Name="Business.Direcoes">
     <Position X="1" Y="8.5" Width="1.5" />
     <TypeIdentifier>
@@ -91,7 +77,7 @@
     </TypeIdentifier>
   </Struct>
   <Struct Name="Business.GPSVal">
-    <Position X="5.25" Y="12.75" Width="1.5" />
+    <Position X="1" Y="10.5" Width="1.5" />
     <Members>
       <Field Name="MAJOR_AXIS_RADIO" Hidden="true" />
     </Members>

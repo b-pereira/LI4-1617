@@ -133,6 +133,7 @@ public class ListBasedeDadosMMData {
 		//iguariaCriteria.id_iguaria.Eq();
 		//EstabelecimentoCriteria iguariaCriteria_Estabelecimento = iguariaCriteria.CreateEstabelecimentoCriteria();
 		//iguariaCriteria_Estabelecimento.id_estabelecimento.Eq();
+		//iguariaCriteria.estabelecimento_id_estabelecimento.Eq();
 		iguariaCriteria.SetMaxResults(ROW_COUNT);
 		Iguaria[] iguarias = iguariaCriteria.ListIguaria();
 		length =iguarias== null ? 0 : Math.Min(iguarias.Length, ROW_COUNT); 
@@ -183,9 +184,13 @@ public class ListBasedeDadosMMData {
 		//ClienteCriteria cliente_critica_IguariaCriteria_Cliente = cliente_critica_IguariaCriteria.CreateClienteCriteria();
 		//cliente_critica_IguariaCriteria_Cliente.id_cliente.Eq();
 		//IguariaCriteria cliente_critica_IguariaCriteria_Iguaria = cliente_critica_IguariaCriteria.CreateIguariaCriteria();
+		//cliente_critica_IguariaCriteria_Iguaria.estabelecimento_id_estabelecimento.Eq();
 		//EstabelecimentoCriteria cliente_critica_IguariaCriteria_Iguaria_Estabelecimento = cliente_critica_IguariaCriteria_Iguaria.CreateEstabelecimentoCriteria();
 		//cliente_critica_IguariaCriteria_Iguaria_Estabelecimento.id_estabelecimento.Eq();
 		//cliente_critica_IguariaCriteria_Iguaria.id_iguaria.Eq();
+		//cliente_critica_IguariaCriteria.cliente_id_cliente.Eq();
+		//cliente_critica_IguariaCriteria.iguaria_id_iguaria.Eq();
+		//cliente_critica_IguariaCriteria.iguaria_Estabelecimento.Eq();
 		cliente_critica_IguariaCriteria.SetMaxResults(ROW_COUNT);
 		Cliente_critica_Iguaria[] cliente_critica_Iguarias = cliente_critica_IguariaCriteria.ListCliente_critica_Iguaria();
 		length =cliente_critica_Iguarias== null ? 0 : Math.Min(cliente_critica_Iguarias.Length, ROW_COUNT); 
@@ -200,9 +205,13 @@ public class ListBasedeDadosMMData {
 		//ClienteCriteria cliente_seleciona_iguariaCriteria_Cliente = cliente_seleciona_iguariaCriteria.CreateClienteCriteria();
 		//cliente_seleciona_iguariaCriteria_Cliente.id_cliente.Eq();
 		//IguariaCriteria cliente_seleciona_iguariaCriteria_Iguaria = cliente_seleciona_iguariaCriteria.CreateIguariaCriteria();
+		//cliente_seleciona_iguariaCriteria_Iguaria.estabelecimento_id_estabelecimento.Eq();
 		//EstabelecimentoCriteria cliente_seleciona_iguariaCriteria_Iguaria_Estabelecimento = cliente_seleciona_iguariaCriteria_Iguaria.CreateEstabelecimentoCriteria();
 		//cliente_seleciona_iguariaCriteria_Iguaria_Estabelecimento.id_estabelecimento.Eq();
 		//cliente_seleciona_iguariaCriteria_Iguaria.id_iguaria.Eq();
+		//cliente_seleciona_iguariaCriteria.cliente_id_cliente.Eq();
+		//cliente_seleciona_iguariaCriteria.iguaria_id_iguaria.Eq();
+		//cliente_seleciona_iguariaCriteria.iguaria_Estabelecimento.Eq();
 		cliente_seleciona_iguariaCriteria.SetMaxResults(ROW_COUNT);
 		Cliente_seleciona_iguaria[] cliente_seleciona_iguarias = cliente_seleciona_iguariaCriteria.ListCliente_seleciona_iguaria();
 		length =cliente_seleciona_iguarias== null ? 0 : Math.Min(cliente_seleciona_iguarias.Length, ROW_COUNT); 
@@ -216,12 +225,19 @@ public class ListBasedeDadosMMData {
 		// Please uncomment the follow line and fill in parameter(s) 
 		//selecaoIguariaCriteria.id_visualizacao.Eq();
 		//Cliente_seleciona_iguariaCriteria selecaoIguariaCriteria_Cliente_seleciona_iguaria = selecaoIguariaCriteria.CreateClienteCriteria();
+		//selecaoIguariaCriteria_Cliente_seleciona_iguaria.iguaria_Estabelecimento.Eq();
+		//selecaoIguariaCriteria_Cliente_seleciona_iguaria.iguaria_id_iguaria.Eq();
+		//selecaoIguariaCriteria_Cliente_seleciona_iguaria.cliente_id_cliente.Eq();
 		//IguariaCriteria selecaoIguariaCriteria_Cliente_seleciona_iguaria_Iguaria = selecaoIguariaCriteria_Cliente_seleciona_iguaria.CreateIguariaCriteria();
+		//selecaoIguariaCriteria_Cliente_seleciona_iguaria_Iguaria.estabelecimento_id_estabelecimento.Eq();
 		//EstabelecimentoCriteria selecaoIguariaCriteria_Cliente_seleciona_iguaria_Iguaria_Estabelecimento = selecaoIguariaCriteria_Cliente_seleciona_iguaria_Iguaria.CreateEstabelecimentoCriteria();
 		//selecaoIguariaCriteria_Cliente_seleciona_iguaria_Iguaria_Estabelecimento.id_estabelecimento.Eq();
 		//selecaoIguariaCriteria_Cliente_seleciona_iguaria_Iguaria.id_iguaria.Eq();
 		//ClienteCriteria selecaoIguariaCriteria_Cliente_seleciona_iguaria_Cliente = selecaoIguariaCriteria_Cliente_seleciona_iguaria.CreateClienteCriteria();
 		//selecaoIguariaCriteria_Cliente_seleciona_iguaria_Cliente.id_cliente.Eq();
+		//selecaoIguariaCriteria.cliente_Cliente.Eq();
+		//selecaoIguariaCriteria.cliente_Iguaria.Eq();
+		//selecaoIguariaCriteria.cliente_Estabelecimento.Eq();
 		selecaoIguariaCriteria.SetMaxResults(ROW_COUNT);
 		SelecaoIguaria[] selecaoIguarias = selecaoIguariaCriteria.ListSelecaoIguaria();
 		length =selecaoIguarias== null ? 0 : Math.Min(selecaoIguarias.Length, ROW_COUNT); 
@@ -236,6 +252,7 @@ public class ListBasedeDadosMMData {
 		//horarioEstabelecimentoCriteria.id_horario.Eq();
 		//EstabelecimentoCriteria horarioEstabelecimentoCriteria_Estabelecimento = horarioEstabelecimentoCriteria.CreateEstabelecimentoCriteria();
 		//horarioEstabelecimentoCriteria_Estabelecimento.id_estabelecimento.Eq();
+		//horarioEstabelecimentoCriteria.estabelecimento_id_estabelecimento.Eq();
 		horarioEstabelecimentoCriteria.SetMaxResults(ROW_COUNT);
 		HorarioEstabelecimento[] horarioEstabelecimentos = horarioEstabelecimentoCriteria.ListHorarioEstabelecimento();
 		length =horarioEstabelecimentos== null ? 0 : Math.Min(horarioEstabelecimentos.Length, ROW_COUNT); 
@@ -251,6 +268,8 @@ public class ListBasedeDadosMMData {
 		//cliente_seleciona_EstabelecimentoCriteria_Estabelecimento.id_estabelecimento.Eq();
 		//ClienteCriteria cliente_seleciona_EstabelecimentoCriteria_Cliente = cliente_seleciona_EstabelecimentoCriteria.CreateClienteCriteria();
 		//cliente_seleciona_EstabelecimentoCriteria_Cliente.id_cliente.Eq();
+		//cliente_seleciona_EstabelecimentoCriteria.estabelecimento_id_estabelecimento.Eq();
+		//cliente_seleciona_EstabelecimentoCriteria.cliente_id_cliente.Eq();
 		cliente_seleciona_EstabelecimentoCriteria.SetMaxResults(ROW_COUNT);
 		Cliente_seleciona_Estabelecimento[] cliente_seleciona_Estabelecimentos = cliente_seleciona_EstabelecimentoCriteria.ListCliente_seleciona_Estabelecimento();
 		length =cliente_seleciona_Estabelecimentos== null ? 0 : Math.Min(cliente_seleciona_Estabelecimentos.Length, ROW_COUNT); 
@@ -266,6 +285,8 @@ public class ListBasedeDadosMMData {
 		//cliente_avalia_EstabelecimentoCriteria_Estabelecimento.id_estabelecimento.Eq();
 		//ClienteCriteria cliente_avalia_EstabelecimentoCriteria_Cliente = cliente_avalia_EstabelecimentoCriteria.CreateClienteCriteria();
 		//cliente_avalia_EstabelecimentoCriteria_Cliente.id_cliente.Eq();
+		//cliente_avalia_EstabelecimentoCriteria.estabelecimento_id_estabelecimento.Eq();
+		//cliente_avalia_EstabelecimentoCriteria.cliente_id_cliente.Eq();
 		cliente_avalia_EstabelecimentoCriteria.SetMaxResults(ROW_COUNT);
 		Cliente_avalia_Estabelecimento[] cliente_avalia_Estabelecimentos = cliente_avalia_EstabelecimentoCriteria.ListCliente_avalia_Estabelecimento();
 		length =cliente_avalia_Estabelecimentos== null ? 0 : Math.Min(cliente_avalia_Estabelecimentos.Length, ROW_COUNT); 
@@ -279,10 +300,14 @@ public class ListBasedeDadosMMData {
 		// Please uncomment the follow line and fill in parameter(s) 
 		//selecaoEstabelecimentoCriteria.id_avaliacao.Eq();
 		//Cliente_seleciona_EstabelecimentoCriteria selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento = selecaoEstabelecimentoCriteria.CreateEstabelecimentoCriteria();
+		//selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento.cliente_id_cliente.Eq();
+		//selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento.estabelecimento_id_estabelecimento.Eq();
 		//ClienteCriteria selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento_Cliente = selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento.CreateClienteCriteria();
 		//selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento_Cliente.id_cliente.Eq();
 		//EstabelecimentoCriteria selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento_Estabelecimento = selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento.CreateEstabelecimentoCriteria();
 		//selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento_Estabelecimento.id_estabelecimento.Eq();
+		//selecaoEstabelecimentoCriteria.estabelecimento_Estabelecimento.Eq();
+		//selecaoEstabelecimentoCriteria.estabelecimento_Cliente.Eq();
 		selecaoEstabelecimentoCriteria.SetMaxResults(ROW_COUNT);
 		SelecaoEstabelecimento[] selecaoEstabelecimentos = selecaoEstabelecimentoCriteria.ListSelecaoEstabelecimento();
 		length =selecaoEstabelecimentos== null ? 0 : Math.Min(selecaoEstabelecimentos.Length, ROW_COUNT); 
@@ -303,8 +328,6 @@ public class ListBasedeDadosMMData {
 		finally {
 			BasedeDadosMMPersistentManager.Instance().DisposePersistentManager();
 		}
-
-        Console.ReadLine();
 		
 	}
 	

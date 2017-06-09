@@ -10,7 +10,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>increment</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Categoria">
@@ -22,7 +22,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Utilizador">
@@ -34,7 +34,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="nome_estabelecimento">
@@ -172,7 +172,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>increment</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Estabelecimento">
@@ -184,7 +184,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="nome_iguaria">
@@ -256,7 +256,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>increment</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Utilizador">
@@ -268,7 +268,7 @@
       <Nullable>true</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="nome_cliente">
@@ -286,7 +286,7 @@
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>7</Type>
-      <Length>1</Length>
+      <Length>0</Length>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -352,7 +352,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="password">
@@ -388,7 +388,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>increment</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="descricao">
@@ -413,7 +413,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Iguaria">
@@ -425,7 +425,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Estabelecimento">
@@ -437,7 +437,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="desc_critica">
@@ -485,7 +485,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Iguaria">
@@ -497,7 +497,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Estabelecimento">
@@ -509,7 +509,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
   </Entity>
@@ -522,7 +522,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>increment</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Cliente">
@@ -534,7 +534,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Iguaria">
@@ -546,7 +546,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Estabelecimento">
@@ -558,7 +558,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="data_hora_visualizacao">
@@ -645,7 +645,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Cliente">
@@ -657,7 +657,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
   </Entity>
@@ -671,7 +671,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Cliente">
@@ -683,7 +683,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="rating_est">
@@ -711,7 +711,7 @@
     </Column>
   </Entity>
   <Entity name="SelecaoEstabelecimento" PKClustered="1">
-    <Column name="id_avaliacao">
+    <Column name="id_selecao">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
@@ -719,7 +719,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>increment</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Estabelecimento">
@@ -731,7 +731,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Cliente">
@@ -743,7 +743,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="data_hora_selecao">

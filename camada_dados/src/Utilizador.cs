@@ -117,7 +117,7 @@ public class Utilizador {
 		return new Utilizador();
 	}
 	
-	public virtual bool Save() {
+	public bool Save() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
@@ -129,7 +129,7 @@ public class Utilizador {
 		}
 	}
 	
-	public virtual bool Delete() {
+	public bool Delete() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
@@ -141,7 +141,7 @@ public class Utilizador {
 		}
 	}
 	
-	public virtual bool Refresh() {
+	public bool Refresh() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
@@ -153,7 +153,7 @@ public class Utilizador {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate() {
+	public bool DeleteAndDissociate() {
 		try {
 			if(Estabelecimento != null) {
 				Estabelecimento.Utilizador = null;
@@ -170,7 +170,7 @@ public class Utilizador {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			if(Estabelecimento != null) {
 				Estabelecimento.Utilizador = null;
@@ -203,7 +203,7 @@ public class Utilizador {
 	
 	private Cliente __cliente;
 	
-	public virtual string Email {
+	public string Email {
 		set {
 			this.__email = value;			
 		}
@@ -212,13 +212,13 @@ public class Utilizador {
 		}
 	}
 	
-	public virtual string ORMID {
+	public string ORMID {
 		get {
 			return Email;			
 		}
 	}
 	
-	public virtual string Password {
+	public string Password {
 		set {
 			this.__password = value;			
 		}
@@ -227,7 +227,7 @@ public class Utilizador {
 		}
 	}
 	
-	public virtual byte Tipo {
+	public byte Tipo {
 		set {
 			this.__tipo = value;			
 		}
@@ -236,7 +236,7 @@ public class Utilizador {
 		}
 	}
 	
-	public virtual Estabelecimento Estabelecimento {
+	public Estabelecimento Estabelecimento {
 		set {
 			if (this.__estabelecimento != value) {
 				Estabelecimento l__estabelecimento = this.__estabelecimento;
@@ -254,7 +254,7 @@ public class Utilizador {
 		}
 	}
 	
-	public virtual Cliente Cliente {
+	public Cliente Cliente {
 		set {
 			if (this.__cliente != value) {
 				Cliente l__cliente = this.__cliente;
@@ -273,24 +273,52 @@ public class Utilizador {
 	}
 	
 	public override string ToString() {
-		return Convert.ToString(Email);
+		return ToString(false);
+	}
+	
+	public virtual string ToString(bool idOnly) {
+		if (idOnly) {
+			return Convert.ToString(Email);
+		}
+		else {
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			sb.Append("Utilizador[ ");
+			sb.AppendFormat("Email={0} ", Email);
+			sb.AppendFormat("Password={0} ", Password);
+			sb.AppendFormat("Tipo={0} ", Tipo);
+			if (Estabelecimento != null)
+				sb.AppendFormat("Estabelecimento.Persist_ID={0} ", Estabelecimento.ToString(true) + "");
+			else
+				sb.Append("Estabelecimento=null ");
+			if (Cliente != null)
+				sb.AppendFormat("Cliente.Persist_ID={0} ", Cliente.ToString(true) + "");
+			else
+				sb.Append("Cliente=null ");
+			sb.Append("]");
+			return sb.ToString();
+		}
 	}
 	
 	private bool _saved = false;
 	
-	public virtual void onSave() {
+	public void onSave() {
 		_saved=true;
 	}
 	
 	
-	public virtual void onLoad() {
+	public void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public virtual bool isSaved() {
+	public bool isSaved() {
 		return _saved;
 	}
 	
 	
+	public const String PROP_EMAIL = "Email";
+	public const String PROP_PASSWORD = "Password";
+	public const String PROP_TIPO = "Tipo";
+	public const String PROP_ESTABELECIMENTO = "__estabelecimento";
+	public const String PROP_CLIENTE = "__cliente";
 }

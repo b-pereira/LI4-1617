@@ -27,15 +27,15 @@ public class Iguaria {
 		cliente_seleciona_iguaria = new Cliente_seleciona_iguariaSetCollection<Iguaria>(this, _OrmAdapter, ORMConstants.KEY_IGUARIA_CLIENTE_SELECIONA_IGUARIA, ORMConstants.KEY_CLIENTE_SELECIONA_IGUARIA_IGUARIA, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	}
 	
-	public static Iguaria LoadIguariaByORMID(int id_iguaria, Estabelecimento estabelecimento) {
+	public static Iguaria LoadIguariaByORMID(int id_iguaria, int estabelecimento_id_estabelecimento) {
 		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
-		return LoadIguariaByORMID(session,id_iguaria, estabelecimento);
+		return LoadIguariaByORMID(session,id_iguaria, estabelecimento_id_estabelecimento);
 	}
 	
-	public static Iguaria LoadIguariaByORMID(PersistentSession session,int id_iguaria, Estabelecimento estabelecimento) {
+	public static Iguaria LoadIguariaByORMID(PersistentSession session,int id_iguaria, int estabelecimento_id_estabelecimento) {
 		Iguaria iguaria = new Iguaria();
 		iguaria.Id_iguaria = id_iguaria;
-		iguaria.Estabelecimento = estabelecimento;
+		iguaria.Estabelecimento_id_estabelecimento = estabelecimento_id_estabelecimento;
 		
 		return (Iguaria) session.Load(typeof(Iguaria), iguaria);
 	}
@@ -128,9 +128,7 @@ public class Iguaria {
 		Iguaria iguaria = obj as Iguaria;
 		if (Id_iguaria != iguaria.Id_iguaria)
 			return false;
-		if (Estabelecimento == null && iguaria.Estabelecimento != null)
-			return false;
-		if (!Estabelecimento.Equals(iguaria.Estabelecimento))
+		if (Estabelecimento_id_estabelecimento != iguaria.Estabelecimento_id_estabelecimento)
 			return false;
 		return true;
 	}
@@ -138,9 +136,7 @@ public class Iguaria {
 	public override int GetHashCode() {
 		int hashcode = 0;
 		hashcode = hashcode + (int) Id_iguaria;
-		if (Estabelecimento != null) {
-			hashcode = hashcode + (int) Estabelecimento.ORMID;
-		}
+		hashcode = hashcode + (int) Estabelecimento_id_estabelecimento;
 		return hashcode;
 	}
 	
@@ -148,7 +144,7 @@ public class Iguaria {
 		return new Iguaria();
 	}
 	
-	public virtual bool Save() {
+	public bool Save() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
@@ -160,7 +156,7 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual bool Delete() {
+	public bool Delete() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
@@ -172,7 +168,7 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual bool Refresh() {
+	public bool Refresh() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
@@ -184,13 +180,11 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate() {
+	public bool DeleteAndDissociate() {
 		try {
-			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
 				Estabelecimento.iguaria.Remove(this);
 			}
-			this.ORM_Estabelecimento = estabelecimento;
 			Cliente_critica_Iguaria[] lCliente_critica_Iguarias = cliente_critica_Iguaria.ToArray();
 			foreach(Cliente_critica_Iguaria lCliente_critica_Iguaria in lCliente_critica_Iguarias) {
 				lCliente_critica_Iguaria.Iguaria = null;
@@ -208,13 +202,11 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
-			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
 				Estabelecimento.iguaria.Remove(this);
 			}
-			this.ORM_Estabelecimento = estabelecimento;
 			Cliente_critica_Iguaria[] lCliente_critica_Iguarias = cliente_critica_Iguaria.ToArray();
 			foreach(Cliente_critica_Iguaria lCliente_critica_Iguaria in lCliente_critica_Iguarias) {
 				lCliente_critica_Iguaria.Iguaria = null;
@@ -238,7 +230,7 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
+	private System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
 		if (key == ORMConstants.KEY_IGUARIA_CLIENTE_CRITICA_IGUARIA)
 			return (System.Collections.Generic.ISet<T>) __cliente_critica_Iguaria;
 		else if (key == ORMConstants.KEY_IGUARIA_CLIENTE_SELECIONA_IGUARIA)
@@ -277,7 +269,7 @@ public class Iguaria {
 	
 	private int __estabelecimentoId;
 	
-	public virtual int EstabelecimentoId {
+	public int EstabelecimentoId {
 		set {
 			this.__estabelecimentoId = value;			
 		}
@@ -300,7 +292,7 @@ public class Iguaria {
 	
 	private System.Collections.Generic.ISet<Cliente_seleciona_iguaria> __cliente_seleciona_iguaria = new System.Collections.Generic.HashSet<Cliente_seleciona_iguaria>();
 	
-	public virtual int Id_iguaria {
+	public int Id_iguaria {
 		set {
 			this.__id_iguaria = value;			
 		}
@@ -309,7 +301,7 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual string Nome_iguaria {
+	public string Nome_iguaria {
 		set {
 			this.__nome_iguaria = value;			
 		}
@@ -318,7 +310,7 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual int Visual_iguaria {
+	public int Visual_iguaria {
 		set {
 			this.__visual_iguaria = value;			
 		}
@@ -327,7 +319,7 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual float Rating_medio_iguaria {
+	public float Rating_medio_iguaria {
 		set {
 			this.__rating_medio_iguaria = value;			
 		}
@@ -336,7 +328,7 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual byte[] Fotografia {
+	public byte[] Fotografia {
 		set {
 			this.__fotografia = value;			
 		}
@@ -345,7 +337,7 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual Decimal Preco {
+	public Decimal Preco {
 		set {
 			this.__preco = value;			
 		}
@@ -354,7 +346,7 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual Estabelecimento Estabelecimento {
+	public Estabelecimento Estabelecimento {
 		set {
 			if(__estabelecimento!= null) {
 				__estabelecimento.iguaria.Remove(this);
@@ -363,13 +355,19 @@ public class Iguaria {
 			if(value != null) {
 				value.iguaria.Add(this);
 			}
+			if (value != null) {
+				__estabelecimento_id_estabelecimento = value.Id_estabelecimento;
+			}
+			else {
+				__estabelecimento_id_estabelecimento = 0;
+			}
 		}
 		get {
 			return __estabelecimento;			
 		}
 	}
 	
-	public virtual Estabelecimento ORM_Estabelecimento {
+	private Estabelecimento ORM_Estabelecimento {
 		set {
 			this.__estabelecimento = value;			
 		}
@@ -379,7 +377,7 @@ public class Iguaria {
 		}
 	}
 	
-	public virtual System.Collections.Generic.ISet<Cliente_critica_Iguaria> ORM_Cliente_critica_Iguaria {
+	private System.Collections.Generic.ISet<Cliente_critica_Iguaria> ORM_Cliente_critica_Iguaria {
 		get  {
 			return __cliente_critica_Iguaria;			
 		}
@@ -391,7 +389,7 @@ public class Iguaria {
 	
 	public readonly Cliente_critica_IguariaSetCollection<Iguaria> cliente_critica_Iguaria;
 	
-	public virtual System.Collections.Generic.ISet<Cliente_seleciona_iguaria> ORM_Cliente_seleciona_iguaria {
+	private System.Collections.Generic.ISet<Cliente_seleciona_iguaria> ORM_Cliente_seleciona_iguaria {
 		get  {
 			return __cliente_seleciona_iguaria;			
 		}
@@ -404,24 +402,70 @@ public class Iguaria {
 	public readonly Cliente_seleciona_iguariaSetCollection<Iguaria> cliente_seleciona_iguaria;
 	
 	public override string ToString() {
-		return Convert.ToString(Id_iguaria) + " "+ ((Estabelecimento == null) ? "" : Convert.ToString(Estabelecimento.ORMID));
+		return ToString(false);
+	}
+	
+	public virtual string ToString(bool idOnly) {
+		if (idOnly) {
+			return Convert.ToString(Id_iguaria) + " "+ Convert.ToString(Estabelecimento_id_estabelecimento);
+		}
+		else {
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			sb.Append("Iguaria[ ");
+			sb.AppendFormat("Id_iguaria={0} ", Id_iguaria);
+			if (Estabelecimento != null)
+				sb.AppendFormat("Estabelecimento.Persist_ID={0} ", Estabelecimento.ToString(true) + "");
+			else
+				sb.Append("Estabelecimento=null ");
+			sb.AppendFormat("Nome_iguaria={0} ", Nome_iguaria);
+			sb.AppendFormat("Visual_iguaria={0} ", Visual_iguaria);
+			sb.AppendFormat("Rating_medio_iguaria={0} ", Rating_medio_iguaria);
+			sb.AppendFormat("Fotografia={0} ", Fotografia);
+			sb.AppendFormat("Preco={0} ", Preco);
+			sb.AppendFormat("cliente_critica_Iguaria.size={0} ", cliente_critica_Iguaria.Size());
+			sb.AppendFormat("cliente_seleciona_iguaria.size={0} ", cliente_seleciona_iguaria.Size());
+			sb.AppendFormat("Estabelecimento_id_estabelecimento={0} ", Estabelecimento_id_estabelecimento);
+			sb.Append("]");
+			return sb.ToString();
+		}
 	}
 	
 	private bool _saved = false;
 	
-	public virtual void onSave() {
+	public void onSave() {
 		_saved=true;
 	}
 	
 	
-	public virtual void onLoad() {
+	public void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public virtual bool isSaved() {
+	public bool isSaved() {
 		return _saved;
 	}
 	
 	
+	private int __estabelecimento_id_estabelecimento;
+	
+	public int Estabelecimento_id_estabelecimento {
+		set {
+			this.__estabelecimento_id_estabelecimento = value;			
+		}
+		get {
+			return __estabelecimento_id_estabelecimento;			
+		}
+	}
+	
+	public const String PROP_ID_IGUARIA = "Id_iguaria";
+	public const String PROP_ESTABELECIMENTO = "__estabelecimento";
+	public const String PROP_NOME_IGUARIA = "Nome_iguaria";
+	public const String PROP_VISUAL_IGUARIA = "Visual_iguaria";
+	public const String PROP_RATING_MEDIO_IGUARIA = "Rating_medio_iguaria";
+	public const String PROP_FOTOGRAFIA = "Fotografia";
+	public const String PROP_PRECO = "Preco";
+	public const String PROP_CLIENTE_CRITICA__IGUARIA = "ORM_Cliente_critica_Iguaria";
+	public const String PROP_CLIENTE_SELECIONA_IGUARIA = "ORM_Cliente_seleciona_iguaria";
+	public const String PROP_ESTABELECIMENTO_ID_ESTABELECIMENTO = "Estabelecimento_id_estabelecimento";
 }

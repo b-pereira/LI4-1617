@@ -122,7 +122,7 @@ public class Cliente {
 		return new Cliente();
 	}
 	
-	public virtual bool Save() {
+	public bool Save() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
@@ -134,7 +134,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual bool Delete() {
+	public bool Delete() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
@@ -146,7 +146,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual bool Refresh() {
+	public bool Refresh() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
@@ -158,7 +158,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate() {
+	public bool DeleteAndDissociate() {
 		try {
 			if(Utilizador != null) {
 				Utilizador.Cliente = null;
@@ -188,7 +188,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			if(Utilizador != null) {
 				Utilizador.Cliente = null;
@@ -224,7 +224,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
+	private System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
 		if (key == ORMConstants.KEY_CLIENTE_CLIENTE_CRITICA_IGUARIA)
 			return (System.Collections.Generic.ISet<T>) __cliente_critica_Iguaria;
 		else if (key == ORMConstants.KEY_CLIENTE_CLIENTE_SELECIONA_IGUARIA)
@@ -275,7 +275,7 @@ public class Cliente {
 	
 	private System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> __cliente_avalia_Estabelecimento = new System.Collections.Generic.HashSet<Cliente_avalia_Estabelecimento>();
 	
-	public virtual int Id_cliente {
+	public int Id_cliente {
 		set {
 			this.__id_cliente = value;			
 		}
@@ -284,13 +284,13 @@ public class Cliente {
 		}
 	}
 	
-	public virtual int ORMID {
+	public int ORMID {
 		get {
 			return Id_cliente;			
 		}
 	}
 	
-	public virtual string Nome_cliente {
+	public string Nome_cliente {
 		set {
 			this.__nome_cliente = value;			
 		}
@@ -299,7 +299,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual byte Ord_rat_igu {
+	public byte Ord_rat_igu {
 		set {
 			this.__ord_rat_igu = value;			
 		}
@@ -308,7 +308,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual byte Ord_rat_est {
+	public byte Ord_rat_est {
 		set {
 			this.__ord_rat_est = value;			
 		}
@@ -317,7 +317,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual byte Ord_dist {
+	public byte Ord_dist {
 		set {
 			this.__ord_dist = value;			
 		}
@@ -326,7 +326,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual byte Ord_pop_igu {
+	public byte Ord_pop_igu {
 		set {
 			this.__ord_pop_igu = value;			
 		}
@@ -335,7 +335,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual byte Ord_pop_est {
+	public byte Ord_pop_est {
 		set {
 			this.__ord_pop_est = value;			
 		}
@@ -344,7 +344,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual Utilizador Utilizador {
+	public Utilizador Utilizador {
 		set {
 			if (this.__utilizador != value) {
 				Utilizador l__utilizador = this.__utilizador;
@@ -362,7 +362,7 @@ public class Cliente {
 		}
 	}
 	
-	public virtual System.Collections.Generic.ISet<Cliente_critica_Iguaria> ORM_Cliente_critica_Iguaria {
+	private System.Collections.Generic.ISet<Cliente_critica_Iguaria> ORM_Cliente_critica_Iguaria {
 		get  {
 			return __cliente_critica_Iguaria;			
 		}
@@ -374,7 +374,7 @@ public class Cliente {
 	
 	public readonly Cliente_critica_IguariaSetCollection<Cliente> cliente_critica_Iguaria;
 	
-	public virtual System.Collections.Generic.ISet<Cliente_seleciona_iguaria> ORM_Cliente_seleciona_iguaria {
+	private System.Collections.Generic.ISet<Cliente_seleciona_iguaria> ORM_Cliente_seleciona_iguaria {
 		get  {
 			return __cliente_seleciona_iguaria;			
 		}
@@ -386,7 +386,7 @@ public class Cliente {
 	
 	public readonly Cliente_seleciona_iguariaSetCollection<Cliente> cliente_seleciona_iguaria;
 	
-	public virtual System.Collections.Generic.ISet<Cliente_seleciona_Estabelecimento> ORM_Cliente_seleciona_Estabelecimento {
+	private System.Collections.Generic.ISet<Cliente_seleciona_Estabelecimento> ORM_Cliente_seleciona_Estabelecimento {
 		get  {
 			return __cliente_seleciona_Estabelecimento;			
 		}
@@ -398,7 +398,7 @@ public class Cliente {
 	
 	public readonly Cliente_seleciona_EstabelecimentoSetCollection<Cliente> cliente_seleciona_Estabelecimento;
 	
-	public virtual System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> ORM_Cliente_avalia_Estabelecimento {
+	private System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> ORM_Cliente_avalia_Estabelecimento {
 		get  {
 			return __cliente_avalia_Estabelecimento;			
 		}
@@ -411,7 +411,46 @@ public class Cliente {
 	public readonly Cliente_avalia_EstabelecimentoSetCollection<Cliente> cliente_avalia_Estabelecimento;
 	
 	public override string ToString() {
-		return Convert.ToString(Id_cliente);
+		return ToString(false);
 	}
 	
+	public virtual string ToString(bool idOnly) {
+		if (idOnly) {
+			return Convert.ToString(Id_cliente);
+		}
+		else {
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			sb.Append("Cliente[ ");
+			sb.AppendFormat("Id_cliente={0} ", Id_cliente);
+			if (Utilizador != null)
+				sb.AppendFormat("Utilizador.Persist_ID={0} ", Utilizador.ToString(true) + "");
+			else
+				sb.Append("Utilizador=null ");
+			sb.AppendFormat("Nome_cliente={0} ", Nome_cliente);
+			sb.AppendFormat("Ord_rat_igu={0} ", Ord_rat_igu);
+			sb.AppendFormat("Ord_rat_est={0} ", Ord_rat_est);
+			sb.AppendFormat("Ord_dist={0} ", Ord_dist);
+			sb.AppendFormat("Ord_pop_igu={0} ", Ord_pop_igu);
+			sb.AppendFormat("Ord_pop_est={0} ", Ord_pop_est);
+			sb.AppendFormat("cliente_critica_Iguaria.size={0} ", cliente_critica_Iguaria.Size());
+			sb.AppendFormat("cliente_seleciona_iguaria.size={0} ", cliente_seleciona_iguaria.Size());
+			sb.AppendFormat("cliente_seleciona_Estabelecimento.size={0} ", cliente_seleciona_Estabelecimento.Size());
+			sb.AppendFormat("cliente_avalia_Estabelecimento.size={0} ", cliente_avalia_Estabelecimento.Size());
+			sb.Append("]");
+			return sb.ToString();
+		}
+	}
+	
+	public const String PROP_ID_CLIENTE = "Id_cliente";
+	public const String PROP_UTILIZADOR = "__utilizador";
+	public const String PROP_NOME_CLIENTE = "Nome_cliente";
+	public const String PROP_ORD_RAT_IGU = "Ord_rat_igu";
+	public const String PROP_ORD_RAT_EST = "Ord_rat_est";
+	public const String PROP_ORD_DIST = "Ord_dist";
+	public const String PROP_ORD_POP_IGU = "Ord_pop_igu";
+	public const String PROP_ORD_POP_EST = "Ord_pop_est";
+	public const String PROP_CLIENTE_CRITICA__IGUARIA = "ORM_Cliente_critica_Iguaria";
+	public const String PROP_CLIENTE_SELECIONA_IGUARIA = "ORM_Cliente_seleciona_iguaria";
+	public const String PROP_CLIENTE_SELECIONA__ESTABELECIMENTO = "ORM_Cliente_seleciona_Estabelecimento";
+	public const String PROP_CLIENTE_AVALIA__ESTABELECIMENTO = "ORM_Cliente_avalia_Estabelecimento";
 }

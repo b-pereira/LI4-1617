@@ -34,9 +34,27 @@ public class SelecaoEstabelecimentoCriteria : AbstractORMCriteria {
 		
 	}
 	
+	private Int32Expression _estabelecimento_Estabelecimento;
+	public Int32Expression Estabelecimento_Estabelecimento {
+		get {
+			return  _estabelecimento_Estabelecimento;
+		}
+		
+	}
+	
+	private Int32Expression _estabelecimento_Cliente;
+	public Int32Expression Estabelecimento_Cliente {
+		get {
+			return  _estabelecimento_Cliente;
+		}
+		
+	}
+	
 	public SelecaoEstabelecimentoCriteria(ICriteria criteria) : base(criteria) {
 		_id_avaliacao =  new Int32Expression("Id_avaliacao", this);
 		_data_hora_selecao =  new DateTimeExpression("Data_hora_selecao", this);
+		_estabelecimento_Estabelecimento =  new Int32Expression("Estabelecimento_Estabelecimento", this);
+		_estabelecimento_Cliente =  new Int32Expression("Estabelecimento_Cliente", this);
 	}
 	
 	public SelecaoEstabelecimentoCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(SelecaoEstabelecimento))) {

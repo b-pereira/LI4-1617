@@ -122,7 +122,7 @@ public class Estabelecimento {
 		return new Estabelecimento();
 	}
 	
-	public virtual bool Save() {
+	public bool Save() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
@@ -134,7 +134,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual bool Delete() {
+	public bool Delete() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
@@ -146,7 +146,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual bool Refresh() {
+	public bool Refresh() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
@@ -158,7 +158,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate() {
+	public bool DeleteAndDissociate() {
 		try {
 			if(Categoria1 != null) {
 				Categoria1.estabelecimento1.Remove(this);
@@ -191,7 +191,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			if(Categoria1 != null) {
 				Categoria1.estabelecimento1.Remove(this);
@@ -230,7 +230,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
+	private System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
 		if (key == ORMConstants.KEY_ESTABELECIMENTO_IGUARIA)
 			return (System.Collections.Generic.ISet<T>) __iguaria;
 		else if (key == ORMConstants.KEY_ESTABELECIMENTO_HORARIOESTABELECIMENTO)
@@ -307,7 +307,7 @@ public class Estabelecimento {
 	
 	private System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> __cliente_avalia_Estabelecimento = new System.Collections.Generic.HashSet<Cliente_avalia_Estabelecimento>();
 	
-	public virtual int Id_estabelecimento {
+	public int Id_estabelecimento {
 		set {
 			this.__id_estabelecimento = value;			
 		}
@@ -316,13 +316,13 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual int ORMID {
+	public int ORMID {
 		get {
 			return Id_estabelecimento;			
 		}
 	}
 	
-	public virtual string Nome_estabelecimento {
+	public string Nome_estabelecimento {
 		set {
 			this.__nome_estabelecimento = value;			
 		}
@@ -331,7 +331,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual string Desc_ambiente {
+	public string Desc_ambiente {
 		set {
 			this.__desc_ambiente = value;			
 		}
@@ -340,7 +340,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual float Rating_medio_estabelecimento {
+	public float Rating_medio_estabelecimento {
 		set {
 			this.__rating_medio_estabelecimento = value;			
 		}
@@ -349,7 +349,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual int Telefone {
+	public int Telefone {
 		set {
 			this.__telefone = value;			
 		}
@@ -358,7 +358,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual int Visual_estabelecimento {
+	public int Visual_estabelecimento {
 		set {
 			this.__visual_estabelecimento = value;			
 		}
@@ -367,7 +367,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual float Longitude {
+	public float Longitude {
 		set {
 			this.__longitude = value;			
 		}
@@ -376,7 +376,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual float Latitude {
+	public float Latitude {
 		set {
 			this.__latitude = value;			
 		}
@@ -385,7 +385,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual string Rua {
+	public string Rua {
 		set {
 			this.__rua = value;			
 		}
@@ -394,7 +394,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual int Numero {
+	public int Numero {
 		set {
 			this.__numero = value;			
 		}
@@ -403,7 +403,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual string Localidade {
+	public string Localidade {
 		set {
 			this.__localidade = value;			
 		}
@@ -412,7 +412,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual string Cod_postal {
+	public string Cod_postal {
 		set {
 			this.__cod_postal = value;			
 		}
@@ -421,7 +421,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual Utilizador Utilizador {
+	public Utilizador Utilizador {
 		set {
 			if (this.__utilizador != value) {
 				Utilizador l__utilizador = this.__utilizador;
@@ -439,7 +439,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual Categoria Categoria1 {
+	public Categoria Categoria1 {
 		set {
 			if(__categoria1!= null) {
 				__categoria1.estabelecimento1.Remove(this);
@@ -454,7 +454,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual Categoria ORM_Categoria1 {
+	private Categoria ORM_Categoria1 {
 		set {
 			this.__categoria1 = value;			
 		}
@@ -464,7 +464,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public virtual System.Collections.Generic.ISet<Iguaria> ORM_Iguaria {
+	private System.Collections.Generic.ISet<Iguaria> ORM_Iguaria {
 		get  {
 			return __iguaria;			
 		}
@@ -476,7 +476,7 @@ public class Estabelecimento {
 	
 	public readonly IguariaSetCollection<Estabelecimento> iguaria;
 	
-	public virtual System.Collections.Generic.ISet<HorarioEstabelecimento> ORM_HorarioEstabelecimento {
+	private System.Collections.Generic.ISet<HorarioEstabelecimento> ORM_HorarioEstabelecimento {
 		get  {
 			return __horarioEstabelecimento;			
 		}
@@ -488,7 +488,7 @@ public class Estabelecimento {
 	
 	public readonly HorarioEstabelecimentoSetCollection<Estabelecimento> horarioEstabelecimento;
 	
-	public virtual System.Collections.Generic.ISet<Cliente_seleciona_Estabelecimento> ORM_Cliente_seleciona_Estabelecimento {
+	private System.Collections.Generic.ISet<Cliente_seleciona_Estabelecimento> ORM_Cliente_seleciona_Estabelecimento {
 		get  {
 			return __cliente_seleciona_Estabelecimento;			
 		}
@@ -500,7 +500,7 @@ public class Estabelecimento {
 	
 	public readonly Cliente_seleciona_EstabelecimentoSetCollection<Estabelecimento> cliente_seleciona_Estabelecimento;
 	
-	public virtual System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> ORM_Cliente_avalia_Estabelecimento {
+	private System.Collections.Generic.ISet<Cliente_avalia_Estabelecimento> ORM_Cliente_avalia_Estabelecimento {
 		get  {
 			return __cliente_avalia_Estabelecimento;			
 		}
@@ -513,7 +513,61 @@ public class Estabelecimento {
 	public readonly Cliente_avalia_EstabelecimentoSetCollection<Estabelecimento> cliente_avalia_Estabelecimento;
 	
 	public override string ToString() {
-		return Convert.ToString(Id_estabelecimento);
+		return ToString(false);
 	}
 	
+	public virtual string ToString(bool idOnly) {
+		if (idOnly) {
+			return Convert.ToString(Id_estabelecimento);
+		}
+		else {
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			sb.Append("Estabelecimento[ ");
+			sb.AppendFormat("Id_estabelecimento={0} ", Id_estabelecimento);
+			if (Categoria1 != null)
+				sb.AppendFormat("Categoria1.Persist_ID={0} ", Categoria1.ToString(true) + "");
+			else
+				sb.Append("Categoria1=null ");
+			if (Utilizador != null)
+				sb.AppendFormat("Utilizador.Persist_ID={0} ", Utilizador.ToString(true) + "");
+			else
+				sb.Append("Utilizador=null ");
+			sb.AppendFormat("Nome_estabelecimento={0} ", Nome_estabelecimento);
+			sb.AppendFormat("Desc_ambiente={0} ", Desc_ambiente);
+			sb.AppendFormat("Rating_medio_estabelecimento={0} ", Rating_medio_estabelecimento);
+			sb.AppendFormat("Telefone={0} ", Telefone);
+			sb.AppendFormat("Visual_estabelecimento={0} ", Visual_estabelecimento);
+			sb.AppendFormat("Longitude={0} ", Longitude);
+			sb.AppendFormat("Latitude={0} ", Latitude);
+			sb.AppendFormat("Rua={0} ", Rua);
+			sb.AppendFormat("Numero={0} ", Numero);
+			sb.AppendFormat("Localidade={0} ", Localidade);
+			sb.AppendFormat("Cod_postal={0} ", Cod_postal);
+			sb.AppendFormat("iguaria.size={0} ", iguaria.Size());
+			sb.AppendFormat("horarioEstabelecimento.size={0} ", horarioEstabelecimento.Size());
+			sb.AppendFormat("cliente_seleciona_Estabelecimento.size={0} ", cliente_seleciona_Estabelecimento.Size());
+			sb.AppendFormat("cliente_avalia_Estabelecimento.size={0} ", cliente_avalia_Estabelecimento.Size());
+			sb.Append("]");
+			return sb.ToString();
+		}
+	}
+	
+	public const String PROP_ID_ESTABELECIMENTO = "Id_estabelecimento";
+	public const String PROP_CATEGORIA1 = "__categoria1";
+	public const String PROP_UTILIZADOR = "__utilizador";
+	public const String PROP_NOME_ESTABELECIMENTO = "Nome_estabelecimento";
+	public const String PROP_DESC_AMBIENTE = "Desc_ambiente";
+	public const String PROP_RATING_MEDIO_ESTABELECIMENTO = "Rating_medio_estabelecimento";
+	public const String PROP_TELEFONE = "Telefone";
+	public const String PROP_VISUAL_ESTABELECIMENTO = "Visual_estabelecimento";
+	public const String PROP_LONGITUDE = "Longitude";
+	public const String PROP_LATITUDE = "Latitude";
+	public const String PROP_RUA = "Rua";
+	public const String PROP_NUMERO = "Numero";
+	public const String PROP_LOCALIDADE = "Localidade";
+	public const String PROP_COD_POSTAL = "Cod_postal";
+	public const String PROP_IGUARIA = "ORM_Iguaria";
+	public const String PROP_HORARIO_ESTABELECIMENTO = "ORM_HorarioEstabelecimento";
+	public const String PROP_CLIENTE_SELECIONA__ESTABELECIMENTO = "ORM_Cliente_seleciona_Estabelecimento";
+	public const String PROP_CLIENTE_AVALIA__ESTABELECIMENTO = "ORM_Cliente_avalia_Estabelecimento";
 }

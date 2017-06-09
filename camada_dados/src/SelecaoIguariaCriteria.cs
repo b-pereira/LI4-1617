@@ -34,9 +34,36 @@ public class SelecaoIguariaCriteria : AbstractORMCriteria {
 		
 	}
 	
+	private Int32Expression _cliente_Cliente;
+	public Int32Expression Cliente_Cliente {
+		get {
+			return  _cliente_Cliente;
+		}
+		
+	}
+	
+	private Int32Expression _cliente_Iguaria;
+	public Int32Expression Cliente_Iguaria {
+		get {
+			return  _cliente_Iguaria;
+		}
+		
+	}
+	
+	private Int32Expression _cliente_Estabelecimento;
+	public Int32Expression Cliente_Estabelecimento {
+		get {
+			return  _cliente_Estabelecimento;
+		}
+		
+	}
+	
 	public SelecaoIguariaCriteria(ICriteria criteria) : base(criteria) {
 		_id_visualizacao =  new Int32Expression("Id_visualizacao", this);
 		_data_hora_visualizacao =  new DateTimeExpression("Data_hora_visualizacao", this);
+		_cliente_Cliente =  new Int32Expression("Cliente_Cliente", this);
+		_cliente_Iguaria =  new Int32Expression("Cliente_Iguaria", this);
+		_cliente_Estabelecimento =  new Int32Expression("Cliente_Estabelecimento", this);
 	}
 	
 	public SelecaoIguariaCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(SelecaoIguaria))) {

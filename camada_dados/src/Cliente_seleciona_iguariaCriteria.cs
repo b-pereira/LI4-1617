@@ -18,7 +18,34 @@ using Orm;
 using NHibernate;
 
 public class Cliente_seleciona_iguariaCriteria : AbstractORMCriteria {
+	private Int32Expression _cliente_id_cliente;
+	public Int32Expression Cliente_id_cliente {
+		get {
+			return  _cliente_id_cliente;
+		}
+		
+	}
+	
+	private Int32Expression _iguaria_id_iguaria;
+	public Int32Expression Iguaria_id_iguaria {
+		get {
+			return  _iguaria_id_iguaria;
+		}
+		
+	}
+	
+	private Int32Expression _iguaria_Estabelecimento;
+	public Int32Expression Iguaria_Estabelecimento {
+		get {
+			return  _iguaria_Estabelecimento;
+		}
+		
+	}
+	
 	public Cliente_seleciona_iguariaCriteria(ICriteria criteria) : base(criteria) {
+		_cliente_id_cliente =  new Int32Expression("Cliente_id_cliente", this);
+		_iguaria_id_iguaria =  new Int32Expression("Iguaria_id_iguaria", this);
+		_iguaria_Estabelecimento =  new Int32Expression("Iguaria_Estabelecimento", this);
 	}
 	
 	public Cliente_seleciona_iguariaCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(Cliente_seleciona_iguaria))) {

@@ -34,9 +34,36 @@ public class Cliente_critica_IguariaCriteria : AbstractORMCriteria {
 		
 	}
 	
+	private Int32Expression _cliente_id_cliente;
+	public Int32Expression Cliente_id_cliente {
+		get {
+			return  _cliente_id_cliente;
+		}
+		
+	}
+	
+	private Int32Expression _iguaria_id_iguaria;
+	public Int32Expression Iguaria_id_iguaria {
+		get {
+			return  _iguaria_id_iguaria;
+		}
+		
+	}
+	
+	private Int32Expression _iguaria_Estabelecimento;
+	public Int32Expression Iguaria_Estabelecimento {
+		get {
+			return  _iguaria_Estabelecimento;
+		}
+		
+	}
+	
 	public Cliente_critica_IguariaCriteria(ICriteria criteria) : base(criteria) {
 		_desc_critica =  new StringExpression("Desc_critica", this);
 		_data_critica =  new DateTimeExpression("Data_critica", this);
+		_cliente_id_cliente =  new Int32Expression("Cliente_id_cliente", this);
+		_iguaria_id_iguaria =  new Int32Expression("Iguaria_id_iguaria", this);
+		_iguaria_Estabelecimento =  new Int32Expression("Iguaria_Estabelecimento", this);
 	}
 	
 	public Cliente_critica_IguariaCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(Cliente_critica_Iguaria))) {

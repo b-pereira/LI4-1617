@@ -7,9 +7,10 @@ License Type: Academic
 	<class name="HorarioEstabelecimento, Base de Dados - MM" table="HorarioEstabelecimento" lazy="false">
 		<composite-id>
 			<key-property name="Id_horario" column="id_horario" type="Int32"/>
-			<key-many-to-one name="ORM_Estabelecimento" column="Estabelecimento" class="Estabelecimento, Base de Dados - MM">
-			</key-many-to-one>
+			<key-property name="Estabelecimento_id_estabelecimento" column="Estabelecimento" type="Int32"/>
 		</composite-id>
+		<many-to-one name="ORM_Estabelecimento" column="Estabelecimento" class="Estabelecimento, Base de Dados - MM" insert="false" update="false">
+		</many-to-one>
 		<property name="Dia" column="dia" type="Byte" length="1" not-null="true"/>
 		<property name="Hora_abertura" column="hora_abertura" type="Timestamp" not-null="true"/>
 		<property name="Hora_fecho" column="hora_fecho" type="Timestamp" not-null="true"/>

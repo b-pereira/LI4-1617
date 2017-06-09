@@ -7,9 +7,10 @@ License Type: Academic
 	<class name="Iguaria, Base de Dados - MM" table="Iguaria" lazy="false">
 		<composite-id>
 			<key-property name="Id_iguaria" column="id_iguaria" type="Int32"/>
-			<key-many-to-one name="ORM_Estabelecimento" column="Estabelecimento" class="Estabelecimento, Base de Dados - MM">
-			</key-many-to-one>
+			<key-property name="Estabelecimento_id_estabelecimento" column="Estabelecimento" type="Int32"/>
 		</composite-id>
+		<many-to-one name="ORM_Estabelecimento" column="Estabelecimento" class="Estabelecimento, Base de Dados - MM" insert="false" update="false">
+		</many-to-one>
 		<property name="Nome_iguaria" column="nome_iguaria" type="String" length="75" not-null="true"/>
 		<property name="Visual_iguaria" column="visual_iguaria" type="Int32" not-null="true"/>
 		<property name="Rating_medio_iguaria" column="rating_medio_iguaria" type="Single" length="10" not-null="true"/>

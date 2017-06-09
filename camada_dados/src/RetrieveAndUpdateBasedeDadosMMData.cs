@@ -62,6 +62,7 @@ public class RetrieveAndUpdateBasedeDadosMMData {
 		// Please uncomment the follow line and fill in parameter(s)
 		//iguariaCriteria.id_iguaria.Eq();
 		//iguariaCriteria.estabelecimento.Eq();
+		//iguariaCriteria.estabelecimento_id_estabelecimento.Eq();
 		System.Console.WriteLine( iguariaCriteria.UniqueIguaria());
 		
 		System.Console.WriteLine("Retrieving Cliente by ClienteCriteria");
@@ -87,6 +88,9 @@ public class RetrieveAndUpdateBasedeDadosMMData {
 		// Please uncomment the follow line and fill in parameter(s)
 		//cliente_critica_IguariaCriteria.cliente.Eq();
 		//cliente_critica_IguariaCriteria.iguaria.Eq();
+		//cliente_critica_IguariaCriteria.cliente_id_cliente.Eq();
+		//cliente_critica_IguariaCriteria.iguaria_id_iguaria.Eq();
+		//cliente_critica_IguariaCriteria.iguaria_Estabelecimento.Eq();
 		System.Console.WriteLine( cliente_critica_IguariaCriteria.UniqueCliente_critica_Iguaria());
 		
 		System.Console.WriteLine("Retrieving Cliente_seleciona_iguaria by Cliente_seleciona_iguariaCriteria");
@@ -94,6 +98,9 @@ public class RetrieveAndUpdateBasedeDadosMMData {
 		// Please uncomment the follow line and fill in parameter(s)
 		//cliente_seleciona_iguariaCriteria.cliente.Eq();
 		//cliente_seleciona_iguariaCriteria.iguaria.Eq();
+		//cliente_seleciona_iguariaCriteria.cliente_id_cliente.Eq();
+		//cliente_seleciona_iguariaCriteria.iguaria_id_iguaria.Eq();
+		//cliente_seleciona_iguariaCriteria.iguaria_Estabelecimento.Eq();
 		System.Console.WriteLine( cliente_seleciona_iguariaCriteria.UniqueCliente_seleciona_iguaria());
 		
 		System.Console.WriteLine("Retrieving SelecaoIguaria by SelecaoIguariaCriteria");
@@ -101,6 +108,9 @@ public class RetrieveAndUpdateBasedeDadosMMData {
 		// Please uncomment the follow line and fill in parameter(s)
 		//selecaoIguariaCriteria.id_visualizacao.Eq();
 		//selecaoIguariaCriteria.cliente.Eq();
+		//selecaoIguariaCriteria.cliente_Cliente.Eq();
+		//selecaoIguariaCriteria.cliente_Iguaria.Eq();
+		//selecaoIguariaCriteria.cliente_Estabelecimento.Eq();
 		System.Console.WriteLine( selecaoIguariaCriteria.UniqueSelecaoIguaria());
 		
 		System.Console.WriteLine("Retrieving HorarioEstabelecimento by HorarioEstabelecimentoCriteria");
@@ -108,6 +118,7 @@ public class RetrieveAndUpdateBasedeDadosMMData {
 		// Please uncomment the follow line and fill in parameter(s)
 		//horarioEstabelecimentoCriteria.id_horario.Eq();
 		//horarioEstabelecimentoCriteria.estabelecimento.Eq();
+		//horarioEstabelecimentoCriteria.estabelecimento_id_estabelecimento.Eq();
 		System.Console.WriteLine( horarioEstabelecimentoCriteria.UniqueHorarioEstabelecimento());
 		
 		System.Console.WriteLine("Retrieving Cliente_seleciona_Estabelecimento by Cliente_seleciona_EstabelecimentoCriteria");
@@ -115,6 +126,8 @@ public class RetrieveAndUpdateBasedeDadosMMData {
 		// Please uncomment the follow line and fill in parameter(s)
 		//cliente_seleciona_EstabelecimentoCriteria.estabelecimento.Eq();
 		//cliente_seleciona_EstabelecimentoCriteria.cliente.Eq();
+		//cliente_seleciona_EstabelecimentoCriteria.estabelecimento_id_estabelecimento.Eq();
+		//cliente_seleciona_EstabelecimentoCriteria.cliente_id_cliente.Eq();
 		System.Console.WriteLine( cliente_seleciona_EstabelecimentoCriteria.UniqueCliente_seleciona_Estabelecimento());
 		
 		System.Console.WriteLine("Retrieving Cliente_avalia_Estabelecimento by Cliente_avalia_EstabelecimentoCriteria");
@@ -122,6 +135,8 @@ public class RetrieveAndUpdateBasedeDadosMMData {
 		// Please uncomment the follow line and fill in parameter(s)
 		//cliente_avalia_EstabelecimentoCriteria.estabelecimento.Eq();
 		//cliente_avalia_EstabelecimentoCriteria.cliente.Eq();
+		//cliente_avalia_EstabelecimentoCriteria.estabelecimento_id_estabelecimento.Eq();
+		//cliente_avalia_EstabelecimentoCriteria.cliente_id_cliente.Eq();
 		System.Console.WriteLine( cliente_avalia_EstabelecimentoCriteria.UniqueCliente_avalia_Estabelecimento());
 		
 		System.Console.WriteLine("Retrieving SelecaoEstabelecimento by SelecaoEstabelecimentoCriteria");
@@ -129,6 +144,8 @@ public class RetrieveAndUpdateBasedeDadosMMData {
 		// Please uncomment the follow line and fill in parameter(s)
 		//selecaoEstabelecimentoCriteria.id_avaliacao.Eq();
 		//selecaoEstabelecimentoCriteria.estabelecimento.Eq();
+		//selecaoEstabelecimentoCriteria.estabelecimento_Estabelecimento.Eq();
+		//selecaoEstabelecimentoCriteria.estabelecimento_Cliente.Eq();
 		System.Console.WriteLine( selecaoEstabelecimentoCriteria.UniqueSelecaoEstabelecimento());
 		
 	}

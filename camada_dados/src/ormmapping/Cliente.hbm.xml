@@ -10,7 +10,7 @@ License Type: Academic
 			</generator>
 		</id>
 		<property name="Nome_cliente" column="nome_cliente" type="String" length="45" not-null="true"/>
-		<property name="Ord_rat_igu" column="ord_rat_igu" type="Byte" length="1" not-null="true"/>
+		<property name="Ord_rat_igu" column="ord_rat_igu" type="Byte" not-null="true"/>
 		<property name="Ord_rat_est" column="ord_rat_est" type="Byte" length="1" not-null="true"/>
 		<property name="Ord_dist" column="ord_dist" type="Byte" length="1" not-null="true"/>
 		<property name="Ord_pop_igu" column="ord_pop_igu" type="Byte" length="1" not-null="true"/>

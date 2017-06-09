@@ -25,15 +25,15 @@ public class Cliente_avalia_Estabelecimento {
 		_OrmAdapter = new Cliente_avalia_EstabelecimentoORMAdapter(this);
 	}
 	
-	public static Cliente_avalia_Estabelecimento LoadCliente_avalia_EstabelecimentoByORMID(Estabelecimento estabelecimento, Cliente cliente) {
+	public static Cliente_avalia_Estabelecimento LoadCliente_avalia_EstabelecimentoByORMID(int estabelecimento_id_estabelecimento, int cliente_id_cliente) {
 		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
-		return LoadCliente_avalia_EstabelecimentoByORMID(session,estabelecimento, cliente);
+		return LoadCliente_avalia_EstabelecimentoByORMID(session,estabelecimento_id_estabelecimento, cliente_id_cliente);
 	}
 	
-	public static Cliente_avalia_Estabelecimento LoadCliente_avalia_EstabelecimentoByORMID(PersistentSession session,Estabelecimento estabelecimento, Cliente cliente) {
+	public static Cliente_avalia_Estabelecimento LoadCliente_avalia_EstabelecimentoByORMID(PersistentSession session,int estabelecimento_id_estabelecimento, int cliente_id_cliente) {
 		Cliente_avalia_Estabelecimento cliente_avalia_estabelecimento = new Cliente_avalia_Estabelecimento();
-		cliente_avalia_estabelecimento.Estabelecimento = estabelecimento;
-		cliente_avalia_estabelecimento.Cliente = cliente;
+		cliente_avalia_estabelecimento.Estabelecimento_id_estabelecimento = estabelecimento_id_estabelecimento;
+		cliente_avalia_estabelecimento.Cliente_id_cliente = cliente_id_cliente;
 		
 		return (Cliente_avalia_Estabelecimento) session.Load(typeof(Cliente_avalia_Estabelecimento), cliente_avalia_estabelecimento);
 	}
@@ -124,25 +124,17 @@ public class Cliente_avalia_Estabelecimento {
 		if (!(obj is Cliente_avalia_Estabelecimento))
 			return false;
 		Cliente_avalia_Estabelecimento cliente_avalia_estabelecimento = obj as Cliente_avalia_Estabelecimento;
-		if (Estabelecimento == null && cliente_avalia_estabelecimento.Estabelecimento != null)
+		if (Estabelecimento_id_estabelecimento != cliente_avalia_estabelecimento.Estabelecimento_id_estabelecimento)
 			return false;
-		if (!Estabelecimento.Equals(cliente_avalia_estabelecimento.Estabelecimento))
-			return false;
-		if (Cliente == null && cliente_avalia_estabelecimento.Cliente != null)
-			return false;
-		if (!Cliente.Equals(cliente_avalia_estabelecimento.Cliente))
+		if (Cliente_id_cliente != cliente_avalia_estabelecimento.Cliente_id_cliente)
 			return false;
 		return true;
 	}
 	
 	public override int GetHashCode() {
 		int hashcode = 0;
-		if (Estabelecimento != null) {
-			hashcode = hashcode + (int) Estabelecimento.ORMID;
-		}
-		if (Cliente != null) {
-			hashcode = hashcode + (int) Cliente.ORMID;
-		}
+		hashcode = hashcode + (int) Estabelecimento_id_estabelecimento;
+		hashcode = hashcode + (int) Cliente_id_cliente;
 		return hashcode;
 	}
 	
@@ -150,7 +142,7 @@ public class Cliente_avalia_Estabelecimento {
 		return new Cliente_avalia_Estabelecimento();
 	}
 	
-	public virtual bool Save() {
+	public bool Save() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
@@ -162,7 +154,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public virtual bool Delete() {
+	public bool Delete() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
@@ -174,7 +166,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public virtual bool Refresh() {
+	public bool Refresh() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
@@ -186,18 +178,14 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate() {
+	public bool DeleteAndDissociate() {
 		try {
-			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
 				Estabelecimento.cliente_avalia_Estabelecimento.Remove(this);
 			}
-			this.ORM_Estabelecimento = estabelecimento;
-			Cliente cliente = this.Cliente;
 			if(Cliente != null) {
 				Cliente.cliente_avalia_Estabelecimento.Remove(this);
 			}
-			this.ORM_Cliente = cliente;
 			return Delete();
 		}
 		catch (Exception e) {
@@ -207,18 +195,14 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
-			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
 				Estabelecimento.cliente_avalia_Estabelecimento.Remove(this);
 			}
-			this.ORM_Estabelecimento = estabelecimento;
-			Cliente cliente = this.Cliente;
 			if(Cliente != null) {
 				Cliente.cliente_avalia_Estabelecimento.Remove(this);
 			}
-			this.ORM_Cliente = cliente;
 			try {
 				session.Delete(this);
 				return true;
@@ -263,7 +247,7 @@ public class Cliente_avalia_Estabelecimento {
 	
 	private int __estabelecimentoId;
 	
-	public virtual int EstabelecimentoId {
+	public int EstabelecimentoId {
 		set {
 			this.__estabelecimentoId = value;			
 		}
@@ -276,7 +260,7 @@ public class Cliente_avalia_Estabelecimento {
 	
 	private int __clienteId;
 	
-	public virtual int ClienteId {
+	public int ClienteId {
 		set {
 			this.__clienteId = value;			
 		}
@@ -289,7 +273,7 @@ public class Cliente_avalia_Estabelecimento {
 	
 	private DateTime __data_avaliacao;
 	
-	public virtual float Rating_est {
+	public float Rating_est {
 		set {
 			this.__rating_est = value;			
 		}
@@ -298,7 +282,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public virtual DateTime Data_avaliacao {
+	public DateTime Data_avaliacao {
 		set {
 			this.__data_avaliacao = value;			
 		}
@@ -307,7 +291,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public virtual Cliente Cliente {
+	public Cliente Cliente {
 		set {
 			if(__cliente!= null) {
 				__cliente.cliente_avalia_Estabelecimento.Remove(this);
@@ -316,13 +300,19 @@ public class Cliente_avalia_Estabelecimento {
 			if(value != null) {
 				value.cliente_avalia_Estabelecimento.Add(this);
 			}
+			if (value != null) {
+				__cliente_id_cliente = value.Id_cliente;
+			}
+			else {
+				__cliente_id_cliente = 0;
+			}
 		}
 		get {
 			return __cliente;			
 		}
 	}
 	
-	public virtual Cliente ORM_Cliente {
+	private Cliente ORM_Cliente {
 		set {
 			this.__cliente = value;			
 		}
@@ -332,7 +322,7 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	public virtual Estabelecimento Estabelecimento {
+	public Estabelecimento Estabelecimento {
 		set {
 			if(__estabelecimento!= null) {
 				__estabelecimento.cliente_avalia_Estabelecimento.Remove(this);
@@ -341,13 +331,19 @@ public class Cliente_avalia_Estabelecimento {
 			if(value != null) {
 				value.cliente_avalia_Estabelecimento.Add(this);
 			}
+			if (value != null) {
+				__estabelecimento_id_estabelecimento = value.Id_estabelecimento;
+			}
+			else {
+				__estabelecimento_id_estabelecimento = 0;
+			}
 		}
 		get {
 			return __estabelecimento;			
 		}
 	}
 	
-	public virtual Estabelecimento ORM_Estabelecimento {
+	private Estabelecimento ORM_Estabelecimento {
 		set {
 			this.__estabelecimento = value;			
 		}
@@ -358,24 +354,76 @@ public class Cliente_avalia_Estabelecimento {
 	}
 	
 	public override string ToString() {
-		return ((Estabelecimento == null) ? "" : Convert.ToString(Estabelecimento.ORMID)) + " "+ ((Cliente == null) ? "" : Convert.ToString(Cliente.ORMID));
+		return ToString(false);
+	}
+	
+	public virtual string ToString(bool idOnly) {
+		if (idOnly) {
+			return Convert.ToString(Estabelecimento_id_estabelecimento) + " "+ Convert.ToString(Cliente_id_cliente);
+		}
+		else {
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			sb.Append("Cliente_avalia_Estabelecimento[ ");
+			if (Estabelecimento != null)
+				sb.AppendFormat("Estabelecimento.Persist_ID={0} ", Estabelecimento.ToString(true) + "");
+			else
+				sb.Append("Estabelecimento=null ");
+			if (Cliente != null)
+				sb.AppendFormat("Cliente.Persist_ID={0} ", Cliente.ToString(true) + "");
+			else
+				sb.Append("Cliente=null ");
+			sb.AppendFormat("Rating_est={0} ", Rating_est);
+			sb.AppendFormat("Data_avaliacao={0} ", Data_avaliacao);
+			sb.AppendFormat("Estabelecimento_id_estabelecimento={0} ", Estabelecimento_id_estabelecimento);
+			sb.AppendFormat("Cliente_id_cliente={0} ", Cliente_id_cliente);
+			sb.Append("]");
+			return sb.ToString();
+		}
 	}
 	
 	private bool _saved = false;
 	
-	public virtual void onSave() {
+	public void onSave() {
 		_saved=true;
 	}
 	
 	
-	public virtual void onLoad() {
+	public void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public virtual bool isSaved() {
+	public bool isSaved() {
 		return _saved;
 	}
 	
 	
+	private int __estabelecimento_id_estabelecimento;
+	
+	public int Estabelecimento_id_estabelecimento {
+		set {
+			this.__estabelecimento_id_estabelecimento = value;			
+		}
+		get {
+			return __estabelecimento_id_estabelecimento;			
+		}
+	}
+	
+	private int __cliente_id_cliente;
+	
+	public int Cliente_id_cliente {
+		set {
+			this.__cliente_id_cliente = value;			
+		}
+		get {
+			return __cliente_id_cliente;			
+		}
+	}
+	
+	public const String PROP_ESTABELECIMENTO = "__estabelecimento";
+	public const String PROP_CLIENTE = "__cliente";
+	public const String PROP_RATING_EST = "Rating_est";
+	public const String PROP_DATA_AVALIACAO = "Data_avaliacao";
+	public const String PROP_ESTABELECIMENTO_ID_ESTABELECIMENTO = "Estabelecimento_id_estabelecimento";
+	public const String PROP_CLIENTE_ID_CLIENTE = "Cliente_id_cliente";
 }

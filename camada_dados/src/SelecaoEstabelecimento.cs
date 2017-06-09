@@ -25,15 +25,16 @@ public class SelecaoEstabelecimento {
 		_OrmAdapter = new SelecaoEstabelecimentoORMAdapter(this);
 	}
 	
-	public static SelecaoEstabelecimento LoadSelecaoEstabelecimentoByORMID(int id_avaliacao, Cliente_seleciona_Estabelecimento estabelecimento) {
+	public static SelecaoEstabelecimento LoadSelecaoEstabelecimentoByORMID(int id_avaliacao, int estabelecimento_Estabelecimento, int estabelecimento_Cliente) {
 		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
-		return LoadSelecaoEstabelecimentoByORMID(session,id_avaliacao, estabelecimento);
+		return LoadSelecaoEstabelecimentoByORMID(session,id_avaliacao, estabelecimento_Estabelecimento, estabelecimento_Cliente);
 	}
 	
-	public static SelecaoEstabelecimento LoadSelecaoEstabelecimentoByORMID(PersistentSession session,int id_avaliacao, Cliente_seleciona_Estabelecimento estabelecimento) {
+	public static SelecaoEstabelecimento LoadSelecaoEstabelecimentoByORMID(PersistentSession session,int id_avaliacao, int estabelecimento_Estabelecimento, int estabelecimento_Cliente) {
 		SelecaoEstabelecimento selecaoestabelecimento = new SelecaoEstabelecimento();
 		selecaoestabelecimento.Id_avaliacao = id_avaliacao;
-		selecaoestabelecimento.Estabelecimento = estabelecimento;
+		selecaoestabelecimento.Estabelecimento_Estabelecimento = estabelecimento_Estabelecimento;
+		selecaoestabelecimento.Estabelecimento_Cliente = estabelecimento_Cliente;
 		
 		return (SelecaoEstabelecimento) session.Load(typeof(SelecaoEstabelecimento), selecaoestabelecimento);
 	}
@@ -126,11 +127,9 @@ public class SelecaoEstabelecimento {
 		SelecaoEstabelecimento selecaoestabelecimento = obj as SelecaoEstabelecimento;
 		if (Id_avaliacao != selecaoestabelecimento.Id_avaliacao)
 			return false;
-		if (Estabelecimento == null && selecaoestabelecimento.Estabelecimento != null)
+		if (Estabelecimento_Estabelecimento != selecaoestabelecimento.Estabelecimento_Estabelecimento)
 			return false;
-		if (!Estabelecimento.Estabelecimento.Equals(selecaoestabelecimento.Estabelecimento.Estabelecimento))
-			return false;
-		if (!Estabelecimento.Cliente.Equals(selecaoestabelecimento.Estabelecimento.Cliente))
+		if (Estabelecimento_Cliente != selecaoestabelecimento.Estabelecimento_Cliente)
 			return false;
 		return true;
 	}
@@ -138,10 +137,8 @@ public class SelecaoEstabelecimento {
 	public override int GetHashCode() {
 		int hashcode = 0;
 		hashcode = hashcode + (int) Id_avaliacao;
-		if (Estabelecimento != null) {
-			hashcode = hashcode + (Estabelecimento.Estabelecimento == null ? 0 : Estabelecimento.Estabelecimento.GetHashCode());
-			hashcode = hashcode + (Estabelecimento.Cliente == null ? 0 : Estabelecimento.Cliente.GetHashCode());
-		}
+		hashcode = hashcode + (int) Estabelecimento_Estabelecimento;
+		hashcode = hashcode + (int) Estabelecimento_Cliente;
 		return hashcode;
 	}
 	
@@ -149,7 +146,7 @@ public class SelecaoEstabelecimento {
 		return new SelecaoEstabelecimento();
 	}
 	
-	public virtual bool Save() {
+	public bool Save() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
@@ -161,7 +158,7 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public virtual bool Delete() {
+	public bool Delete() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
@@ -173,7 +170,7 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public virtual bool Refresh() {
+	public bool Refresh() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
@@ -185,13 +182,11 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate() {
+	public bool DeleteAndDissociate() {
 		try {
-			Cliente_seleciona_Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
 				Estabelecimento.selecaoEstabelecimento.Remove(this);
 			}
-			this.ORM_Estabelecimento = estabelecimento;
 			return Delete();
 		}
 		catch (Exception e) {
@@ -201,13 +196,11 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
-			Cliente_seleciona_Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
 				Estabelecimento.selecaoEstabelecimento.Remove(this);
 			}
-			this.ORM_Estabelecimento = estabelecimento;
 			try {
 				session.Delete(this);
 				return true;
@@ -250,7 +243,7 @@ public class SelecaoEstabelecimento {
 	
 	private DateTime __data_hora_selecao;
 	
-	public virtual int Id_avaliacao {
+	public int Id_avaliacao {
 		set {
 			this.__id_avaliacao = value;			
 		}
@@ -259,7 +252,7 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public virtual DateTime Data_hora_selecao {
+	public DateTime Data_hora_selecao {
 		set {
 			this.__data_hora_selecao = value;			
 		}
@@ -268,7 +261,7 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public virtual Cliente_seleciona_Estabelecimento Estabelecimento {
+	public Cliente_seleciona_Estabelecimento Estabelecimento {
 		set {
 			if(__estabelecimento!= null) {
 				__estabelecimento.selecaoEstabelecimento.Remove(this);
@@ -277,13 +270,21 @@ public class SelecaoEstabelecimento {
 			if(value != null) {
 				value.selecaoEstabelecimento.Add(this);
 			}
+			if (value != null) {
+				__estabelecimento_Estabelecimento = value.Estabelecimento.Id_estabelecimento;
+				__estabelecimento_Cliente = value.Cliente.Id_cliente;
+			}
+			else {
+				__estabelecimento_Estabelecimento = 0;
+				__estabelecimento_Cliente = 0;
+			}
 		}
 		get {
 			return __estabelecimento;			
 		}
 	}
 	
-	public virtual Cliente_seleciona_Estabelecimento ORM_Estabelecimento {
+	private Cliente_seleciona_Estabelecimento ORM_Estabelecimento {
 		set {
 			this.__estabelecimento = value;			
 		}
@@ -294,24 +295,71 @@ public class SelecaoEstabelecimento {
 	}
 	
 	public override string ToString() {
-		return Convert.ToString(Id_avaliacao) + " "+ ((Estabelecimento == null) ? "" : Convert.ToString(Estabelecimento.Estabelecimento) + " " + Convert.ToString(Estabelecimento.Cliente));
+		return ToString(false);
+	}
+	
+	public virtual string ToString(bool idOnly) {
+		if (idOnly) {
+			return Convert.ToString(Id_avaliacao) + " "+ Convert.ToString(Estabelecimento_Estabelecimento) + " "+ Convert.ToString(Estabelecimento_Cliente);
+		}
+		else {
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			sb.Append("SelecaoEstabelecimento[ ");
+			sb.AppendFormat("Id_avaliacao={0} ", Id_avaliacao);
+			if (Estabelecimento != null)
+				sb.AppendFormat("Estabelecimento.Persist_ID={0} ", Estabelecimento.ToString(true) + "");
+			else
+				sb.Append("Estabelecimento=null ");
+			sb.AppendFormat("Data_hora_selecao={0} ", Data_hora_selecao);
+			sb.AppendFormat("Estabelecimento_Estabelecimento={0} ", Estabelecimento_Estabelecimento);
+			sb.AppendFormat("Estabelecimento_Cliente={0} ", Estabelecimento_Cliente);
+			sb.Append("]");
+			return sb.ToString();
+		}
 	}
 	
 	private bool _saved = false;
 	
-	public virtual void onSave() {
+	public void onSave() {
 		_saved=true;
 	}
 	
 	
-	public virtual void onLoad() {
+	public void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public virtual bool isSaved() {
+	public bool isSaved() {
 		return _saved;
 	}
 	
 	
+	private int __estabelecimento_Estabelecimento;
+	
+	public int Estabelecimento_Estabelecimento {
+		set {
+			this.__estabelecimento_Estabelecimento = value;			
+		}
+		get {
+			return __estabelecimento_Estabelecimento;			
+		}
+	}
+	
+	private int __estabelecimento_Cliente;
+	
+	public int Estabelecimento_Cliente {
+		set {
+			this.__estabelecimento_Cliente = value;			
+		}
+		get {
+			return __estabelecimento_Cliente;			
+		}
+	}
+	
+	public const String PROP_ID_AVALIACAO = "Id_avaliacao";
+	public const String PROP_ESTABELECIMENTO = "__estabelecimento";
+	public const String PROP_DATA_HORA_SELECAO = "Data_hora_selecao";
+	public const String PROP_ESTABELECIMENTO__ESTABELECIMENTO = "Estabelecimento_Estabelecimento";
+	public const String PROP_ESTABELECIMENTO__CLIENTE = "Estabelecimento_Cliente";
 }

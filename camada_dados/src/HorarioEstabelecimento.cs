@@ -25,15 +25,15 @@ public class HorarioEstabelecimento {
 		_OrmAdapter = new HorarioEstabelecimentoORMAdapter(this);
 	}
 	
-	public static HorarioEstabelecimento LoadHorarioEstabelecimentoByORMID(int id_horario, Estabelecimento estabelecimento) {
+	public static HorarioEstabelecimento LoadHorarioEstabelecimentoByORMID(int id_horario, int estabelecimento_id_estabelecimento) {
 		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
-		return LoadHorarioEstabelecimentoByORMID(session,id_horario, estabelecimento);
+		return LoadHorarioEstabelecimentoByORMID(session,id_horario, estabelecimento_id_estabelecimento);
 	}
 	
-	public static HorarioEstabelecimento LoadHorarioEstabelecimentoByORMID(PersistentSession session,int id_horario, Estabelecimento estabelecimento) {
+	public static HorarioEstabelecimento LoadHorarioEstabelecimentoByORMID(PersistentSession session,int id_horario, int estabelecimento_id_estabelecimento) {
 		HorarioEstabelecimento horarioestabelecimento = new HorarioEstabelecimento();
 		horarioestabelecimento.Id_horario = id_horario;
-		horarioestabelecimento.Estabelecimento = estabelecimento;
+		horarioestabelecimento.Estabelecimento_id_estabelecimento = estabelecimento_id_estabelecimento;
 		
 		return (HorarioEstabelecimento) session.Load(typeof(HorarioEstabelecimento), horarioestabelecimento);
 	}
@@ -126,9 +126,7 @@ public class HorarioEstabelecimento {
 		HorarioEstabelecimento horarioestabelecimento = obj as HorarioEstabelecimento;
 		if (Id_horario != horarioestabelecimento.Id_horario)
 			return false;
-		if (Estabelecimento == null && horarioestabelecimento.Estabelecimento != null)
-			return false;
-		if (!Estabelecimento.Equals(horarioestabelecimento.Estabelecimento))
+		if (Estabelecimento_id_estabelecimento != horarioestabelecimento.Estabelecimento_id_estabelecimento)
 			return false;
 		return true;
 	}
@@ -136,9 +134,7 @@ public class HorarioEstabelecimento {
 	public override int GetHashCode() {
 		int hashcode = 0;
 		hashcode = hashcode + (int) Id_horario;
-		if (Estabelecimento != null) {
-			hashcode = hashcode + (int) Estabelecimento.ORMID;
-		}
+		hashcode = hashcode + (int) Estabelecimento_id_estabelecimento;
 		return hashcode;
 	}
 	
@@ -146,7 +142,7 @@ public class HorarioEstabelecimento {
 		return new HorarioEstabelecimento();
 	}
 	
-	public virtual bool Save() {
+	public bool Save() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
@@ -158,7 +154,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public virtual bool Delete() {
+	public bool Delete() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
@@ -170,7 +166,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public virtual bool Refresh() {
+	public bool Refresh() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
@@ -182,13 +178,11 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate() {
+	public bool DeleteAndDissociate() {
 		try {
-			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
 				Estabelecimento.horarioEstabelecimento.Remove(this);
 			}
-			this.ORM_Estabelecimento = estabelecimento;
 			return Delete();
 		}
 		catch (Exception e) {
@@ -198,13 +192,11 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
-			Estabelecimento estabelecimento = this.Estabelecimento;
 			if(Estabelecimento != null) {
 				Estabelecimento.horarioEstabelecimento.Remove(this);
 			}
-			this.ORM_Estabelecimento = estabelecimento;
 			try {
 				session.Delete(this);
 				return true;
@@ -247,7 +239,7 @@ public class HorarioEstabelecimento {
 	
 	private int __estabelecimentoId;
 	
-	public virtual int EstabelecimentoId {
+	public int EstabelecimentoId {
 		set {
 			this.__estabelecimentoId = value;			
 		}
@@ -262,7 +254,7 @@ public class HorarioEstabelecimento {
 	
 	private DateTime __hora_fecho;
 	
-	public virtual int Id_horario {
+	public int Id_horario {
 		set {
 			this.__id_horario = value;			
 		}
@@ -271,7 +263,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public virtual byte Dia {
+	public byte Dia {
 		set {
 			this.__dia = value;			
 		}
@@ -280,7 +272,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public virtual DateTime Hora_abertura {
+	public DateTime Hora_abertura {
 		set {
 			this.__hora_abertura = value;			
 		}
@@ -289,7 +281,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public virtual DateTime Hora_fecho {
+	public DateTime Hora_fecho {
 		set {
 			this.__hora_fecho = value;			
 		}
@@ -298,7 +290,7 @@ public class HorarioEstabelecimento {
 		}
 	}
 	
-	public virtual Estabelecimento Estabelecimento {
+	public Estabelecimento Estabelecimento {
 		set {
 			if(__estabelecimento!= null) {
 				__estabelecimento.horarioEstabelecimento.Remove(this);
@@ -307,13 +299,19 @@ public class HorarioEstabelecimento {
 			if(value != null) {
 				value.horarioEstabelecimento.Add(this);
 			}
+			if (value != null) {
+				__estabelecimento_id_estabelecimento = value.Id_estabelecimento;
+			}
+			else {
+				__estabelecimento_id_estabelecimento = 0;
+			}
 		}
 		get {
 			return __estabelecimento;			
 		}
 	}
 	
-	public virtual Estabelecimento ORM_Estabelecimento {
+	private Estabelecimento ORM_Estabelecimento {
 		set {
 			this.__estabelecimento = value;			
 		}
@@ -324,24 +322,62 @@ public class HorarioEstabelecimento {
 	}
 	
 	public override string ToString() {
-		return Convert.ToString(Id_horario) + " "+ ((Estabelecimento == null) ? "" : Convert.ToString(Estabelecimento.ORMID));
+		return ToString(false);
+	}
+	
+	public virtual string ToString(bool idOnly) {
+		if (idOnly) {
+			return Convert.ToString(Id_horario) + " "+ Convert.ToString(Estabelecimento_id_estabelecimento);
+		}
+		else {
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			sb.Append("HorarioEstabelecimento[ ");
+			sb.AppendFormat("Id_horario={0} ", Id_horario);
+			if (Estabelecimento != null)
+				sb.AppendFormat("Estabelecimento.Persist_ID={0} ", Estabelecimento.ToString(true) + "");
+			else
+				sb.Append("Estabelecimento=null ");
+			sb.AppendFormat("Dia={0} ", Dia);
+			sb.AppendFormat("Hora_abertura={0} ", Hora_abertura);
+			sb.AppendFormat("Hora_fecho={0} ", Hora_fecho);
+			sb.AppendFormat("Estabelecimento_id_estabelecimento={0} ", Estabelecimento_id_estabelecimento);
+			sb.Append("]");
+			return sb.ToString();
+		}
 	}
 	
 	private bool _saved = false;
 	
-	public virtual void onSave() {
+	public void onSave() {
 		_saved=true;
 	}
 	
 	
-	public virtual void onLoad() {
+	public void onLoad() {
 		_saved=true;
 	}
 	
 	
-	public virtual bool isSaved() {
+	public bool isSaved() {
 		return _saved;
 	}
 	
 	
+	private int __estabelecimento_id_estabelecimento;
+	
+	public int Estabelecimento_id_estabelecimento {
+		set {
+			this.__estabelecimento_id_estabelecimento = value;			
+		}
+		get {
+			return __estabelecimento_id_estabelecimento;			
+		}
+	}
+	
+	public const String PROP_ID_HORARIO = "Id_horario";
+	public const String PROP_ESTABELECIMENTO = "__estabelecimento";
+	public const String PROP_DIA = "Dia";
+	public const String PROP_HORA_ABERTURA = "Hora_abertura";
+	public const String PROP_HORA_FECHO = "Hora_fecho";
+	public const String PROP_ESTABELECIMENTO_ID_ESTABELECIMENTO = "Estabelecimento_id_estabelecimento";
 }

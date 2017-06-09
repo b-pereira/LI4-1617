@@ -118,13 +118,65 @@ CREATE TABLE Cliente_avalia_Estabelecimento (
   PRIMARY KEY CLUSTERED (Estabelecimento, 
   Cliente));
 CREATE TABLE SelecaoEstabelecimento (
-  id_avaliacao      int NOT NULL, 
+  id_selecao        int NOT NULL, 
   Estabelecimento   int NOT NULL, 
   Cliente           int NOT NULL, 
   data_hora_selecao datetime NOT NULL, 
-  PRIMARY KEY CLUSTERED (id_avaliacao, 
+  PRIMARY KEY CLUSTERED (id_selecao, 
   Estabelecimento, 
   Cliente));
+CREATE INDEX Estabelecimento_id_estabelecimento 
+  ON Estabelecimento (id_estabelecimento);
+CREATE INDEX Estabelecimento_Categoria 
+  ON Estabelecimento (Categoria);
+CREATE INDEX Estabelecimento_Utilizador 
+  ON Estabelecimento (Utilizador);
+CREATE INDEX Iguaria_id_iguaria 
+  ON Iguaria (id_iguaria);
+CREATE INDEX Iguaria_Estabelecimento 
+  ON Iguaria (Estabelecimento);
+CREATE INDEX Cliente_id_cliente 
+  ON Cliente (id_cliente);
+CREATE INDEX Cliente_Utilizador 
+  ON Cliente (Utilizador);
+CREATE INDEX Utilizador_email 
+  ON Utilizador (email);
+CREATE INDEX Categoria_id_categoria 
+  ON Categoria (id_categoria);
+CREATE INDEX Cliente_critica_Iguaria_Cliente 
+  ON Cliente_critica_Iguaria (Cliente);
+CREATE INDEX Cliente_critica_Iguaria_Iguaria 
+  ON Cliente_critica_Iguaria (Iguaria);
+CREATE INDEX Cliente_critica_Iguaria_Estabelecimento 
+  ON Cliente_critica_Iguaria (Estabelecimento);
+CREATE INDEX Cliente_seleciona_iguaria_Cliente 
+  ON Cliente_seleciona_iguaria (Cliente);
+CREATE INDEX Cliente_seleciona_iguaria_Iguaria 
+  ON Cliente_seleciona_iguaria (Iguaria);
+CREATE INDEX Cliente_seleciona_iguaria_Estabelecimento 
+  ON Cliente_seleciona_iguaria (Estabelecimento);
+CREATE INDEX SelecaoIguaria_id_visualizacao 
+  ON SelecaoIguaria (id_visualizacao);
+CREATE INDEX SelecaoIguaria_Cliente 
+  ON SelecaoIguaria (Cliente);
+CREATE INDEX SelecaoIguaria_Iguaria 
+  ON SelecaoIguaria (Iguaria);
+CREATE INDEX SelecaoIguaria_Estabelecimento 
+  ON SelecaoIguaria (Estabelecimento);
+CREATE INDEX Cliente_seleciona_Estabelecimento_Estabelecimento 
+  ON Cliente_seleciona_Estabelecimento (Estabelecimento);
+CREATE INDEX Cliente_seleciona_Estabelecimento_Cliente 
+  ON Cliente_seleciona_Estabelecimento (Cliente);
+CREATE INDEX Cliente_avalia_Estabelecimento_Estabelecimento 
+  ON Cliente_avalia_Estabelecimento (Estabelecimento);
+CREATE INDEX Cliente_avalia_Estabelecimento_Cliente 
+  ON Cliente_avalia_Estabelecimento (Cliente);
+CREATE INDEX SelecaoEstabelecimento_id_selecao 
+  ON SelecaoEstabelecimento (id_selecao);
+CREATE INDEX SelecaoEstabelecimento_Estabelecimento 
+  ON SelecaoEstabelecimento (Estabelecimento);
+CREATE INDEX SelecaoEstabelecimento_Cliente 
+  ON SelecaoEstabelecimento (Cliente);
 ALTER TABLE Iguaria ADD CONSTRAINT FKIguaria812873 FOREIGN KEY (Estabelecimento) REFERENCES Estabelecimento (id_estabelecimento) ON UPDATE No action ON DELETE Cascade;
 ALTER TABLE Estabelecimento ADD CONSTRAINT FKEstabeleci130178 FOREIGN KEY (Utilizador) REFERENCES Utilizador (email) ON UPDATE No action ON DELETE Cascade;
 ALTER TABLE Cliente ADD CONSTRAINT FKCliente585144 FOREIGN KEY (Utilizador) REFERENCES Utilizador (email) ON UPDATE No action ON DELETE Set null;
@@ -194,6 +246,6 @@ INSERT INTO Cliente_seleciona_Estabelecimento(Estabelecimento, Cliente) VALUES (
 INSERT INTO Cliente_seleciona_Estabelecimento(Estabelecimento, Cliente) VALUES (1, 3);
 INSERT INTO Cliente_avalia_Estabelecimento(Estabelecimento, Cliente, rating_est, data_avaliacao) VALUES (1, 1, 5, '2017-06-05 14:16:45.700');
 INSERT INTO Cliente_avalia_Estabelecimento(Estabelecimento, Cliente, rating_est, data_avaliacao) VALUES (2, 2, 5, '2017-06-05 14:16:45.700');
-INSERT INTO SelecaoEstabelecimento(id_avaliacao, Estabelecimento, Cliente, data_hora_selecao) VALUES (1, 2, 2, '2017-06-05 14:16:45.700');
-INSERT INTO SelecaoEstabelecimento(id_avaliacao, Estabelecimento, Cliente, data_hora_selecao) VALUES (2, 1, 1, '2017-06-05 14:16:45.700');
-INSERT INTO SelecaoEstabelecimento(id_avaliacao, Estabelecimento, Cliente, data_hora_selecao) VALUES (3, 1, 3, '2017-06-05 14:16:45.700');
+INSERT INTO SelecaoEstabelecimento(id_selecao, Estabelecimento, Cliente, data_hora_selecao) VALUES (1, 2, 2, '2017-06-05 14:16:45.700');
+INSERT INTO SelecaoEstabelecimento(id_selecao, Estabelecimento, Cliente, data_hora_selecao) VALUES (2, 1, 1, '2017-06-05 14:16:45.700');
+INSERT INTO SelecaoEstabelecimento(id_selecao, Estabelecimento, Cliente, data_hora_selecao) VALUES (3, 1, 3, '2017-06-05 14:16:45.700');

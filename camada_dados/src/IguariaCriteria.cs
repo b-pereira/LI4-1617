@@ -58,12 +58,21 @@ public class IguariaCriteria : AbstractORMCriteria {
 		
 	}
 	
+	private Int32Expression _estabelecimento_id_estabelecimento;
+	public Int32Expression Estabelecimento_id_estabelecimento {
+		get {
+			return  _estabelecimento_id_estabelecimento;
+		}
+		
+	}
+	
 	public IguariaCriteria(ICriteria criteria) : base(criteria) {
 		_id_iguaria =  new Int32Expression("Id_iguaria", this);
 		_nome_iguaria =  new StringExpression("Nome_iguaria", this);
 		_visual_iguaria =  new Int32Expression("Visual_iguaria", this);
 		_fotografia =  new ByteArrayExpression("Fotografia", this);
 		_preco =  new DecimalExpression("Preco", this);
+		_estabelecimento_id_estabelecimento =  new Int32Expression("Estabelecimento_id_estabelecimento", this);
 	}
 	
 	public IguariaCriteria(PersistentSession session) : this(session.CreateCriteria(typeof(Iguaria))) {

@@ -14,7 +14,6 @@
 using System;
 using Orm;
 using System.Collections;
-using System.Collections.Generic;
 using NHibernate;
 
 /// <summary>
@@ -120,7 +119,7 @@ public class Categoria {
 		return new Categoria();
 	}
 	
-	public virtual bool Save() {
+	public bool Save() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().SaveObject(this);
 			return true;
@@ -132,7 +131,7 @@ public class Categoria {
 		}
 	}
 	
-	public virtual bool Delete() {
+	public bool Delete() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().DeleteObject(this);
 			return true;
@@ -144,7 +143,7 @@ public class Categoria {
 		}
 	}
 	
-	public virtual bool Refresh() {
+	public bool Refresh() {
 		try {
 			BasedeDadosMMPersistentManager.Instance().GetSession().Refresh(this);
 			return true;
@@ -156,7 +155,7 @@ public class Categoria {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate() {
+	public bool DeleteAndDissociate() {
 		try {
 			Estabelecimento[] lEstabelecimento1s = estabelecimento1.ToArray();
 			foreach(Estabelecimento lEstabelecimento1 in lEstabelecimento1s) {
@@ -171,7 +170,7 @@ public class Categoria {
 		}
 	}
 	
-	public virtual bool DeleteAndDissociate(global::Orm.PersistentSession session) {
+	public bool DeleteAndDissociate(global::Orm.PersistentSession session) {
 		try {
 			Estabelecimento[] lEstabelecimento1s = estabelecimento1.ToArray();
 			foreach(Estabelecimento lEstabelecimento1 in lEstabelecimento1s) {
@@ -192,7 +191,7 @@ public class Categoria {
 		}
 	}
 	
-	public virtual System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
+	private System.Collections.Generic.ISet<T> This_GetSet<T>(int key) {
 		if (key == ORMConstants.KEY_CATEGORIA_ESTABELECIMENTO1)
 			return (System.Collections.Generic.ISet<T>) __estabelecimento1;
 		return null;
@@ -219,7 +218,7 @@ public class Categoria {
 	
 	private System.Collections.Generic.ISet<Estabelecimento> __estabelecimento1 = new System.Collections.Generic.HashSet<Estabelecimento>();
 	
-	public virtual int Id_categoria {
+	public int Id_categoria {
 		set {
 			this.__id_categoria = value;			
 		}
@@ -228,13 +227,13 @@ public class Categoria {
 		}
 	}
 	
-	public virtual int ORMID {
+	public int ORMID {
 		get {
 			return Id_categoria;			
 		}
 	}
 	
-	public virtual string Descricao {
+	public string Descricao {
 		set {
 			this.__descricao = value;			
 		}
@@ -243,7 +242,7 @@ public class Categoria {
 		}
 	}
 	
-	public virtual System.Collections.Generic.ISet<Estabelecimento> ORM_Estabelecimento1 {
+	private System.Collections.Generic.ISet<Estabelecimento> ORM_Estabelecimento1 {
 		get  {
 			return __estabelecimento1;			
 		}
@@ -256,7 +255,25 @@ public class Categoria {
 	public readonly EstabelecimentoSetCollection<Categoria> estabelecimento1;
 	
 	public override string ToString() {
-		return Convert.ToString(Id_categoria);
+		return ToString(false);
 	}
 	
+	public virtual string ToString(bool idOnly) {
+		if (idOnly) {
+			return Convert.ToString(Id_categoria);
+		}
+		else {
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			sb.Append("Categoria[ ");
+			sb.AppendFormat("Id_categoria={0} ", Id_categoria);
+			sb.AppendFormat("Descricao={0} ", Descricao);
+			sb.AppendFormat("estabelecimento1.size={0} ", estabelecimento1.Size());
+			sb.Append("]");
+			return sb.ToString();
+		}
+	}
+	
+	public const String PROP_ID_CATEGORIA = "Id_categoria";
+	public const String PROP_DESCRICAO = "Descricao";
+	public const String PROP_ESTABELECIMENTO1 = "ORM_Estabelecimento1";
 }
