@@ -28,7 +28,7 @@ namespace MM
             }
         }
 
-        public void PublicarCritica(int idCliente, int idIguaria, string descricao,  float rating)
+        public void PublicarCritica(int idCliente, int idIguaria, int idEstabelecimento, string descricao,  float rating)
         {
 
             DateTime data = DateTime.Now;
@@ -44,11 +44,16 @@ namespace MM
                 IguariaCriteria iguariaCriteria = new IguariaCriteria();
                 iguariaCriteria.Id_iguaria.Eq(idIguaria);
                 Iguaria ig = iguariaCriteria.UniqueIguaria();
+                EstabelecimentoCriteria estabelecimentoCiteria = new EstabelecimentoCriteria();
+                estabelecimentoCiteria.Id_estabelecimento.Eq(idEstabelecimento);
+                Estabelecimento est = estabelecimentoCiteria.UniqueEstabelecimento();
+
                 cliente_critica_Iguaria.Rating_igu = rating;
                 cliente_critica_Iguaria.Desc_critica = descricao;
                 cliente_critica_Iguaria.Data_critica = data;
                 cliente_critica_Iguaria.Cliente = cli;
                 cliente_critica_Iguaria.Iguaria = ig;
+                cliente_critica_Iguaria. = est;
 
                 
                 cliente_critica_Iguaria.Save();
@@ -167,22 +172,15 @@ namespace MM
             try
             {
 
-                Cliente_seleciona_iguariaCriteria cliente_seleciona_iguariaCriteria = new Cliente_seleciona_iguariaCriteria();
-                cliente_seleciona_iguariaCriteria.UniqueCliente_seleciona_iguaria();
-                cliente_seleciona_iguariaCriteria.Iguaria.Eq();
+               
 
 
                 SelecaoIguariaCriteria selecaoIguariaCriteria = new SelecaoIguariaCriteria();
                 selecaoIguariaCriteria.Cliente.Eq();
 
-                Cliente_seleciona_EstabelecimentoCriteria cliente_seleciona_EstabelecimentoCriteria = new Cliente_seleciona_EstabelecimentoCriteria();
-               
-                cliente_seleciona_EstabelecimentoCriteria.Estabelecimento.Eq();
-                cliente_seleciona_EstabelecimentoCriteria.cliente.Eq();
+                
 
-                SelecaoEstabelecimentoCriteria selecaoEstabelecimentoCriteria = new SelecaoEstabelecimentoCriteria();
-               
-               selecaoEstabelecimentoCriteria.Estabelecimento.Eq();
+                
 
             }
             catch (Exception e)
@@ -232,8 +230,7 @@ namespace MM
 
                 SelecaoIguariaCriteria selecaoIguariaCriteria = new SelecaoIguariaCriteria();
                 
-                selecaoIguariaCriteria.Cliente 
-                Cliente_seleciona_EstabelecimentoCriteria cliente_seleciona_EstabelecimentoCriteria = new Cliente_seleciona_EstabelecimentoCriteria();
+                
                 //cliente_seleciona_EstabelecimentoCriteria.estabelecimento.Eq();
                 //cliente_seleciona_EstabelecimentoCriteria.cliente.Eq();
 
@@ -263,7 +260,7 @@ namespace MM
             return new Estabelecimento();
         }
 
-        public List<Iguaria> GerarPedido(string pedido)
+        public List<Business.Iguaria> GerarPedido(string pedido)
         {
 
 
@@ -279,8 +276,30 @@ namespace MM
                 //estabelecimentoCriteria.id_estabelecimento.Eq();
 
                 IguariaCriteria iguariaCriteria = new IguariaCriteria();
-                iguariaCriteria.Id_iguaria.Eq();
-                iguariaCriteria.Estabelecimento.Eq();
+                iguariaCriteria.Nome_iguaria.Like("%" + pedido + "%");
+                iguariaCriteria.ListIguaria();
+
+                Iguaria[] list = iguariaCriteria.ListIguaria();
+
+                List<Business.Iguaria> tmp = new List<Business.Iguaria>();
+
+                for (int i = list.Length - 1; i >= 0; i--)
+                {
+
+                    ClienteCriteria cc = new ClienteCriteria();
+
+                    Cliente_critica_Iguaria cliente_critica_Iguaria = Cliente_critica_Iguaria.CreateCliente_critica_Iguaria();
+                    clienteCriteria.Id_cliente.Eq(_cliente.IdCliente);
+                    Cliente cli = cc.UniqueCliente();
+                    IguariaCriteria ic = new IguariaCriteria();
+                    iguariaCriteria.Id_iguaria.Eq(list[i].Id_iguaria);
+                    Iguaria ig = iguariaCriteria.UniqueIguaria();
+
+                    tmp.Add(new Business.Iguaria(list[i].Nome_iguaria, list[i].Visual_iguaria, list[i].Rating_medio_iguaria, list[i].Fotografia, list[i].Preco, list[i].Id_iguaria, list[i].EstabelecimentoId);
+
+                    if (i == list.Length - 5)
+                        break;
+                }
 
 
 

@@ -22,6 +22,18 @@ namespace Business
         }
 
 
+        public Iguaria(string _nome, int _visualizacoes, float _rating_medio, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento)
+        {
+            this._nome = Nome;
+            this._visualizacoes = VisualizacoesIguaria;
+            this._rating_medio = RatingMedioIguaria;
+            this._fotografia = Fotografia;
+            this._preco = Preco;
+            this._id_iguaria = IdIguaria;
+            this._id_estabelecimento = IdEstabelecimento;
+            this._criticas = ListaCriticas;
+        }
+
         public Iguaria(string _nome, int _visualizacoes, float _rating_medio, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento, List<Critica> _criticas)
         {
             this._nome = Nome;
@@ -33,6 +45,7 @@ namespace Business
             this._id_estabelecimento = IdEstabelecimento;
             this._criticas = ListaCriticas;
         }
+
         public Iguaria(Iguaria _other)
         {
             this._nome = _other.Nome;
