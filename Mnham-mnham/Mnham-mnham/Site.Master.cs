@@ -15,10 +15,13 @@ namespace Mnham_mnham
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
-        private LoginView l;
 
         protected void Page_Init(object sender, EventArgs e)
         {
+            if (Session["User"] == null)
+            {
+                Session["User"] = Application["Logout"];
+            }
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];
             Guid requestCookieGuidValue;
@@ -46,10 +49,10 @@ namespace Mnham_mnham
                 Response.Cookies.Set(responseCookie);
             }
 
-            Page.PreLoad += master_Page_PreLoad;
+            Page.PreLoad += Master_Page_PreLoad;
         }
 
-        protected void master_Page_PreLoad(object sender, EventArgs e)
+        protected void Master_Page_PreLoad(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
@@ -70,12 +73,13 @@ namespace Mnham_mnham
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["User"] = Context.User;
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
-            Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //Trash Current Session
+            Session.Abandon();
         }
     }
 

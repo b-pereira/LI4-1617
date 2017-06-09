@@ -3,7 +3,7 @@
 
 <asp:Content runat="server" ID="MainClientSidebar" ContentPlaceHolderID="SideBarContent">
     <li class="sidebar-brand">
-        <a class="navbar-brand" runat="server" onclick="LogoutEstablishment" href="~/"><i class="fa fa-pull-left fa-2x fa-home"></i>Sair</a>
+        <a class="navbar-brand" runat="server" onclick="Unnamed_LoggingOut" href="~/"><i class="fa fa-pull-left fa-2x fa-home"></i>Sair</a>
     </li>
     <asp:LoginView runat="server" ViewStateMode="Disabled">
         <%-- 
@@ -40,6 +40,7 @@
             <asp:RoleGroup Roles="Estab">
                 <ContentTemplate>
                             --%>
+
         <LoggedInTemplate>
                     <div class="page-header row">
                         <div class="col-sm-3">
@@ -71,14 +72,14 @@
                                 <p class="fa">Imagem</p>
                                 <i class="fa fa-lg fa-file-image-o"></i>
                                 <asp:FileUpload ID="FileUploadImage" runat="server"  CssClass="btn fa" />
-                                <asp:RequiredFieldValidator ControlToValidate="FileUploadImage" ErrorMessage="Introduza o nome do Item" runat="server" CssClass="text-danger fa"></asp:RequiredFieldValidator>
-                                <asp:CustomValidator OnServerValidate="ValidateImage" ControlToValidate="FileUploadImage" ErrorMessage="Carregue imagem com menos de 2MB, .png, .jpeg ou .gif" runat="server" CssClass="text-danger fa"></asp:CustomValidator>
+                                <asp:RequiredFieldValidator ControlToValidate="FileUploadImage" ErrorMessage="Carregue imagem com menos de 2MB, .png, .jpeg ou .gif" runat="server" CssClass="text-danger fa"></asp:RequiredFieldValidator>
                             </div>
                             <div class="panel" style="background: rgba(255,255,255,0.3)">
-                                <asp:Button ID="Button1" runat="server" OnClick="UpdateCache" CssClass="btn btn-lg fa fa-2x fa-check" Text="Submeter"></asp:Button>
+                                <asp:Button ID="Button1" runat="server" OnClick="UpdateCache" CssClass="btn fa" Text="Submeter"></asp:Button>
                             </div> 
                             <div class="panel" style="background: rgba(255,255,255,0.3)">
-                                <asp:Button ID="Button2" runat="server" OnClick="ForgetRequest" CssClass="btn btn-lg fa fa-2x fa-cross" Text="Cancelar"></asp:Button>
+                                <asp:Button ID="Button2" runat="server" OnClick="ForgetRequest" CssClass="btn fa" Text="Cancelar"></asp:Button>
+                                <i class="fa fa-2x fa-cross"></i>
                             </div>
                         </div>
                     </div>

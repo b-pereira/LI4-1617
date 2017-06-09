@@ -3,7 +3,7 @@
 
 <asp:Content runat="server" ID="MainClientSidebar" ContentPlaceHolderID="SideBarContent">
     <li class="sidebar-brand">
-        <a class="navbar-brand" runat="server" href="~/"><i class="fa fa-pull-left fa-2x fa-home"></i>Início</a>
+        <a class="navbar-brand" runat="server" href="~/" onclick="Unnamed_LoggingOut"><i class="fa fa-pull-left fa-2x fa-home"></i>Sair</a>
     </li>
     <asp:LoginView runat="server" ViewStateMode="Disabled">
         <AnonymousTemplate>
@@ -15,10 +15,8 @@
     <li>
         <a runat="server" href="~/Client/Preferences"><i class="fa fa-pull-left fa-2x fa-heart"></i>Preferências</a>
     </li>
-            <li><a runat="server" href="~/Client/Settings"><i class="fa fa-pull-left fa-2x fa-cog">Configurações</a></li>
-            <li>
-                <i class="fa fa-pull-left fa-2x fa-power-off">
-                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" /></li>
+            <li><a runat="server" href="~/Client/Settings"><i class="fa fa-pull-left fa-2x fa-cog"></i>Configurações</a></li>
+
         </LoggedInTemplate>
     </asp:LoginView>
 

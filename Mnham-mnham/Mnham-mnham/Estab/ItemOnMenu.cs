@@ -6,11 +6,11 @@ namespace Mnham_mnham.Estab
 {
     public class ItemOnMenu
     {
-        public String textBoxItem { get; }
-        public String textBoxPrice { get; }
-        public Stream image { get; }
+        public String textBoxItem { get; set; }
+        public String textBoxPrice { get; set; }
+        public Stream image { get; set; }
 
-        public ImageFormat format { get; }
+        public ImageFormat format { get; set; }
 
         public String ImgURL { get; set; }
 

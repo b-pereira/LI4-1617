@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Mnham_mnham.Utils
 {
-    public class ReturnsImageFormat
+    public static class ReturnsImageFormat
     {
         public static String ReturnImageFormatString(ImageFormat f)
         {
