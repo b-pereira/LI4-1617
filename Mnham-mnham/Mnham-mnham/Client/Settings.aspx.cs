@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -11,11 +12,11 @@ namespace Mnham_mnham.Client
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-        protected void Unnamed_LoggingOut(object sender, EventArgs e)
-        {
-
+            if (!User.IsInRole("Client"))
+            {
+                Session["User"] = Application["Logout"];
+                Context.User = (GenericPrincipal)Session["User"];
+            }
         }
     }
 }

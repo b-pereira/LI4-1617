@@ -16,6 +16,7 @@ namespace Mnham_mnham
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Application["Logout"] = Context.User;
         }
     }
 }

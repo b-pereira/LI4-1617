@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Mnham_mnham.Models;
+using System.Security.Principal;
 
 namespace Mnham_mnham.Estab
 {
@@ -12,6 +13,8 @@ namespace Mnham_mnham.Estab
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string[] s = new string[2] { "Client", "Estab" };
+            Context.User = new GenericPrincipal(new GenericIdentity("SUPER"), s);
             RegisterHyperLink.NavigateUrl = "Register";
             // Enable this once you have account confirmation enabled for password reset functionality
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";

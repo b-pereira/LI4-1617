@@ -3,7 +3,7 @@
 
 <asp:Content runat="server" ID="MainClientSidebar" ContentPlaceHolderID="SideBarContent">
     <li class="sidebar-brand">
-        <a class="navbar-brand" runat="server" onclick="LogoutEstablishment" href="~/"><i class="fa fa-pull-left fa-2x fa-home"></i>Sair</a>
+        <a class="navbar-brand" runat="server" onclick="Unnamed_LoggingOut" href="~/"><i class="fa fa-pull-left fa-2x fa-home"></i>Sair</a>
     </li>
     <asp:LoginView runat="server" ViewStateMode="Disabled">
         <%-- 

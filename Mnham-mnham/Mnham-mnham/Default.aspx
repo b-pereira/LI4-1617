@@ -5,7 +5,7 @@
         <h1>Mnham-Mnham</h1>
         <p class="lead">Mnham-Mnham é um serviço de recomendações gastronómicas. 
             Registe-se e diga o que lhe vem à mente e ao estômago e recomendações ser-lhe-ão dadas bem como direções para o local.</p>
-        <p><a href="~/Client/Register" class="btn btn-default">Registe-se agora &raquo;</a></p>
+        <a href="~/Client/Register" runat="server" class="btn btn-default">Registe-se agora &raquo;</a>
     </div>
 
     <div class="row jumbotron">
@@ -16,7 +16,7 @@
                 Registe o seu estabelecimento e deixe-nos as suas informações e ementa e seja recomendado aos nossos utilizadores.
             </p>
             <p>
-                <a class="btn btn-default" href="~/Estab/Register">Registe-se agora &raquo;</a>
+                <a class="btn btn-default" runat="server" href="~/Estab/Register">Registe-se agora &raquo;</a>
             </p>
         </div>
         <div class="col-md-2">
@@ -27,7 +27,7 @@
                 Contacte-nos a qualquer altura.
             </p>
             <p>
-                <a class="btn btn-default" href="~/Contact">Contacte-nos &raquo;</a>
+                <a class="btn btn-default" runat="server" href="~/Contact">Contacte-nos &raquo;</a>
             </p>
         </div>
     </div>

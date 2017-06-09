@@ -10,6 +10,6 @@
 namespace Mnham_mnham.Estab {
     
     
-    public partial class Edit {
+    public partial class MainEstab {
     }
 }
