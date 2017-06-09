@@ -76,3 +76,12 @@
         </a>
     </div>
 </asp:Content>
+
+<asp:Content ID="LoginSidebar" ContentPlaceHolderID="SideBarContent" runat="server">
+   <li class="sidebar-brand">
+        <a class="navbar-brand" runat="server" href="~/"><i class="fa fa-pull-left fa-2x fa-home"></i>Home</a>
+    </li>
+
+
+</asp:Content>
+

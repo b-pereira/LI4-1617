@@ -1,42 +1,53 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Mnham_mnham._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <div class="row jumbotron">
+        <h1>Mnham-Mnham</h1>
+        <p class="lead">Mnham-Mnham é um serviço de recomendações gastronómicas. 
+            Registe-se e diga o que lhe vem à mente e ao estômago e recomendações ser-lhe-ão dadas bem como direções para o local.</p>
+        <p><a href="~/Client/Register" class="btn btn-default">Registe-se agora &raquo;</a></p>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
+    <div class="row jumbotron">
+        <div class="col-md-5">
+            <h2>Para Estabelecimentos</h2>
             <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
+                Mnham-Mnham depende de informação submetida diretamente por si, o estabelecimento.
+                Registe o seu estabelecimento e deixe-nos as suas informações e ementa e seja recomendado aos nossos utilizadores.
             </p>
             <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
+                <a class="btn btn-default" href="~/Estab/Register">Registe-se agora &raquo;</a>
             </p>
         </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-5">
+            <h2>Contactos</h2>
             <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
+                Contacte-nos a qualquer altura.
             </p>
             <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
+                <a class="btn btn-default" href="~/Contact">Contacte-nos &raquo;</a>
             </p>
         </div>
     </div>
+</asp:Content>
+
+<asp:Content ID="Sidebar" ContentPlaceHolderID="SideBarContent" runat="server">
+    <li class="sidebar-brand">
+        <a class="navbar-brand" runat="server" href="~/"><i class="fa fa-pull-left fa-2x fa-home"></i>Início</a>
+    </li>
+    <li>
+        <a runat="server" href="~/About"><i class="fa fa-pull-left fa-2x fa-id-card"></i>Sobre nós</a>
+    </li>
+    <li>
+        <a runat="server" href="~/Contact"><i class="fa fa-pull-left fa-2x fa-address-book"></i>Contactos</a>
+    </li>
+    <li>
+        <a runat="server" href="~/Client/Main"><i class="fa fa-pull-left fa-2x fa-cutlery"></i>Mnham-Mnham</a>
+    </li>
+    <li>
+        <a runat="server" href="~/Estab/Login"><i class="fa fa-pull-left fa-2x fa-cubes"></i>Estabelecimentos</a>
+    </li>
 
 </asp:Content>
