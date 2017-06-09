@@ -64,7 +64,10 @@ class AsynchOperation : IAsyncResult
             ItemOnMenu s = l[index];
             
             _context.Response.ContentType = "image/" + ReturnsImageFormat.ReturnImageFormatString(s.format);
-            _context.Response.Write(StreamConversion.StreamToByteArray(s.image));
+            if (s.image != null)
+            {
+                _context.Response.Write(StreamConversion.StreamToByteArray(s.image));
+            }
 
             _completed = true;
             _callback(this);

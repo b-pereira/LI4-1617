@@ -76,7 +76,6 @@
                             </div>
                             <div class="panel" style="background: rgba(255,255,255,0.3)">
                                 <asp:Button ID="Button1" runat="server" OnClick="UpdateCache" CssClass="btn fa" Text="Submeter"></asp:Button>
-                                <i class="fa fa-2x fa-check"></i>
                             </div> 
                             <div class="panel" style="background: rgba(255,255,255,0.3)">
                                 <asp:Button ID="Button2" runat="server" OnClick="ForgetRequest" CssClass="btn fa" Text="Cancelar"></asp:Button>

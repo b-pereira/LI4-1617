@@ -12,7 +12,8 @@ namespace Mnham_mnham.Client
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!User.IsInRole("Client"))
+            Context.User = (GenericPrincipal)Session["User"];
+            if (User != null && !User.IsInRole("Client"))
             {
                 Session["User"] = Application["Logout"];
                 Context.User = (GenericPrincipal)Session["User"];

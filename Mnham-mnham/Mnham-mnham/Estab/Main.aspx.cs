@@ -20,7 +20,8 @@ namespace Mnham_mnham.Estab
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!User.IsInRole("Estab"))
+            Context.User = (GenericPrincipal)Session["User"];
+            if (User != null && !User.IsInRole("Estab"))
             {
                 Session["User"] = Application["Logout"];
                 Context.User = (GenericPrincipal)Session["User"];

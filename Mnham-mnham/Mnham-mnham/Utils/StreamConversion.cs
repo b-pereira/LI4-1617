@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Mnham_mnham.Utils
 {
-    public class StreamConversion
+    public static class StreamConversion
     {
         public static byte[] StreamToByteArray(Stream image)
         {

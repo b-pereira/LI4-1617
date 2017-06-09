@@ -34,26 +34,18 @@
 
 </asp:Content>
 <asp:Content runat="server" ID="MainEstab" ContentPlaceHolderID="MainContent">
-    <asp:LoginView runat="server" ViewStateMode="Disabled">
-        <%-- 
-            <RoleGroups>
-            <asp:RoleGroup Roles="Estab">
-                <ContentTemplate>
-        --%>
+   <asp:LoginView runat="server" ViewStateMode="Disabled">
+
         <LoggedInTemplate>
-            <asp:GridView ID="gvMenu" runat="server" AutoGenerateColumns="false">
+        <asp:GridView ID="gvMenu" runat="server" AutoGenerateColumns="true" AllowPaging="true">
                 <Columns>
                     <asp:BoundField DataField="textBoxItem" ItemStyle-CssClass="fa" ReadOnly="true" />
                     <asp:ImageField DataImageUrlField="ImgUrl" ItemStyle-VerticalAlign="Middle"></asp:ImageField>
-                    <asp:BoundField DataField="textBoxPrice" ItemStyle-CssClass="fa fa-2x fa-edit" ReadOnly="true" />
+                    <asp:BoundField DataField="textBoxPrice" ItemStyle-CssClass="fa fa-2x" ReadOnly="true" />
+                    <asp:ButtonField ButtonType="Button" CommandName="RemoveItem" ControlStyle-CssClass="fa fa-2x fa-cross btn btn-danger" />
                 </Columns>
             </asp:GridView>
         </LoggedInTemplate>
-        <%-- 
-                </ContentTemplate>
-            </asp:RoleGroup>
-        </RoleGroups>        
-        --%>
-    </asp:LoginView>
 
+    </asp:LoginView>
 </asp:Content>

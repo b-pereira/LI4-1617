@@ -73,7 +73,7 @@ namespace Mnham_mnham
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Context.User = (GenericPrincipal)Session["User"];
+            Session["User"] = Context.User;
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

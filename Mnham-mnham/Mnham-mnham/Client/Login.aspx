@@ -3,9 +3,10 @@
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
-
-    <div class="row">
+    <div class="col-md-offset-2">
+        <h2 style="color:#ffffff"><%: Title %>.</h2>
+</div>
+    <div class="row form-horizontal jumbotron">
         <div class="col-md-8">
             <section id="loginForm">
                 <div class="form-horizontal">

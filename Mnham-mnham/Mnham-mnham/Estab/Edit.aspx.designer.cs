@@ -13,6 +13,6 @@ namespace Mnham_mnham.Estab
 
     public partial class Edit
     {
-
+        protected global::System.Web.UI.WebControls.GridView gvMenu;
     }
 }
