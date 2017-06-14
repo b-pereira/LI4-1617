@@ -266,7 +266,7 @@ public class Cliente_critica_Iguaria {
 	
 	private DateTime __data_critica;
 	
-	private float __rating_igu = 0f;
+	private Decimal __rating_igu = new Decimal(0);
 	
 	public string Desc_critica {
 		set {
@@ -286,7 +286,7 @@ public class Cliente_critica_Iguaria {
 		}
 	}
 	
-	public float Rating_igu {
+	public Decimal Rating_igu {
 		set {
 			this.__rating_igu = value;			
 		}

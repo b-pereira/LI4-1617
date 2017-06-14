@@ -25,14 +25,14 @@ public class SelecaoEstabelecimento {
 		_OrmAdapter = new SelecaoEstabelecimentoORMAdapter(this);
 	}
 	
-	public static SelecaoEstabelecimento LoadSelecaoEstabelecimentoByORMID(int id_avaliacao, int estabelecimento_Estabelecimento, int estabelecimento_Cliente) {
+	public static SelecaoEstabelecimento LoadSelecaoEstabelecimentoByORMID(int id_selecao, int estabelecimento_Estabelecimento, int estabelecimento_Cliente) {
 		PersistentSession session = BasedeDadosMMPersistentManager.Instance().GetSession();
-		return LoadSelecaoEstabelecimentoByORMID(session,id_avaliacao, estabelecimento_Estabelecimento, estabelecimento_Cliente);
+		return LoadSelecaoEstabelecimentoByORMID(session,id_selecao, estabelecimento_Estabelecimento, estabelecimento_Cliente);
 	}
 	
-	public static SelecaoEstabelecimento LoadSelecaoEstabelecimentoByORMID(PersistentSession session,int id_avaliacao, int estabelecimento_Estabelecimento, int estabelecimento_Cliente) {
+	public static SelecaoEstabelecimento LoadSelecaoEstabelecimentoByORMID(PersistentSession session,int id_selecao, int estabelecimento_Estabelecimento, int estabelecimento_Cliente) {
 		SelecaoEstabelecimento selecaoestabelecimento = new SelecaoEstabelecimento();
-		selecaoestabelecimento.Id_avaliacao = id_avaliacao;
+		selecaoestabelecimento.Id_selecao = id_selecao;
 		selecaoestabelecimento.Estabelecimento_Estabelecimento = estabelecimento_Estabelecimento;
 		selecaoestabelecimento.Estabelecimento_Cliente = estabelecimento_Cliente;
 		
@@ -125,7 +125,7 @@ public class SelecaoEstabelecimento {
 		if (!(obj is SelecaoEstabelecimento))
 			return false;
 		SelecaoEstabelecimento selecaoestabelecimento = obj as SelecaoEstabelecimento;
-		if (Id_avaliacao != selecaoestabelecimento.Id_avaliacao)
+		if (Id_selecao != selecaoestabelecimento.Id_selecao)
 			return false;
 		if (Estabelecimento_Estabelecimento != selecaoestabelecimento.Estabelecimento_Estabelecimento)
 			return false;
@@ -136,7 +136,7 @@ public class SelecaoEstabelecimento {
 	
 	public override int GetHashCode() {
 		int hashcode = 0;
-		hashcode = hashcode + (int) Id_avaliacao;
+		hashcode = hashcode + (int) Id_selecao;
 		hashcode = hashcode + (int) Estabelecimento_Estabelecimento;
 		hashcode = hashcode + (int) Estabelecimento_Cliente;
 		return hashcode;
@@ -237,18 +237,18 @@ public class SelecaoEstabelecimento {
 	
 	internal Orm.Util.ORMAdapter _OrmAdapter;
 	
-	private int __id_avaliacao;
+	private int __id_selecao;
 	
 	private Cliente_seleciona_Estabelecimento __estabelecimento;
 	
 	private DateTime __data_hora_selecao;
 	
-	public int Id_avaliacao {
+	public int Id_selecao {
 		set {
-			this.__id_avaliacao = value;			
+			this.__id_selecao = value;			
 		}
 		get {
-			return __id_avaliacao;			
+			return __id_selecao;			
 		}
 	}
 	
@@ -300,12 +300,12 @@ public class SelecaoEstabelecimento {
 	
 	public virtual string ToString(bool idOnly) {
 		if (idOnly) {
-			return Convert.ToString(Id_avaliacao) + " "+ Convert.ToString(Estabelecimento_Estabelecimento) + " "+ Convert.ToString(Estabelecimento_Cliente);
+			return Convert.ToString(Id_selecao) + " "+ Convert.ToString(Estabelecimento_Estabelecimento) + " "+ Convert.ToString(Estabelecimento_Cliente);
 		}
 		else {
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 			sb.Append("SelecaoEstabelecimento[ ");
-			sb.AppendFormat("Id_avaliacao={0} ", Id_avaliacao);
+			sb.AppendFormat("Id_selecao={0} ", Id_selecao);
 			if (Estabelecimento != null)
 				sb.AppendFormat("Estabelecimento.Persist_ID={0} ", Estabelecimento.ToString(true) + "");
 			else
@@ -357,7 +357,7 @@ public class SelecaoEstabelecimento {
 		}
 	}
 	
-	public const String PROP_ID_AVALIACAO = "Id_avaliacao";
+	public const String PROP_ID_SELECAO = "Id_selecao";
 	public const String PROP_ESTABELECIMENTO = "__estabelecimento";
 	public const String PROP_DATA_HORA_SELECAO = "Data_hora_selecao";
 	public const String PROP_ESTABELECIMENTO__ESTABELECIMENTO = "Estabelecimento_Estabelecimento";

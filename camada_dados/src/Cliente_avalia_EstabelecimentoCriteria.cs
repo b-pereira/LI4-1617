@@ -18,6 +18,14 @@ using Orm;
 using NHibernate;
 
 public class Cliente_avalia_EstabelecimentoCriteria : AbstractORMCriteria {
+	private DecimalExpression _rating_est;
+	public DecimalExpression Rating_est {
+		get {
+			return  _rating_est;
+		}
+		
+	}
+	
 	private DateTimeExpression _data_avaliacao;
 	public DateTimeExpression Data_avaliacao {
 		get {
@@ -43,6 +51,7 @@ public class Cliente_avalia_EstabelecimentoCriteria : AbstractORMCriteria {
 	}
 	
 	public Cliente_avalia_EstabelecimentoCriteria(ICriteria criteria) : base(criteria) {
+		_rating_est =  new DecimalExpression("Rating_est", this);
 		_data_avaliacao =  new DateTimeExpression("Data_avaliacao", this);
 		_estabelecimento_id_estabelecimento =  new Int32Expression("Estabelecimento_id_estabelecimento", this);
 		_cliente_id_cliente =  new Int32Expression("Cliente_id_cliente", this);

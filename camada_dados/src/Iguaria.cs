@@ -282,7 +282,7 @@ public class Iguaria {
 	
 	private int __visual_iguaria = 0;
 	
-	private float __rating_medio_iguaria = 2f;
+	private Decimal __rating_medio_iguaria = new Decimal(0);
 	
 	private byte[] __fotografia;
 	
@@ -319,7 +319,7 @@ public class Iguaria {
 		}
 	}
 	
-	public float Rating_medio_iguaria {
+	public Decimal Rating_medio_iguaria {
 		set {
 			this.__rating_medio_iguaria = value;			
 		}

@@ -269,11 +269,11 @@ public class Cliente_avalia_Estabelecimento {
 		}
 	}
 	
-	private float __rating_est = 0f;
+	private Decimal __rating_est = new Decimal(0);
 	
 	private DateTime __data_avaliacao;
 	
-	public float Rating_est {
+	public Decimal Rating_est {
 		set {
 			this.__rating_est = value;			
 		}

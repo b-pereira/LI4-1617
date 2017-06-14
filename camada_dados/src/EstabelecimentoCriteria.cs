@@ -42,6 +42,14 @@ public class EstabelecimentoCriteria : AbstractORMCriteria {
 		
 	}
 	
+	private DecimalExpression _rating_medio_estabelecimento;
+	public DecimalExpression Rating_medio_estabelecimento {
+		get {
+			return  _rating_medio_estabelecimento;
+		}
+		
+	}
+	
 	private Int32Expression _telefone;
 	public Int32Expression Telefone {
 		get {
@@ -54,6 +62,22 @@ public class EstabelecimentoCriteria : AbstractORMCriteria {
 	public Int32Expression Visual_estabelecimento {
 		get {
 			return  _visual_estabelecimento;
+		}
+		
+	}
+	
+	private DecimalExpression _longitude;
+	public DecimalExpression Longitude {
+		get {
+			return  _longitude;
+		}
+		
+	}
+	
+	private DecimalExpression _latitude;
+	public DecimalExpression Latitude {
+		get {
+			return  _latitude;
 		}
 		
 	}
@@ -94,8 +118,11 @@ public class EstabelecimentoCriteria : AbstractORMCriteria {
 		_id_estabelecimento =  new Int32Expression("Id_estabelecimento", this);
 		_nome_estabelecimento =  new StringExpression("Nome_estabelecimento", this);
 		_desc_ambiente =  new StringExpression("Desc_ambiente", this);
+		_rating_medio_estabelecimento =  new DecimalExpression("Rating_medio_estabelecimento", this);
 		_telefone =  new Int32Expression("Telefone", this);
 		_visual_estabelecimento =  new Int32Expression("Visual_estabelecimento", this);
+		_longitude =  new DecimalExpression("Longitude", this);
+		_latitude =  new DecimalExpression("Latitude", this);
 		_rua =  new StringExpression("Rua", this);
 		_numero =  new Int32Expression("Numero", this);
 		_localidade =  new StringExpression("Localidade", this);

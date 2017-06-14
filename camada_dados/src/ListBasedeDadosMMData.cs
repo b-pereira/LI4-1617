@@ -298,7 +298,7 @@ public class ListBasedeDadosMMData {
 		System.Console.WriteLine("Listing SelecaoEstabelecimento by Criteria...");
 		SelecaoEstabelecimentoCriteria selecaoEstabelecimentoCriteria = new SelecaoEstabelecimentoCriteria();
 		// Please uncomment the follow line and fill in parameter(s) 
-		//selecaoEstabelecimentoCriteria.id_avaliacao.Eq();
+		//selecaoEstabelecimentoCriteria.id_selecao.Eq();
 		//Cliente_seleciona_EstabelecimentoCriteria selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento = selecaoEstabelecimentoCriteria.CreateEstabelecimentoCriteria();
 		//selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento.cliente_id_cliente.Eq();
 		//selecaoEstabelecimentoCriteria_Cliente_seleciona_Estabelecimento.estabelecimento_id_estabelecimento.Eq();

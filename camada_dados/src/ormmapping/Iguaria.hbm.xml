@@ -13,8 +13,8 @@ License Type: Academic
 		</many-to-one>
 		<property name="Nome_iguaria" column="nome_iguaria" type="String" length="75" not-null="true"/>
 		<property name="Visual_iguaria" column="visual_iguaria" type="Int32" not-null="true"/>
-		<property name="Rating_medio_iguaria" column="rating_medio_iguaria" type="Single" length="10" not-null="true"/>
-		<property name="Fotografia" column="fotografia" type="Byte[]" not-null="true"/>
+		<property name="Rating_medio_iguaria" column="rating_medio_iguaria" type="Decimal" precision="5" scale="4" not-null="true"/>
+		<property name="Fotografia" column="fotografia" type="Byte[]" not-null="true" length="2147483647" />
 		<property name="Preco" column="preco" type="Decimal" precision="10" scale="2" not-null="true"/>
 		<set name="ORM_Cliente_critica_Iguaria" lazy="true" cascade="save-update" inverse="true">
 			<key>

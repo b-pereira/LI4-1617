@@ -13,7 +13,7 @@ License Type: Academic
 		</many-to-one>
 		<many-to-one name="ORM_Cliente" column="Cliente" class="Cliente, Base de Dados - MM" insert="false" update="false">
 		</many-to-one>
-		<property name="Rating_est" column="rating_est" type="Single" length="10" not-null="true"/>
+		<property name="Rating_est" column="rating_est" type="Decimal" precision="5" scale="4" not-null="true"/>
 		<property name="Data_avaliacao" column="data_avaliacao" type="Timestamp" not-null="true"/>
 	</class>
 </hibernate-mapping>

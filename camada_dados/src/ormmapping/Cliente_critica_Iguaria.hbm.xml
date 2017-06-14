@@ -18,6 +18,6 @@ License Type: Academic
 		</many-to-one>
 		<property name="Desc_critica" column="desc_critica" type="String" length="255" not-null="true"/>
 		<property name="Data_critica" column="data_critica" type="Timestamp" not-null="true"/>
-		<property name="Rating_igu" column="rating_igu" type="Single" length="10" not-null="true"/>
+		<property name="Rating_igu" column="rating_igu" type="Decimal" precision="5" scale="4" not-null="true"/>
 	</class>
 </hibernate-mapping>

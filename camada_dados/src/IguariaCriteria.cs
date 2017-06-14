@@ -42,6 +42,14 @@ public class IguariaCriteria : AbstractORMCriteria {
 		
 	}
 	
+	private DecimalExpression _rating_medio_iguaria;
+	public DecimalExpression Rating_medio_iguaria {
+		get {
+			return  _rating_medio_iguaria;
+		}
+		
+	}
+	
 	private ByteArrayExpression _fotografia;
 	public ByteArrayExpression Fotografia {
 		get {
@@ -70,6 +78,7 @@ public class IguariaCriteria : AbstractORMCriteria {
 		_id_iguaria =  new Int32Expression("Id_iguaria", this);
 		_nome_iguaria =  new StringExpression("Nome_iguaria", this);
 		_visual_iguaria =  new Int32Expression("Visual_iguaria", this);
+		_rating_medio_iguaria =  new DecimalExpression("Rating_medio_iguaria", this);
 		_fotografia =  new ByteArrayExpression("Fotografia", this);
 		_preco =  new DecimalExpression("Preco", this);
 		_estabelecimento_id_estabelecimento =  new Int32Expression("Estabelecimento_id_estabelecimento", this);

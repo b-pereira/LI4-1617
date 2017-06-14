@@ -34,6 +34,14 @@ public class Cliente_critica_IguariaCriteria : AbstractORMCriteria {
 		
 	}
 	
+	private DecimalExpression _rating_igu;
+	public DecimalExpression Rating_igu {
+		get {
+			return  _rating_igu;
+		}
+		
+	}
+	
 	private Int32Expression _cliente_id_cliente;
 	public Int32Expression Cliente_id_cliente {
 		get {
@@ -61,6 +69,7 @@ public class Cliente_critica_IguariaCriteria : AbstractORMCriteria {
 	public Cliente_critica_IguariaCriteria(ICriteria criteria) : base(criteria) {
 		_desc_critica =  new StringExpression("Desc_critica", this);
 		_data_critica =  new DateTimeExpression("Data_critica", this);
+		_rating_igu =  new DecimalExpression("Rating_igu", this);
 		_cliente_id_cliente =  new Int32Expression("Cliente_id_cliente", this);
 		_iguaria_id_iguaria =  new Int32Expression("Iguaria_id_iguaria", this);
 		_iguaria_Estabelecimento =  new Int32Expression("Iguaria_Estabelecimento", this);

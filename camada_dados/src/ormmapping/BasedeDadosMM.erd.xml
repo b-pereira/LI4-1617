@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Model quotesql="1" tablecharset="" mysql_version="504" mssql_version="2008" derby_version="106" ingres_version="9">
-  <Entity name="Estabelecimento" PKClustered="0">
+  <Entity name="Estabelecimento" Unlogged="false" PKClustered="0">
     <Column name="id_estabelecimento">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -62,13 +62,14 @@
     <Column name="rating_medio_estabelecimento">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>4</Type>
-      <Length>10</Length>
+      <Type>11</Type>
+      <Length>5</Length>
+      <Scale>4</Scale>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
-      <DefaultValue>2</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <UserTypes/>
     </Column>
     <Column name="telefone">
@@ -97,8 +98,9 @@
     <Column name="longitude">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>4</Type>
-      <Length>10</Length>
+      <Type>11</Type>
+      <Length>11</Length>
+      <Scale>8</Scale>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -109,8 +111,9 @@
     <Column name="latitude">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>4</Type>
-      <Length>10</Length>
+      <Type>11</Type>
+      <Length>11</Length>
+      <Scale>8</Scale>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -162,8 +165,13 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <CheckConstraint name="LongitudeMax">
+      <Column name="longitude &lt;= 180 AND longitude &gt;= -180"/>
+      <Column name="latitude &lt;= 90 AND latitude &gt;= -90"/>
+      <Column name="rating_medio_estabelecimento &lt;= 5 AND  rating_medio_estabelecimento &gt;= 0"/>
+    </CheckConstraint>
   </Entity>
-  <Entity name="Iguaria" PKClustered="1">
+  <Entity name="Iguaria" Unlogged="false" PKClustered="1">
     <Column name="id_iguaria">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -213,13 +221,14 @@
     <Column name="rating_medio_iguaria">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>4</Type>
-      <Length>10</Length>
+      <Type>11</Type>
+      <Length>5</Length>
+      <Scale>4</Scale>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
-      <DefaultValue>2</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <UserTypes/>
     </Column>
     <Column name="fotografia">
@@ -247,7 +256,7 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="Cliente" PKClustered="0">
+  <Entity name="Cliente" Unlogged="false" PKClustered="0">
     <Column name="id_cliente">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -286,7 +295,7 @@
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>7</Type>
-      <Length>0</Length>
+      <Length>1</Length>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -343,7 +352,7 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="Utilizador" PKClustered="0">
+  <Entity name="Utilizador" Unlogged="false" PKClustered="0">
     <Column name="email">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -379,7 +388,7 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="Categoria" PKClustered="0">
+  <Entity name="Categoria" Unlogged="false" PKClustered="0">
     <Column name="id_categoria">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -395,7 +404,7 @@
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
-      <Length>255</Length>
+      <Length>45</Length>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -403,7 +412,7 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="Cliente_critica_Iguaria" PKClustered="1">
+  <Entity name="Cliente_critica_Iguaria" Unlogged="false" PKClustered="1">
     <Column name="Cliente">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>true</ForeignKey>
@@ -465,8 +474,9 @@
     <Column name="rating_igu">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>4</Type>
-      <Length>10</Length>
+      <Type>11</Type>
+      <Length>5</Length>
+      <Scale>4</Scale>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -474,8 +484,11 @@
       <DefaultValue>0</DefaultValue>
       <UserTypes/>
     </Column>
+    <CheckConstraint name="RatingIguariaBounded">
+      <Column name="rating_igu &lt;= 5 AND rating_igu &gt;= 0"/>
+    </CheckConstraint>
   </Entity>
-  <Entity name="Cliente_seleciona_iguaria" PKClustered="1">
+  <Entity name="Cliente_seleciona_iguaria" Unlogged="false" PKClustered="1">
     <Column name="Cliente">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>true</ForeignKey>
@@ -513,7 +526,7 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="SelecaoIguaria" PKClustered="1">
+  <Entity name="SelecaoIguaria" Unlogged="false" PKClustered="1">
     <Column name="id_visualizacao">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -573,7 +586,7 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="HorarioEstabelecimento" PKClustered="1">
+  <Entity name="HorarioEstabelecimento" Unlogged="false" PKClustered="1">
     <Column name="id_horario">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -582,7 +595,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>increment</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="Estabelecimento">
@@ -594,7 +607,7 @@
       <Nullable>false</Nullable>
       <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
-      <Index>false</Index>
+      <Index>true</Index>
       <UserTypes/>
     </Column>
     <Column name="dia">
@@ -635,7 +648,7 @@
       </UserTypes>
     </Column>
   </Entity>
-  <Entity name="Cliente_seleciona_Estabelecimento" PKClustered="1">
+  <Entity name="Cliente_seleciona_Estabelecimento" Unlogged="false" PKClustered="1">
     <Column name="Estabelecimento">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>true</ForeignKey>
@@ -661,7 +674,7 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="Cliente_avalia_Estabelecimento" PKClustered="1">
+  <Entity name="Cliente_avalia_Estabelecimento" Unlogged="false" PKClustered="1">
     <Column name="Estabelecimento">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>true</ForeignKey>
@@ -689,8 +702,9 @@
     <Column name="rating_est">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>4</Type>
-      <Length>10</Length>
+      <Type>11</Type>
+      <Length>5</Length>
+      <Scale>4</Scale>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -709,8 +723,11 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <CheckConstraint name="RatingEstBounded">
+      <Column name="rating_est &lt;= 5 AND rating_est &gt;= 0"/>
+    </CheckConstraint>
   </Entity>
-  <Entity name="SelecaoEstabelecimento" PKClustered="1">
+  <Entity name="SelecaoEstabelecimento" Unlogged="false" PKClustered="1">
     <Column name="id_selecao">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>

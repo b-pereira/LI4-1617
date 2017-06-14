@@ -281,15 +281,15 @@ public class Estabelecimento {
 	
 	private string __desc_ambiente;
 	
-	private float __rating_medio_estabelecimento = 2f;
+	private Decimal __rating_medio_estabelecimento = new Decimal(0);
 	
 	private int __telefone;
 	
 	private int __visual_estabelecimento = 0;
 	
-	private float __longitude = 0f;
+	private Decimal __longitude = new Decimal(0);
 	
-	private float __latitude = 0f;
+	private Decimal __latitude = new Decimal(0);
 	
 	private string __rua;
 	
@@ -340,7 +340,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public float Rating_medio_estabelecimento {
+	public Decimal Rating_medio_estabelecimento {
 		set {
 			this.__rating_medio_estabelecimento = value;			
 		}
@@ -367,7 +367,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public float Longitude {
+	public Decimal Longitude {
 		set {
 			this.__longitude = value;			
 		}
@@ -376,7 +376,7 @@ public class Estabelecimento {
 		}
 	}
 	
-	public float Latitude {
+	public Decimal Latitude {
 		set {
 			this.__latitude = value;			
 		}

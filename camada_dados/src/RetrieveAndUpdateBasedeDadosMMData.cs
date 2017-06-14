@@ -142,7 +142,7 @@ public class RetrieveAndUpdateBasedeDadosMMData {
 		System.Console.WriteLine("Retrieving SelecaoEstabelecimento by SelecaoEstabelecimentoCriteria");
 		SelecaoEstabelecimentoCriteria selecaoEstabelecimentoCriteria = new SelecaoEstabelecimentoCriteria ();
 		// Please uncomment the follow line and fill in parameter(s)
-		//selecaoEstabelecimentoCriteria.id_avaliacao.Eq();
+		//selecaoEstabelecimentoCriteria.id_selecao.Eq();
 		//selecaoEstabelecimentoCriteria.estabelecimento.Eq();
 		//selecaoEstabelecimentoCriteria.estabelecimento_Estabelecimento.Eq();
 		//selecaoEstabelecimentoCriteria.estabelecimento_Cliente.Eq();

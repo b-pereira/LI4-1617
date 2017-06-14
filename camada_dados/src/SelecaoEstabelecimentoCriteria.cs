@@ -18,10 +18,10 @@ using Orm;
 using NHibernate;
 
 public class SelecaoEstabelecimentoCriteria : AbstractORMCriteria {
-	private Int32Expression _id_avaliacao;
-	public Int32Expression Id_avaliacao {
+	private Int32Expression _id_selecao;
+	public Int32Expression Id_selecao {
 		get {
-			return  _id_avaliacao;
+			return  _id_selecao;
 		}
 		
 	}
@@ -51,7 +51,7 @@ public class SelecaoEstabelecimentoCriteria : AbstractORMCriteria {
 	}
 	
 	public SelecaoEstabelecimentoCriteria(ICriteria criteria) : base(criteria) {
-		_id_avaliacao =  new Int32Expression("Id_avaliacao", this);
+		_id_selecao =  new Int32Expression("Id_selecao", this);
 		_data_hora_selecao =  new DateTimeExpression("Data_hora_selecao", this);
 		_estabelecimento_Estabelecimento =  new Int32Expression("Estabelecimento_Estabelecimento", this);
 		_estabelecimento_Cliente =  new Int32Expression("Estabelecimento_Cliente", this);

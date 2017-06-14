@@ -11,11 +11,11 @@ License Type: Academic
 		</id>
 		<property name="Nome_estabelecimento" column="nome_estabelecimento" type="String" length="75" not-null="true"/>
 		<property name="Desc_ambiente" column="desc_ambiente" type="String" length="255" not-null="true"/>
-		<property name="Rating_medio_estabelecimento" column="rating_medio_estabelecimento" type="Single" length="10" not-null="true"/>
+		<property name="Rating_medio_estabelecimento" column="rating_medio_estabelecimento" type="Decimal" precision="5" scale="4" not-null="true"/>
 		<property name="Telefone" column="telefone" type="Int32" length="10" not-null="true"/>
 		<property name="Visual_estabelecimento" column="visual_estabelecimento" type="Int32" length="10" not-null="true"/>
-		<property name="Longitude" column="longitude" type="Single" length="10" not-null="true"/>
-		<property name="Latitude" column="latitude" type="Single" length="10" not-null="true"/>
+		<property name="Longitude" column="longitude" type="Decimal" precision="11" scale="8" not-null="true"/>
+		<property name="Latitude" column="latitude" type="Decimal" precision="11" scale="8" not-null="true"/>
 		<property name="Rua" column="rua" type="String" length="75" not-null="true"/>
 		<property name="Numero" column="numero" type="Int32" length="10" not-null="true"/>
 		<property name="Localidade" column="localidade" type="String" length="45" not-null="true"/>
