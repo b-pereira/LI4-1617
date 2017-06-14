@@ -28,6 +28,32 @@ namespace MM
             }
         }
 
+        public bool Login(string email, string password)
+        {
+            bool IsLoginValidated = false;
+
+
+            UtilizadorCriteria utilizadorCriteria = new UtilizadorCriteria();
+            utilizadorCriteria.Email.Eq(email);
+            utilizadorCriteria.Password.Eq(password);
+
+            Utilizador ut = utilizadorCriteria.UniqueUtilizador();
+
+            if (ut != null)
+            {
+                Cliente cl = ut.Cliente;
+                if (cl != null)
+                {
+                    _cliente.Nome = cl.Nome_cliente;
+                    _cliente.Email = ut.Email;
+                    _cliente.Password = ut.Password;
+                    IsLoginValidated = true;
+                }
+            }
+
+            return IsLoginValidated;
+        }
+
         public void PublicarCritica(int idCliente, int idIguaria, int idEstabelecimento, string descricao,  float rating)
         {
 
