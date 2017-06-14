@@ -9,7 +9,7 @@ namespace Business
     {
         private string _ambiente;
         private string _nome;
-        private float _ratingMedio;
+        private decimal _ratingMedio;
         private int _telefone;
         private int _totalVisualizacoes;
         private List<Horario> _horarios;
@@ -23,19 +23,19 @@ namespace Business
         }
 
 
-        public Estabelecimento(string _email, string _password, byte _tipo, string _ambiente, string _nome, float _ratingMedio, int _telefone, int _totalVisualizacoes, List<Horario> _horarios,  Endereco _endereco, int _id_estabelecimento)
+        public Estabelecimento(string _email, string _password, byte _tipo, string _ambiente, string _nome, decimal _ratingMedio, int _telefone, int _totalVisualizacoes, List<Horario> _horarios,  Endereco _endereco, int _id_estabelecimento)
             : base(_email, _password, _tipo)
         {
-           
-            _ambiente = Ambiente;
-            _nome = Nome;
-            _ratingMedio = RatingMedio;
-            _telefone = Telefone;
-            _totalVisualizacoes = TotalVisualizacoes;
-            _horarios = Horarios;
+
+            Ambiente = _ambiente;
+            Nome = _nome;
+            RatingMedio = _ratingMedio;
+            Telefone = _telefone;
+            TotalVisualizacoes = _totalVisualizacoes;
+            Horarios = _horarios;
             _iguarias = new Dictionary<int, Iguaria>();
-            _endereco = Endereco;
-           _id_estabelecimento = IdEstabelecimento;
+            Endereco = _endereco;
+            IdEstabelecimento = _id_estabelecimento;
            
         }
         public Estabelecimento(Estabelecimento _other) : base(_other)
@@ -83,7 +83,7 @@ namespace Business
             }
         }
 
-        public float RatingMedio
+        public decimal RatingMedio
         {
             get
             {

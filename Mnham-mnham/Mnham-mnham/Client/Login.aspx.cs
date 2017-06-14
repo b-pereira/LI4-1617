@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Mnham_mnham.Models;
 using System.Security.Principal;
+using MM;
 
 namespace Mnham_mnham.Client
 {
@@ -13,8 +14,7 @@ namespace Mnham_mnham.Client
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string[] s = new string[2] { "Client", "Estab" };
-            Session["User"] = new GenericPrincipal(new GenericIdentity("SUPER"), s);
+            Session["ClientArea"] = new AreaCliente();
             RegisterHyperLink.NavigateUrl = "Register";
             // Enable this once you have account confirmation enabled for password reset functionality
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
@@ -31,32 +31,18 @@ namespace Mnham_mnham.Client
             if (IsValid)
             {
                 // Validate the user password
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-
-                // This doen't count login failures towards account lockout
-                // To enable password failures to trigger lockout, change to shouldLockout: true
-                var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
-
-                switch (result)
+                AreaCliente a = (AreaCliente)Session["ClientArea"];
+                
+                if (a.Login(Email.Text, Password.Text))
                 {
-                    case SignInStatus.Success:
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                        break;
-                    case SignInStatus.LockedOut:
-                        Response.Redirect("/Account/Lockout");
-                        break;
-                    case SignInStatus.RequiresVerification:
-                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
-                                                        Request.QueryString["ReturnUrl"],
-                                                        RememberMe.Checked),
-                                          true);
-                        break;
-                    case SignInStatus.Failure:
-                    default:
-                        FailureText.Text = "Invalid login attempt";
-                        ErrorMessage.Visible = true;
-                        break;
+                    Session["User"] = new GenericPrincipal(new GenericIdentity(a.user), new string[1] { "Client" });
+                    Context.User = (GenericPrincipal)Session["User"];
+                    Response.Redirect("/Client/Main");
+                }
+                else
+                {
+                    FailureText.Text = "Invalid login attempt";
+                    ErrorMessage.Visible = true;
                 }
             }
         }

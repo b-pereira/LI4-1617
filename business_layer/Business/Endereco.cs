@@ -8,9 +8,9 @@ namespace Business
     public class Endereco
     {
         private string _cod_postal;
-        private int _latitude;
+        private decimal _latitude;
         private string _localidade;
-        private int _longitude;
+        private decimal _longitude;
         private int _numero;
         private string _rua;
 
@@ -19,7 +19,7 @@ namespace Business
             throw new System.Exception("Not implemented");
         }
 
-        public Endereco(string _cod_postal, int _latitude, string _localidade, int _longitude, int _numero, string _rua)
+        public Endereco(string _cod_postal, decimal _latitude, string _localidade, decimal _longitude, int _numero, string _rua)
         {
             CodPostal = _cod_postal;
             Latitude = _latitude;
@@ -39,7 +39,7 @@ namespace Business
 
         }
 
-        public int Latitude
+        public decimal Latitude
         {
             get
             {
@@ -52,7 +52,7 @@ namespace Business
             }
         }
 
-        public int Longitude
+        public decimal Longitude
         {
             get
             {

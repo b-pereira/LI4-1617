@@ -9,7 +9,7 @@ namespace Business
     {
         private string _nome;
         private int _visualizacoes;
-        private float _rating_medio;
+        private decimal _rating_medio;
         private byte[] _fotografia;
         private decimal _preco;
         private int _id_iguaria;
@@ -22,28 +22,28 @@ namespace Business
         }
 
 
-        public Iguaria(string _nome, int _visualizacoes, float _rating_medio, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento)
+        public Iguaria(string _nome, int _visualizacoes, decimal _rating_medio, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento)
         {
-            this._nome = Nome;
-            this._visualizacoes = VisualizacoesIguaria;
-            this._rating_medio = RatingMedioIguaria;
-            this._fotografia = Fotografia;
-            this._preco = Preco;
-            this._id_iguaria = IdIguaria;
-            this._id_estabelecimento = IdEstabelecimento;
-            this._criticas = ListaCriticas;
+            this._nome = _nome;
+            this._visualizacoes = _visualizacoes;
+            this._rating_medio = _rating_medio;
+            this._fotografia = _fotografia;
+            this._preco = _preco;
+            this._id_iguaria = _id_iguaria;
+            this._id_estabelecimento = _id_estabelecimento;
+            this._criticas = null;
         }
 
-        public Iguaria(string _nome, int _visualizacoes, float _rating_medio, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento, List<Critica> _criticas)
+        public Iguaria(string _nome, int _visualizacoes, decimal _rating_medio, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento, List<Critica> _criticas)
         {
-            this._nome = Nome;
-            this._visualizacoes = VisualizacoesIguaria;
-            this._rating_medio = RatingMedioIguaria;
-            this._fotografia = Fotografia;
-            this._preco = Preco;
-            this._id_iguaria = IdIguaria;
-            this._id_estabelecimento = IdEstabelecimento;
-            this._criticas = ListaCriticas;
+            this._nome = _nome;
+            this._visualizacoes = _visualizacoes;
+            this._rating_medio = _rating_medio;
+            this._fotografia = _fotografia;
+            this._preco = _preco;
+            this._id_iguaria = _id_iguaria;
+            this._id_estabelecimento = _id_estabelecimento;
+            this._criticas = _criticas;
         }
 
         public Iguaria(Iguaria _other)
@@ -82,7 +82,7 @@ namespace Business
             }
         }
 
-        public float RatingMedioIguaria
+        public decimal RatingMedioIguaria
         {
             get
             {
