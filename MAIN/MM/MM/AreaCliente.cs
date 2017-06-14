@@ -16,6 +16,8 @@ namespace MM
 
         private Direcoes _listaDirecoes;
 
+        public string user { get { return _cliente.Nome; } }
+
         public Direcoes ListaDirecoes
         {
             get

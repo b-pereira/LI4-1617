@@ -9,6 +9,8 @@ namespace MM
     {
         private Business.Estabelecimento _estabelecimento;
 
+        public string user { get { return _estabelecimento.Nome; } }
+
         public bool Login(string email, string password)
         {
             bool IsLoginValidated = false;

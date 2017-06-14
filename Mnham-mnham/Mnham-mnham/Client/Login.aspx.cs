@@ -32,9 +32,11 @@ namespace Mnham_mnham.Client
             {
                 // Validate the user password
                 AreaCliente a = (AreaCliente)Session["ClientArea"];
-
+                
                 if (a.Login(Email.Text, Password.Text))
                 {
+                    Session["User"] = new GenericPrincipal(new GenericIdentity(a.user), new string[1] { "Client" });
+                    Context.User = (GenericPrincipal)Session["User"];
                     Response.Redirect("/Client/Main");
                 }
                 else
