@@ -7,7 +7,7 @@ namespace Business
 {
     public class Horario
     {
-        private byte _dia;
+        private Dias _dia;
         private TimeSpan _hora_abertura;
         private TimeSpan _hora_fecho;
 
@@ -29,7 +29,7 @@ namespace Business
             this._hora_fecho = _other.HoraAbertura;
         }
 
-        public byte Dia
+        public Dias Dia
         {
             get
             {
@@ -37,7 +37,7 @@ namespace Business
             }
             set
             {
-                _dia = value;
+                _dia =value;
             }
         }
 

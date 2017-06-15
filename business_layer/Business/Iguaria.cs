@@ -15,6 +15,7 @@ namespace Business
         private int _id_iguaria;
         private int _id_estabelecimento;
         private List<Critica> _criticas;
+        private IguariaStatus _crud_status;
 
         public Iguaria()
         {
@@ -32,6 +33,7 @@ namespace Business
             this._id_iguaria = _id_iguaria;
             this._id_estabelecimento = _id_estabelecimento;
             this._criticas = null;
+            this._crud_status = IguariaStatus.Default;
         }
 
         public Iguaria(string _nome, int _visualizacoes, decimal _rating_medio, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento, List<Critica> _criticas)
@@ -44,6 +46,7 @@ namespace Business
             this._id_iguaria = _id_iguaria;
             this._id_estabelecimento = _id_estabelecimento;
             this._criticas = _criticas;
+            this._crud_status = IguariaStatus.Default;
         }
 
         public Iguaria(Iguaria _other)
@@ -56,6 +59,7 @@ namespace Business
             this._id_iguaria = _other.IdIguaria;
             this._id_estabelecimento = _other.IdEstabelecimento;
             this._criticas = _other.ListaCriticas;
+            this._crud_status = _other.CrudStatus;
         }
 
         public string Nome
@@ -195,6 +199,22 @@ namespace Business
                     _criticas.Add(c.Clone());
                 }
                 
+            }
+        }
+
+        public IguariaStatus CrudStatus
+        {
+            get
+            {
+
+                return _crud_status;
+
+            }
+            
+            
+            set
+            {
+                _crud_status = value;
             }
         }
 
