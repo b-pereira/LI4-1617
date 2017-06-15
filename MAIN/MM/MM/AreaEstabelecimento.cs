@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NHibernate.Criterion;
 
 namespace MM
 {
@@ -98,7 +99,7 @@ namespace MM
                 {
                     HorarioEstabelecimento horarioEstabelecimento = HorarioEstabelecimento.CreateHorarioEstabelecimento();
                     horarioEstabelecimento.Id_horario = i;
-                    horarioEstabelecimento.Dia = item.Dia;
+                    horarioEstabelecimento.Dia = (byte)item.Dia;
                     horarioEstabelecimento.Hora_abertura = new DateTime(0, 0, 0, item.HoraAbertura.Hours, item.HoraAbertura.Minutes, item.HoraAbertura.Seconds);
                     horarioEstabelecimento.Hora_abertura = new DateTime(0, 0, 0, item.HoraFecho.Hours, item.HoraFecho.Minutes, item.HoraFecho.Seconds);
                     horarioEstabelecimento.Estabelecimento = estabelecimento;
@@ -131,8 +132,8 @@ namespace MM
             }
         }
 
-            public void AtualizarEstabelecimento(string _password, string _ambiente, string _nome, int _telefone, List<Business.Horario> _horarios, Business.Endereco _endereco, int _id_categoria)
-            {
+        public void AtualizarEstabelecimento(string _password, string _ambiente, string _nome, int _telefone, List<Business.Horario> _horarios, Business.Endereco _endereco, int _id_categoria)
+        {
             PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
             try
             {
@@ -151,7 +152,7 @@ namespace MM
                 estabelecimento.Numero = _endereco.Numero;
                 estabelecimento.Localidade = _endereco.Localidade;
                 estabelecimento.Cod_postal = _endereco.CodPostal;
-               
+
 
 
                 UtilizadorCriteria utilizadorCriteria = new UtilizadorCriteria();
@@ -162,7 +163,7 @@ namespace MM
                 utilizador.Password = _password;
 
 
-               
+
                 utilizador.Password = _password;
                 utilizador.Save();
                 estabelecimento.Save();
@@ -175,15 +176,15 @@ namespace MM
 
                 for (int i = 0; i < horarioEstabelecimento.Length; i++)
                 {
-                   
-                    horarioEstabelecimento[i].Dia = _horarios[i].Dia;
+
+                    horarioEstabelecimento[i].Dia = (byte)_horarios[i].Dia;
                     horarioEstabelecimento[i].Hora_abertura = new DateTime(0, 0, 0, _horarios[i].HoraAbertura.Hours, _horarios[i].HoraAbertura.Minutes, _horarios[i].HoraAbertura.Seconds);
                     horarioEstabelecimento[i].Hora_abertura = new DateTime(0, 0, 0, _horarios[i].HoraFecho.Hours, _horarios[i].HoraFecho.Minutes, _horarios[i].HoraFecho.Seconds);
                     horarioEstabelecimento[i].Save();
                 }
 
-                
-                
+
+
 
 
 
@@ -211,19 +212,168 @@ namespace MM
             }
         }
 
-            public void RegistarEmenta()
-            {
-                throw new System.NotImplementedException();
-            }
+        public void RegistarEditarEmenta(Dictionary<int, Business.Iguaria> _iguarias)
+        {
 
-            public void EditarEmenta()
+            PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
+            try
             {
-                throw new System.NotImplementedException();
-            }
+                EstabelecimentoCriteria estabelecimentoCriteria = new EstabelecimentoCriteria();
 
-            public void ApagarConta()
+                estabelecimentoCriteria.Id_estabelecimento.Eq(_estabelecimento.IdEstabelecimento);
+                Estabelecimento estabelecimento = estabelecimentoCriteria.UniqueEstabelecimento();
+
+                IguariaCriteria itemp = new IguariaCriteria();
+                itemp.Estabelecimento_id_estabelecimento.Eq(estabelecimento.Id_estabelecimento);
+
+                int max_id = ((int)itemp.SetProjection(Projections.Max(Iguaria.PROP_ID_IGUARIA)).UniqueResult());
+
+
+
+
+                foreach (KeyValuePair<int, Business.Iguaria> entry in _iguarias)
+                    max_id = CRUDIguaria(estabelecimento, max_id, entry);
+
+            }
+            catch (Exception e)
             {
-                throw new System.NotImplementedException();
+                t.RollBack();
+                Console.WriteLine(e);
+                Console.ReadLine();
             }
         }
+
+        public void CarregarEmenta()
+        {
+
+            PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
+            try
+            {
+                EstabelecimentoCriteria estabelecimentoCriteria = new EstabelecimentoCriteria();
+
+                estabelecimentoCriteria.Id_estabelecimento.Eq(_estabelecimento.IdEstabelecimento);
+                Estabelecimento estabelecimento = estabelecimentoCriteria.UniqueEstabelecimento();
+
+                IguariaCriteria itemp = new IguariaCriteria();
+                itemp.Estabelecimento_id_estabelecimento.Eq(estabelecimento.Id_estabelecimento);
+
+                Iguaria[] list = Iguaria.ListIguariaByCriteria(itemp);
+
+
+
+
+                for (int i = 0; i < list.Length; i++)
+                {
+                    if (_estabelecimento.IguariasMap.ContainsKey(list[i].Id_iguaria))
+                    {
+                        Business.Iguaria iguaria = _estabelecimento.IguariasMap[list[i].Id_iguaria];
+                        iguaria.Nome = list[i].Nome_iguaria;
+                        iguaria.VisualizacoesIguaria = list[i].Visual_iguaria;
+                        iguaria.RatingMedioIguaria = list[i].Rating_medio_iguaria;
+                        iguaria.Fotografia = list[i].Fotografia;
+                        iguaria.Preco = list[i].Preco;
+
+                    }
+                    else
+                    {
+                        _estabelecimento.IguariasMap.Add(list[i].Id_iguaria, new Business.Iguaria(list[i].Nome_iguaria, list[i].Visual_iguaria, list[i].Rating_medio_iguaria, list[i].Fotografia, list[i].Preco, list[i].Id_iguaria, list[i].Estabelecimento_id_estabelecimento));
+                    }
+                }
+
+
+
+
+              
+
+
+
+            }
+            catch (Exception e)
+            {
+                
+                Console.WriteLine(e);
+                Console.ReadLine();
+            }
+        }
+
+
+        private int CRUDIguaria(Estabelecimento estabelecimento, int max_id, KeyValuePair<int, Business.Iguaria> entry)
+        {
+            {
+
+                Iguaria iguaria = null;
+                IguariaCriteria iguariaCriteria = null;
+
+
+                switch (entry.Value.CrudStatus)
+                {
+                    case Business.IguariaStatus.Default:
+                        break;
+                    case Business.IguariaStatus.ToInsert:
+                        iguaria = Iguaria.CreateIguaria();
+                        max_id++;
+                        iguaria.Id_iguaria = max_id;
+                        iguaria.Nome_iguaria = entry.Value.Nome;
+                        iguaria.Fotografia = entry.Value.Fotografia;
+                        iguaria.Preco = entry.Value.Preco;
+                        iguaria.Estabelecimento = estabelecimento;
+                        iguaria.Save();
+
+                        break;
+                    case Business.IguariaStatus.ToUpdate:
+                        iguariaCriteria = new IguariaCriteria();
+                        iguariaCriteria.Id_iguaria.Eq(entry.Value.IdIguaria);
+                        iguariaCriteria.Estabelecimento_id_estabelecimento.Eq(entry.Value.IdEstabelecimento);
+
+                        iguaria = iguariaCriteria.UniqueIguaria();
+
+                        iguaria.Nome_iguaria = entry.Value.Nome;
+                        iguaria.Fotografia = entry.Value.Fotografia;
+                        iguaria.Preco = entry.Value.Preco;
+
+                        iguaria.Save();
+
+                        break;
+                    case Business.IguariaStatus.ToDelete:
+                        iguariaCriteria = new IguariaCriteria();
+                        iguariaCriteria.Id_iguaria.Eq(entry.Value.IdIguaria);
+                        iguariaCriteria.Estabelecimento_id_estabelecimento.Eq(entry.Value.IdEstabelecimento);
+
+                        iguaria = iguariaCriteria.UniqueIguaria();
+                        iguaria.DeleteAndDissociate();
+
+                        break;
+
+                    default:
+                        break;
+                }
+
+
+            }
+
+            return max_id;
+        }
+
+        public void ApagarConta()
+        {
+            PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
+            try
+            {
+
+                EstabelecimentoCriteria estabelecimentoCriteria = new EstabelecimentoCriteria();
+
+                estabelecimentoCriteria.Id_estabelecimento.Eq(_estabelecimento.IdEstabelecimento);
+                Estabelecimento estabelecimento = estabelecimentoCriteria.UniqueEstabelecimento();
+                estabelecimento.DeleteAndDissociate();
+            }
+            catch (Exception e)
+            {
+                t.RollBack();
+                Console.WriteLine(e);
+                Console.ReadLine();
+            }
+
+
+        }
     }
+}
