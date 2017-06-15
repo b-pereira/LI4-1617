@@ -9,7 +9,11 @@ using System.Collections;
 
 public class AreaCliente
 {
-    private int IdClienteGobal; public AreaCliente(int cliente_id)
+    private int IdClienteGobal;
+
+
+
+    public AreaCliente(int cliente_id)
     {
         IdClienteGobal = cliente_id;
 
@@ -33,7 +37,8 @@ public class AreaCliente
                 return;
             }
 
-            ut.Cliente.ToString();
+            
+        
 
             Console.WriteLine(" Cliente {0}", ut.Cliente.ToString());
 
@@ -130,7 +135,7 @@ public class AreaCliente
 
     public void AtualizarCliente(string password, string nome)
     {
-        ;
+        
 
         PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
         try
