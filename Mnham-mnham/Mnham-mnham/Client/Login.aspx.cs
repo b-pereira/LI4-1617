@@ -16,9 +16,6 @@ namespace Mnham_mnham.Client
         {
             Session["ClientArea"] = new AreaCliente();
             RegisterHyperLink.NavigateUrl = "Register";
-            // Enable this once you have account confirmation enabled for password reset functionality
-            //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             if (!String.IsNullOrEmpty(returnUrl))
             {
@@ -37,13 +34,19 @@ namespace Mnham_mnham.Client
                 {
                     Session["User"] = new GenericPrincipal(new GenericIdentity(a.user), new string[1] { "Client" });
                     Context.User = (GenericPrincipal)Session["User"];
+                    Response.Write("Sucesso no login");
                     Response.Redirect("/Client/Main");
                 }
                 else
                 {
-                    FailureText.Text = "Invalid login attempt";
+                    FailureText.Text = "Falha no login, confirme os credenciais";
                     ErrorMessage.Visible = true;
                 }
+            }
+            else
+            {
+                FailureText.Text = "Preencha todos os campos";
+                ErrorMessage.Visible = true;
             }
         }
     }

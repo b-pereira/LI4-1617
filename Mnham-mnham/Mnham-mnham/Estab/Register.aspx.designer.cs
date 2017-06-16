@@ -31,15 +31,6 @@ namespace Mnham_mnham.Estab {
         protected global::System.Web.UI.WebControls.TextBox Nome;
         
         /// <summary>
-        /// City control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox City;
-        
-        /// <summary>
         /// Email control.
         /// </summary>
         /// <remarks>
@@ -65,33 +56,6 @@ namespace Mnham_mnham.Estab {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// Contacto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Contacto;
-        
-        /// <summary>
-        /// Rua control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Rua;
-        
-        /// <summary>
-        /// Postal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Postal;
         
         /// <summary>
         /// ConfirmPassword control.

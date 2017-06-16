@@ -56,7 +56,7 @@ namespace MM
             return IsLoginValidated;
         }
 
-        public void PublicarCritica(int idCliente, int idIguaria, int idEstabelecimento, string descricao,  float rating)
+        public void PublicarCritica(int idCliente, int idIguaria, int idEstabelecimento, string descricao,  decimal rating)
         {
 
             DateTime data = DateTime.Now;
@@ -81,7 +81,7 @@ namespace MM
                 cliente_critica_Iguaria.Data_critica = data;
                 cliente_critica_Iguaria.Cliente = cli;
                 cliente_critica_Iguaria.Iguaria = ig;
-                cliente_critica_Iguaria. = est;
+                cliente_critica_Iguaria.Iguaria_Estabelecimento = idEstabelecimento;
 
                 
                 cliente_critica_Iguaria.Save();
@@ -105,9 +105,9 @@ namespace MM
 
         }
 
-        public void RegistarCliente(string email, string password, byte tipo, string nome)
+        public bool RegistarCliente(string email, string password, byte tipo, string nome)
         {
-           
+            bool IsRegistered = false;
 
             PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
             try
@@ -129,6 +129,7 @@ namespace MM
                 Preferencias preferencias = new Preferencias();
                 _cliente = new Business.Cliente(email, password, tipo, nome, preferencias);
                 _cliente.IdCliente = cliente.ORMID;
+                IsRegistered = true;
 
                
 
@@ -138,12 +139,13 @@ namespace MM
                 t.RollBack();
                 Console.WriteLine(e);
                 Console.ReadLine();
+                IsRegistered = false;
             }
             finally
             {
                 BasedeDadosMMPersistentManager.Instance().DisposePersistentManager();
             }
-
+            return IsRegistered;
         }
 
         public void AtualizarCliente(string password, string nome)
