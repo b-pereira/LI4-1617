@@ -44,13 +44,12 @@ namespace Mnham_mnham.Security
                         format = ImageFormat.Jpeg;
                         formatRecognizedAndValidSize = true;
                     }
-                    return formatRecognizedAndValidSize;
                 }
                 catch
                 {
                 }
             }
-            return false;
+            return formatRecognizedAndValidSize;
         }
 
 

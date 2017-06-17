@@ -30,19 +30,26 @@ namespace Mnham_mnham.Estab
             if (IsValid)
             {
                 // Validate the user password
-                AreaEstabelecimento a = (AreaEstabelecimento) Session["EstabArea"];
+                AreaEstabelecimento a = (AreaEstabelecimento)Session["EstabArea"];
 
                 if (a.Login(Email.Text, Password.Text))
                 {
-                    Session["User"]= new GenericPrincipal(new GenericIdentity(a.user), new string[1] { "Estab" });
+                    Session["User"] = new GenericPrincipal(new GenericIdentity(a.user), new string[1] { "Estab" });
                     Context.User = (GenericPrincipal)Session["User"];
+                    Response.Write("Sucesso no login");
                     Response.Redirect("/Estab/Main");
                 }
                 else
                 {
-                    FailureText.Text = "Invalid login attempt";
+                    FailureText.Text = "Falha no login, confirme os credenciais";
                     ErrorMessage.Visible = true;
                 }
             }
+            else
+            {
+                FailureText.Text = "Preencha todos os campos";
+                ErrorMessage.Visible = true;
+            }
         }
+    }
 }

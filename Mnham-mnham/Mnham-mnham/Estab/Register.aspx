@@ -76,16 +76,16 @@
         <div class="col-sm-6">
             <div class="panel form-group" style="background: rgba(255,255,255,0.3)">
                 <p>Contacto Telefónico</p>
-                <asp:TextBox ID="Contacto" runat="server" CssClass="fa form-control" Height="31px" Width="1200px"></asp:TextBox>
+                <asp:TextBox ID="Contact" runat="server" CssClass="fa form-control" Height="31px" Width="1200px"></asp:TextBox>
                 <i class="fa fa-lg fa-edit"></i>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="Contacto"
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Contact"
                     CssClass="fa fa-lg text-danger" ErrorMessage="O contacto é obrigatório." />
             </div>
             <div class="panel form-group" style="background: rgba(255,255,255,0.3)">
                 <p>Rua</p>
-                <asp:TextBox ID="Rua" runat="server" CssClass="fa form-control" Height="31px" Width="1200px"></asp:TextBox>
+                <asp:TextBox ID="Street" runat="server" CssClass="fa form-control" Height="31px" Width="1200px"></asp:TextBox>
                 <i class="fa fa-lg fa-edit"></i>                
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="Rua"
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Street"
                     CssClass="fa fa-lg text-danger" ErrorMessage="A rua é obrigatória." />
             </div>
             <div class="panel form-group" style="background: rgba(255,255,255,0.3)">
@@ -104,6 +104,24 @@
                 <asp:CompareValidator runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
                     CssClass="fa fa-lg text-danger" Display="Dynamic" ErrorMessage="As passwords têm de ser iguais." />
             </div>
+            <div class="panel form-group" style="background: rgba(255,255,255,0.3)">
+                <p>Categoria</p>
+                <asp:DropDownList ID="Category" runat="server" CssClass="fa dropdown-toggle" Height="31px" Width="1200px">
+                    <asp:ListItem Value="0">
+                        Restaurante
+                    </asp:ListItem>
+                    <asp:ListItem Value="1">
+                        Confeitaria
+                    </asp:ListItem>
+                    <asp:ListItem Value="2">
+                        Tasca
+                    </asp:ListItem>
+                </asp:DropDownList>
+                <i class="fa fa-lg fa-edit"></i>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Category"
+                    CssClass="fa fa-lg text-danger" ErrorMessage="A categoria é obrigatória." />
+            </div>
+
         </div>
     </div>
 

@@ -26,24 +26,22 @@
     <div>
         <asp:TextBox ID="TextBox1" runat="server" Width="700px" CssClass="form-control flat">Input your search...</asp:TextBox>
         <asp:Button ID="Button1" runat="server" Text="Submit" CssClass="btn btn-sm" />
-        <asp:GridView ID="gvQuery" runat="server" CssClass="list-group jumbotron" 
-                      AllowPaging="true" AutoGenerateColumns="false"
-                      RowHeaderColumn="Name" PageSize="5">
-            <Columns>
-                <asp:BoundField DataField="Name" ItemStyle-CssClass="fa" ReadOnly="true" />
-                <asp:BoundField DataField="Rating" ItemStyle-CssClass="fa" ReadOnly="true" />
-                <asp:HyperLinkField Text="Ver Críticas" NavigateUrl="#ver" ItemStyle-CssClass="btn fa" />
+        <asp:DetailsView ID="dvQuery" runat="server" CssClass="list-group jumbotron" 
+                      AllowPaging="true" AutoGenerateColumns="false" ItemType="Business.Iguaria"
+                      SelectMethod="DvQuery_GetData" PageSize="1" >
+            <Fields>
+                <asp:BoundField DataField="RatingMedio" ItemStyle-CssClass="fa" ReadOnly="true" />
                 <asp:BoundField DataField="Horario" ItemStyle-CssClass="fa" ReadOnly="true" />
                 <asp:BoundField DataField="Phone" ItemStyle-CssClass="fa" ReadOnly="true" />
-                <asp:BoundField DataField="Price" ItemStyle-CssClass="fa" ReadOnly="true" />
-                <asp:BoundField DataField="NameIg" ItemStyle-CssClass="fa" ReadOnly="true"/>
-                <asp:BoundField DataField="RatingIg" ItemStyle-CssClass="fa" ReadOnly="true"/>
-                <asp:HyperLinkField Text="Direções" NavigateURL="#map" ItemStyle-CssClass="btn fa"/>
-                <asp:HyperLinkField Text="Avaliar" NavigateUrl="#avalia" ItemStyle-CssClass="btn fa"/>
-            </Columns>
-            <PagerTemplate>
-            </PagerTemplate>
-        </asp:GridView>
+                <asp:HyperLinkField Text="Direções" NavigateUrl="#map" ItemStyle-CssClass="btn fa" />
+                <asp:BoundField DataField="Name" ItemStyle-CssClass="fa" ReadOnly="true" />
+                <asp:BoundField DataField="RatingMedioIguaria" ItemStyle-CssClass="fa" ReadOnly="true" />
+                <asp:HyperLinkField Text="Ver Críticas" NavigateUrl="#ver" ItemStyle-CssClass="btn fa" />
+                <asp:ImageField DataImageUrlField="GetImg.ImgGetClient?<%# Item.IdIguaria  %>"></asp:ImageField>
+                <asp:BoundField DataField="Preco" ItemStyle-CssClass="fa" ReadOnly="true" />
+                <asp:HyperLinkField Text="Avaliar" NavigateUrl="#avalia" ItemStyle-CssClass="btn fa" />
+            </Fields>
+        </asp:DetailsView>
 
     </div>
 </asp:Content>
