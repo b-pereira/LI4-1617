@@ -197,15 +197,7 @@ namespace Business
         {
             get {
 
-                List<Critica> tmp = new List<Critica>();
-
-                foreach (Critica c in _criticas)
-                {
-                    tmp.Add(c.Clone());
-                }
-
-
-               return tmp; 
+                return _criticas; 
         }
         
             set
@@ -238,6 +230,28 @@ namespace Business
         public Iguaria Clone()
         {
             return new Iguaria(this);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+
+            sb.Append("Nome ........ : ").Append(Nome).AppendLine();
+            sb.Append("Preço  ...... : ").Append(Preco).AppendLine();
+            sb.Append("Rating ...... : ").Append(RatingMedioIguaria).AppendLine();
+            sb.Append("Visualizações : ").Append(VisualizacoesIguaria).AppendLine();
+            sb.Append("Fotografia .. : ").Append(Fotografia.Length).Append(" bytes ").AppendLine();
+            sb.Append("ID : ").Append(IdIguaria).Append(" ").Append("Estabelecimento : ").Append(IdEstabelecimento).AppendLine();
+            sb.Append(" ------------ Criticas ------------- :").AppendLine();
+            foreach (var item in _criticas)
+            {
+                sb.Append(item.ToString());
+            }
+         
+
+
+            return sb.ToString();
         }
     }
 }

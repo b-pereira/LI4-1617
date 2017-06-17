@@ -7,16 +7,17 @@ namespace Business
 {
     public struct GPSVal
     {
-        private int _latitude;
-        private int _longitude;
+        private decimal _latitude;
+        private decimal _longitude;
         private static double MAJOR_AXIS_RADIO = 6378137;
 
-        public GPSVal(int latitude, int longitude) :this()
+        public GPSVal(decimal latitude, decimal longitude) :this()
         {
             Longitude = longitude;
+            Latitude = latitude;
         }
 
-        public int Longitude
+        public decimal Longitude
         {
             get { return _longitude; }
             set
@@ -25,7 +26,7 @@ namespace Business
             }
         }
 
-        public int Latitude
+        public decimal Latitude
         {
             get { return _latitude; }
             set
@@ -41,7 +42,7 @@ namespace Business
             return Math.PI * angle / 180.0;
         }
 
-        public double DistanceTo(int latitude, int longitude)
+        public decimal DistanceTo(double latitude, double longitude)
         {
 
             //if (latitude > 90 && latitude < -90)
@@ -49,15 +50,65 @@ namespace Business
            // if (longitude > 180 && longitude < -180)
             //    throw new CoordenadaInvalidaExc("Coordenada Invalida");
         
-        double LatB = ToRadians(latitude);
+            double LatB = ToRadians(latitude);
             double LngB = ToRadians(longitude);
-            double LatA = ToRadians(Latitude);
-            double LngA = ToRadians(Longitude);
+            double LatA = ToRadians((double)Latitude);
+            double LngA = ToRadians((double)Longitude);
 
-            return MAJOR_AXIS_RADIO
+            return (decimal)(MAJOR_AXIS_RADIO
                     * Math.Acos((Math.Cos(LatA) * Math.Cos(LatB)
                             * Math.Cos(LngB - LngA) + Math.Sin(LatA)
-                            * Math.Sin(LatB)));
+                            * Math.Sin(LatB))));
+        }
+
+        public String ConvertLongitude(double coordinate)
+        {
+            coordinate = Math.Abs(coordinate);
+            String cardinal;
+            int deg = (int)Math.Floor(coordinate);
+            float min = (float)((coordinate - deg) * 60);
+            float sec = (float)((min - Math.Floor(min)) * 60);
+            if (deg < 0)
+                cardinal = "E";
+            else if (deg > 0)
+                cardinal = "W";
+            else
+                cardinal = "";
+            return deg + "°" + ((int)min) + "'" + sec.ToString("0.########") + "\"" + cardinal;
+
+        }
+
+        public String ConvertLatitude(double coordinate)
+        {
+            coordinate = Math.Abs(coordinate);
+            
+            String cardinal;
+            int deg = (int)Math.Floor(coordinate);
+            float min = (float)((coordinate - deg) * 60);
+            float sec = (float)((min - Math.Floor(min)) * 60);
+            if (deg < 0)
+                cardinal = "S";
+            else if (deg > 0)
+                cardinal = "N";
+            else
+                cardinal = "";
+            return deg + "°" + ((int)min) + "'" + sec.ToString("0.########") + "\"" + cardinal;
+
+        }
+
+
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+
+            sb.Append("Latitude : ").Append(ConvertLatitude((double)Latitude)).AppendLine();
+            sb.Append("Longitude: ").Append(ConvertLongitude((double)Longitude)).AppendLine();
+          
+        
+
+            return sb.ToString();
         }
 
 

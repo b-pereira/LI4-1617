@@ -9,19 +9,14 @@ namespace Business
     {
         private List<string> _direcoes;
 
+
         public List<string> ListaDirecoes
         {
             get
             {
 
-                List<string> tmp = new List<string>();
-
-                foreach (string item in _direcoes)
-                {
-                    tmp.Add(item);
-                }
-
-                return tmp;
+             
+                return _direcoes;
 
             }
             set
@@ -40,5 +35,20 @@ namespace Business
         {
             _direcoes.Add(direcao);
         }
+
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("----- Direções -----").AppendLine();
+            foreach (var item in _direcoes)
+            {
+                sb.Append(item).AppendLine();
+            }
+            sb.AppendLine();
+
+            return sb.ToString();
+        }
+
     }
 }

@@ -18,9 +18,9 @@ namespace Business
 
         public Horario(byte _dia, TimeSpan _hora_abertura, TimeSpan _hora_fecho)
         {
-           Dia = (Dias) _dia;
-           HoraAbertura = _hora_abertura;
-           HoraFecho =_hora_fecho;
+            Dia = (Dias)_dia;
+            HoraAbertura = _hora_abertura;
+            HoraFecho = _hora_fecho;
         }
         public Horario(Horario _other)
         {
@@ -68,6 +68,21 @@ namespace Business
         public Horario Clone()
         {
             return new Horario(this);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            string[] dia = Dia.ToString().Split('_');
+            sb.Append("Horário ...... :").AppendLine();
+            if (dia.Length > 1)
+                sb.Append(dia[0]).Append("-").Append(dia[1]).Append(" Das ").Append(HoraAbertura.ToString(@"hh\:mm\:ss")).Append(" às ").Append(HoraFecho.ToString(@"hh\:mm\:ss")).AppendLine();
+            else
+                sb.Append(dia[0]).Append(" Das ").Append(HoraAbertura.ToString(@"hh\:mm\:ss")).Append(" às ").Append(HoraFecho.ToString(@"hh\:mm\:ss")).AppendLine();
+
+
+            return sb.ToString();
         }
     }
 }

@@ -8,11 +8,11 @@ namespace Business
     public enum Dias : byte
     {
         Domingo = 1,
-        SegundaFeira = 2,
-        TercaFeira = 3,
-        QuartaFeira = 4,
-        QuintaFeira = 5,
-        SextaFeira = 6,
+        Segunda_Feira = 2,
+        Terca_Feira = 3,
+        Quarta_Feira = 4,
+        Quinta_Feira = 5,
+        Sexta_Feira = 6,
         Sabado = 7
     }
 }

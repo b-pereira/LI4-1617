@@ -83,5 +83,15 @@ namespace Business
         {
             return new Cliente(this);
         }
+
+        public override string ToString()
+        {
+            
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append("Nome : ").Append(Nome).AppendLine();
+            sb.Append(ListaPreferencias.ToString());
+            return sb.ToString();
+        }
     }
 }

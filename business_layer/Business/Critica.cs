@@ -73,5 +73,18 @@ namespace Business
         {
             return new Critica(this);
         }
+
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Data .... : ").Append(DataCritica).AppendLine();
+            sb.Append("Rating .. : ").Append(RatingIguaria).AppendLine();
+            sb.Append("Descrição : ").Append(RatingIguaria).AppendLine();
+            sb.Append(" --------------------------- :").AppendLine();
+
+            return sb.ToString();
+        }
+
     }
 }

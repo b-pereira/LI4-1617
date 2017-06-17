@@ -102,5 +102,19 @@ namespace Business
         {
             return new Preferencias(this);
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+
+            sb.Append("Ordem Rating Iguaria .............. : ").Append(OrdemRatingIguaria).AppendLine();
+            sb.Append("Ordem Rating Estabelecimento ...... : ").Append(OrdemRatingEstabelecimento).AppendLine();
+            sb.Append("Ordem Distancia ................... : ").Append(OrdemDistancia).AppendLine();
+            sb.Append("Ordem Popularidade Iguaria ........ : ").Append(OrdemPopularidadeIguaria).AppendLine();
+            sb.Append(" Ordem Popularidade Estabelecimento : ").Append(OrdemRatingEstabelecimento).AppendLine();
+
+            return sb.ToString();
+        }
     }
 }

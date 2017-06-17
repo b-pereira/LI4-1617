@@ -69,6 +69,20 @@ namespace Business
             }
         }
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (Tipo == 0)
+                sb.Append("---------  Cliente  ---------").AppendLine();
+            else
+                sb.Append("------ Estabelecimento ------").AppendLine();
+            sb.Append("Email: ").Append(Email).AppendLine();
+
+
+            return sb.ToString();
+        }
+
 
     }
 }

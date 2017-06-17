@@ -250,6 +250,42 @@ namespace Business
             }
         }
 
-       
-    }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+
+            sb.Append("Nome ........ :").Append(Nome).AppendLine();
+            
+            sb.Append("Rating ...... : ").Append(RatingMedio).AppendLine();
+            sb.Append("Visualizações : ").Append(TotalVisualizacoes).AppendLine();
+            sb.Append("Telefone  ... : ").Append(Telefone).AppendLine();
+            sb.Append("Ambiente  ... : ").Append(Ambiente).AppendLine();
+            sb.Append("Endereço  ... : ").Append(this._endereco.ToString()).AppendLine();
+            foreach (var item in _horarios)
+            {
+                sb.Append(item.ToString());
+            }
+
+
+            sb.Append("Fotografia .. :").Append(Fotografia.Length).Append("bytes").AppendLine();
+            sb.Append("ID : ").Append(IdEstabelecimento).Append(" ").Append("Categoria : ").Append(IdCategoria).AppendLine();
+            sb.Append(" ------------ Criticas ------------- :").AppendLine();
+            foreach (var item in _iguarias.Values)
+            {
+                sb.Append(item.ToString());
+            }
+
+
+
+            return sb.ToString();
+        }
+        
+           
+          
+        }
+
+
+}
 }

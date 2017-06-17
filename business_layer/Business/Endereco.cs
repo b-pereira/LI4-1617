@@ -126,5 +126,20 @@ namespace Business
         {
             return new Endereco(this);
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+
+            sb.Append("Rua ...... : " ).Append(Rua).AppendLine();
+            sb.Append("Número ... : " ).Append(Numero).AppendLine();
+            sb.Append("Cód-Postal : " ).Append(CodPostal).AppendLine();
+            sb.Append("Localidade : " ).Append(Localidade).AppendLine();
+            sb.Append(new GPSVal(Latitude, Longitude).ToString());
+            sb.Append(" --------------------------- :").AppendLine();
+
+            return sb.ToString();
+        }
     }
 }
