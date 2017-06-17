@@ -16,7 +16,12 @@ namespace Business
 
         public Endereco()
         {
-            throw new System.Exception("Not implemented");
+            CodPostal = "";
+            Latitude = 0;
+            Localidade = "";
+            Longitude = 0;
+            Numero = 0;
+            Rua = "";
         }
 
         public Endereco(string _cod_postal, decimal _latitude, string _localidade, decimal _longitude, int _numero, string _rua)

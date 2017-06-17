@@ -16,15 +16,49 @@ namespace Business
         private Dictionary<int, Iguaria> _iguarias;
         private Endereco _endereco;
         private int _id_estabelecimento;
+        
+        private int _id_categoria;
+     
 
         public Estabelecimento()
+         : base()
         {
-            throw new System.Exception("Not implemented");
+            Ambiente = "";
+            Nome ="";
+            RatingMedio = 0;
+            Telefone = 0;
+            TotalVisualizacoes = 0;
+            _horarios = new List<Horario>();
+            _iguarias = new Dictionary<int, Iguaria>();
+            Endereco = new Endereco();
+            IdEstabelecimento = _id_estabelecimento;
+            IdCategoria = _id_categoria;
         }
 
+        public Estabelecimento(string _email, string _password, string _ambiente, string _nome,  int _telefone,  List<Horario> _horarios, Endereco _endereco, int _id_estabelecimento, int _id_categoria)
+           : base(_email, _password, 1)
+        {
 
-        public Estabelecimento(string _email, string _password, byte _tipo, string _ambiente, string _nome, decimal _ratingMedio, int _telefone, int _totalVisualizacoes, List<Horario> _horarios,  Endereco _endereco, int _id_estabelecimento)
-            : base(_email, _password, _tipo)
+            Ambiente = _ambiente;
+            Nome = _nome;
+            RatingMedio = 0;
+            Telefone = _telefone;
+            TotalVisualizacoes = 0;
+            Horarios = _horarios;
+            _iguarias = new Dictionary<int, Iguaria>();
+            Endereco = _endereco;
+            IdEstabelecimento = _id_estabelecimento;
+            IdCategoria = _id_categoria;
+
+        }
+
+        public Estabelecimento(string _email, string _password, string _ambiente, string _nome, decimal _ratingMedio, int _telefone, 
+            int _totalVisualizacoes, 
+            List<Horario> _horarios,  
+            Endereco _endereco, 
+            int _id_estabelecimento, 
+            int _id_categoria)
+            : base(_email, _password, 1)
         {
 
             Ambiente = _ambiente;
@@ -36,25 +70,27 @@ namespace Business
             _iguarias = new Dictionary<int, Iguaria>();
             Endereco = _endereco;
             IdEstabelecimento = _id_estabelecimento;
+            IdCategoria = _id_categoria;
            
         }
-        public Estabelecimento(Estabelecimento _other) : base(_other)
-        {
-            _ambiente = _other.Ambiente;
-            _nome = _other.Nome;
-            _ratingMedio = _other.RatingMedio;
-            _telefone = _other.Telefone;
-            _totalVisualizacoes = _other.TotalVisualizacoes;
-            _horarios = _other.Horarios;
-            _iguarias = _other.IguariasMap;
-            _endereco = _other.Endereco;
-            _id_estabelecimento = _other.IdEstabelecimento;
+      
 
+        public Estabelecimento(string _email, string _password, string _ambiente, string _nome, int telefone, List<Horario> horarios, Endereco endereco, int categoria) 
+            : base(_email, _password, 1)
+        {
+            IdEstabelecimento = 0;
+            Ambiente = _ambiente;
+            Nome = _nome;
+            RatingMedio = 0;
+            Telefone = _telefone;
+            TotalVisualizacoes = 0;
+            Horarios = _horarios;
+            _iguarias = new Dictionary<int, Iguaria>();
+            Endereco = _endereco;
+            IdEstabelecimento = _id_estabelecimento;
         }
 
-
-
-
+      
 
         public string Nome
         {
@@ -128,17 +164,9 @@ namespace Business
 
             get
             {
-                List<Horario> tmp = new List<Horario>();
+               
 
-                foreach(Horario h in _horarios)
-                {
-
-                    tmp.Add(h.Clone());
-
-                }
-
-
-                return tmp; 
+                return _horarios; 
             }
             
 
@@ -148,6 +176,7 @@ namespace Business
 
             set
             {
+
                 _horarios.Clear();
                 foreach (Horario h in value)
                 {
@@ -165,32 +194,25 @@ namespace Business
         {
             get {
 
-                Dictionary<int, Iguaria> tmp = new Dictionary<int, Iguaria>();
-
-
-
-                foreach (KeyValuePair<int, Iguaria> entry in _iguarias)
-                {
-                    tmp.Add(entry.Key, entry.Value);
-                }
-
-
-
-                return tmp;
-
-
+                
+               
+                return _iguarias;
             } 
             set
             {
-
+               
+                _iguarias.Clear();
                 foreach (KeyValuePair<int, Iguaria> entry in value)
                 {
-                    _iguarias.Add(entry.Key, entry.Value);
+                    _iguarias.Add(entry.Key, entry.Value.Clone());
                 }
 
                
             }
         }
+
+
+       
 
         public Endereco Endereco
         {
@@ -216,9 +238,18 @@ namespace Business
             }
         }
 
-        public Estabelecimento Clone()
+        public int IdCategoria
         {
-            return new Estabelecimento(this);
+            get
+            {
+                return _id_categoria;
+            }
+            set
+            {
+                _id_categoria = value;
+            }
         }
+
+       
     }
 }

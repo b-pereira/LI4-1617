@@ -9,14 +9,14 @@ namespace Business
     {
         private string _descricao;
         private DateTime _data;
-        private float _rating;
+        private decimal _rating;
 
         public Critica()
         {
             throw new System.NotImplementedException();
         }
 
-        public Critica(string _descricao, DateTime _data, float _rating)
+        public Critica(string _descricao, DateTime _data, decimal _rating)
         {
             _descricao = DescricaoCritica;
             _data = DataCritica;
@@ -56,7 +56,7 @@ namespace Business
             }
         }
 
-        public float RatingIguaria
+        public decimal RatingIguaria
         {
             get
             {

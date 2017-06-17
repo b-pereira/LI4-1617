@@ -16,10 +16,25 @@ namespace Business
         private int _id_estabelecimento;
         private List<Critica> _criticas;
         private IguariaStatus _crud_status;
+       
 
         public Iguaria()
         {
             throw new System.Exception("Not implemented");
+        }
+
+
+        public Iguaria(string _nome, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento, IguariaStatus _status)
+        {
+            this._nome = _nome;
+            this._visualizacoes = 0;
+            this._rating_medio = 0;
+            this._fotografia = _fotografia;
+            this._preco = _preco;
+            this._id_iguaria = _id_iguaria;
+            this._id_estabelecimento = _id_estabelecimento;
+            this._criticas = null;
+            this._crud_status = _status;
         }
 
 
@@ -61,6 +76,8 @@ namespace Business
             this._criticas = _other.ListaCriticas;
             this._crud_status = _other.CrudStatus;
         }
+
+      
 
         public string Nome
         {

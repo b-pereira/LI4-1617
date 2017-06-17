@@ -18,9 +18,9 @@ namespace Business
 
         public Horario(byte _dia, TimeSpan _hora_abertura, TimeSpan _hora_fecho)
         {
-            this._dia = Dia;
-            this._hora_abertura = HoraAbertura;
-            this._hora_fecho = HoraFecho;
+           Dia = (Dias) _dia;
+           HoraAbertura = _hora_abertura;
+           HoraFecho =_hora_fecho;
         }
         public Horario(Horario _other)
         {
@@ -37,7 +37,7 @@ namespace Business
             }
             set
             {
-                _dia =value;
+                _dia = value;
             }
         }
 

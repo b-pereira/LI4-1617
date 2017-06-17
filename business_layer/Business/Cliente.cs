@@ -12,25 +12,28 @@ namespace Business
         private Preferencias _preferencias;
 
         public Cliente()
+             : base()
         {
-            throw new System.Exception("Not implemented");
+            _id_cliente = 0;
+            _nome = "";
+            _preferencias = new Preferencias();
         }
 
-        public Cliente(string _email, string _password, byte _tipo, string _nome, Preferencias _preferencias) : base(_email, _password, _tipo)
+        public Cliente(string _email, string _password, byte _tipo, string _nome, Preferencias _preferencias) : base(_email, _password, 0)
         {
             _id_cliente = 0;
             _nome = Nome;
             _preferencias = ListaPreferencias;
         }
 
-        public Cliente(string _email, string _password, byte _tipo, int _id_cliente, string _nome, Preferencias _preferencias) : base(_email, _password, _tipo)
+        public Cliente(string _email, string _password, byte _tipo, int _id_cliente, string _nome, Preferencias _preferencias) : base(_email, _password, 0)
         {
             _id_cliente = IdCliente;
             _nome = Nome;
             _preferencias = ListaPreferencias;
         }
 
-        public Cliente(string _email, string _password, byte _tipo, string _nome) : base(_email, _password, _tipo)
+        public Cliente(string _email, string _password, byte _tipo, string _nome) : base(_email, _password, 0)
         {
             _id_cliente = IdCliente;
             _nome = Nome;
