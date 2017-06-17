@@ -630,9 +630,7 @@
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
-      <UserTypes>
-        <UserType DBType="8">time</UserType>
-      </UserTypes>
+      <UserTypes/>
     </Column>
     <Column name="hora_fecho">
       <PrimaryKey>false</PrimaryKey>
@@ -643,9 +641,7 @@
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
-      <UserTypes>
-        <UserType DBType="8">time</UserType>
-      </UserTypes>
+      <UserTypes/>
     </Column>
   </Entity>
   <Entity name="Cliente_seleciona_Estabelecimento" Unlogged="false" PKClustered="1">
@@ -779,7 +775,7 @@
     <ReferenceTable>Iguaria</ReferenceTable>
     <ReferencedTable>Estabelecimento</ReferencedTable>
     <OnUpdate>No action</OnUpdate>
-    <OnDelete>Cascade</OnDelete>
+    <OnDelete>No action</OnDelete>
     <Columns>
       <Column>Estabelecimento</Column>
     </Columns>

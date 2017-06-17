@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,16 +14,19 @@
     <StartupObject>SampleCenterControl</StartupObject>
     <FileUpgradeFlags />
     <UpgradeBackupLocation />
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <ProjectGuid>{0523F052-75A8-474C-AD48-2BA48C71246E}</ProjectGuid>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
@@ -192,6 +195,12 @@
     <EmbeddedResource Include="ormmapping\SelecaoEstabelecimento.hbm.xml" />
     <None Include="App.config" />
     <None Include="hibernate.cfg.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\business_layer\Business\Business.csproj">
+      <Project>{5f4016ff-0366-4c9c-a220-d06305fa099e}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <PropertyGroup>
