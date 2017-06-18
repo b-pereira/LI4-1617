@@ -84,66 +84,83 @@ public class AreaEstabelecimento
      * Categorias têm que ser adicionadas por nós e apresentadas ao estabelecimento como opção
      * 
      */
-    public void RegistarEstabelecimento(string _email, string _password, string _ambiente, string _nome, int _telefone, List<Business.Horario> _horarios, Business.Endereco _endereco, int _id_categoria)
+    public bool RegistarEstabelecimento(string _email, string _password, string _ambiente, string _nome, int _telefone, List<Business.Horario> _horarios, Business.Endereco _endereco, int _id_categoria)
     {
+
+        bool isRegistered = false;
         PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
         try
         {
-            Utilizador utilizador = Utilizador.CreateUtilizador();
-            utilizador.Email = _email;
-            utilizador.Password = _password;
-            utilizador.Tipo = 1;
-            utilizador.Save();
 
 
-            /**
-             * Rating medio e visualizações têm valor por defeito
-             */
-            Estabelecimento estabelecimento = Estabelecimento.CreateEstabelecimento();
-            estabelecimento.Nome_estabelecimento = _nome;
-            estabelecimento.Desc_ambiente = _ambiente;
-            estabelecimento.Telefone = _telefone;
-            estabelecimento.Latitude = _endereco.Latitude;
-            estabelecimento.Longitude = _endereco.Longitude;
-            estabelecimento.Rua = _endereco.Rua;
-            estabelecimento.Numero = _endereco.Numero;
-            estabelecimento.Localidade = _endereco.Localidade;
-            estabelecimento.Cod_postal = _endereco.CodPostal;
-            estabelecimento.Utilizador = utilizador;
+            UtilizadorCriteria utilizadorCriteria = new UtilizadorCriteria();
 
+            utilizadorCriteria.Email.Eq(_email);
 
-            CategoriaCriteria categoriaCriteria = new CategoriaCriteria();
-            categoriaCriteria.Id_categoria.Eq(_id_categoria);
+            Utilizador utilizador = null;
 
-            Categoria categoria = categoriaCriteria.UniqueCategoria();
+            utilizador = utilizadorCriteria.UniqueUtilizador();
 
-            estabelecimento.Categoria1 = categoria;
-
-            
-
-            estabelecimento.Save();
-
-
-            int i = 1;
-            foreach (var item in _horarios)
+            if (utilizador == null)
             {
-                HorarioEstabelecimento horarioEstabelecimento = HorarioEstabelecimento.CreateHorarioEstabelecimento();
-                horarioEstabelecimento.Id_horario = i;
-                horarioEstabelecimento.Dia = (byte)item.Dia;
+
+                utilizador = Utilizador.CreateUtilizador();
+                utilizador.Email = _email;
+                utilizador.Password = _password;
+                utilizador.Tipo = 1;
+                utilizador.Save();
 
 
-                DateTime dtAbertura = new DateTime(9999, 01, 01);
-                DateTime dtFecho = new DateTime(9999, 01, 01);
-                dtAbertura = dtAbertura + item.HoraAbertura;
-                dtFecho = dtFecho + item.HoraFecho;
-                horarioEstabelecimento.Hora_abertura = dtAbertura;
-                horarioEstabelecimento.Hora_fecho = dtFecho;
-                horarioEstabelecimento.Estabelecimento = estabelecimento;
-                horarioEstabelecimento.Save();
-                i++;
+                /**
+                 * Rating medio e visualizações têm valor por defeito
+                 */
+                Estabelecimento estabelecimento = Estabelecimento.CreateEstabelecimento();
+                estabelecimento.Nome_estabelecimento = _nome;
+                estabelecimento.Desc_ambiente = _ambiente;
+                estabelecimento.Telefone = _telefone;
+                estabelecimento.Latitude = _endereco.Latitude;
+                estabelecimento.Longitude = _endereco.Longitude;
+                estabelecimento.Rua = _endereco.Rua;
+                estabelecimento.Numero = _endereco.Numero;
+                estabelecimento.Localidade = _endereco.Localidade;
+                estabelecimento.Cod_postal = _endereco.CodPostal;
+                estabelecimento.Utilizador = utilizador;
+
+
+                CategoriaCriteria categoriaCriteria = new CategoriaCriteria();
+                categoriaCriteria.Id_categoria.Eq(_id_categoria);
+
+                Categoria categoria = categoriaCriteria.UniqueCategoria();
+
+                estabelecimento.Categoria1 = categoria;
+
+
+
+                estabelecimento.Save();
+
+
+                int i = 1;
+                foreach (var item in _horarios)
+                {
+                    HorarioEstabelecimento horarioEstabelecimento = HorarioEstabelecimento.CreateHorarioEstabelecimento();
+                    horarioEstabelecimento.Id_horario = i;
+                    horarioEstabelecimento.Dia = (byte)item.Dia;
+
+
+                    DateTime dtAbertura = new DateTime(9999, 01, 01);
+                    DateTime dtFecho = new DateTime(9999, 01, 01);
+                    dtAbertura = dtAbertura + item.HoraAbertura;
+                    dtFecho = dtFecho + item.HoraFecho;
+                    horarioEstabelecimento.Hora_abertura = dtAbertura;
+                    horarioEstabelecimento.Hora_fecho = dtFecho;
+                    horarioEstabelecimento.Estabelecimento = estabelecimento;
+                    horarioEstabelecimento.Save();
+                    i++;
+                }
+
+                t.Commit();
+                isRegistered = true;
             }
-
-            t.Commit();
 
         }
         catch (Exception e)
@@ -152,6 +169,8 @@ public class AreaEstabelecimento
             Console.WriteLine(e);
             Console.ReadLine();
         }
+
+        return isRegistered;
     }
 
     public void AtualizarEstabelecimento(string _password, string _ambiente, string _nome, int _telefone, List<Business.Horario> _horarios, Business.Endereco _endereco, int _id_categoria)

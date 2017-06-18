@@ -19,25 +19,17 @@ namespace Business
             _preferencias = new Preferencias();
         }
 
-        public Cliente(string _email, string _password, byte _tipo, string _nome, Preferencias _preferencias) : base(_email, _password, 0)
+        public Cliente(string email, string password, string nome, Preferencias preferencias) 
+            : base(email, password, 0)
         {
             _id_cliente = 0;
-            _nome = Nome;
-            _preferencias = ListaPreferencias;
+            Nome = nome;
+            ListaPreferencias = preferencias;
         }
 
-        public Cliente(string _email, string _password, byte _tipo, int _id_cliente, string _nome, Preferencias _preferencias) : base(_email, _password, 0)
-        {
-            _id_cliente = IdCliente;
-            _nome = Nome;
-            _preferencias = ListaPreferencias;
-        }
+      
 
-        public Cliente(string _email, string _password, byte _tipo, string _nome) : base(_email, _password, 0)
-        {
-            _id_cliente = IdCliente;
-            _nome = Nome;
-        }
+       
 
         public Cliente(Cliente _other) : base(_other)
         {
@@ -89,6 +81,7 @@ namespace Business
             
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
+            sb.Append("ID . : ").Append(IdCliente).AppendLine();
             sb.Append("Nome : ").Append(Nome).AppendLine();
             sb.Append(ListaPreferencias.ToString());
             return sb.ToString();

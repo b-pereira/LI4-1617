@@ -26,7 +26,7 @@ namespace Business
         {
             this._dia = _other.Dia;
             this._hora_abertura = _other.HoraAbertura;
-            this._hora_fecho = _other.HoraAbertura;
+            this._hora_fecho = _other.HoraFecho;
         }
 
         public Dias Dia
@@ -75,11 +75,11 @@ namespace Business
             StringBuilder sb = new StringBuilder();
 
             string[] dia = Dia.ToString().Split('_');
-            sb.Append("Horário ...... :").AppendLine();
+           
             if (dia.Length > 1)
-                sb.Append(dia[0]).Append("-").Append(dia[1]).Append(" Das ").Append(HoraAbertura.ToString(@"hh\:mm\:ss")).Append(" às ").Append(HoraFecho.ToString(@"hh\:mm\:ss")).AppendLine();
+                sb.Append(dia[0]).Append("-").Append(dia[1]).Append("\tDas ").Append(HoraAbertura.ToString(@"hh\:mm\:ss")).Append(" às ").Append(HoraFecho.ToString(@"hh\:mm\:ss")).AppendLine();
             else
-                sb.Append(dia[0]).Append(" Das ").Append(HoraAbertura.ToString(@"hh\:mm\:ss")).Append(" às ").Append(HoraFecho.ToString(@"hh\:mm\:ss")).AppendLine();
+                sb.Append(dia[0]).Append("\t\tDas ").Append(HoraAbertura.ToString(@"hh\:mm\:ss")).Append(" às ").Append(HoraFecho.ToString(@"hh\:mm\:ss")).AppendLine();
 
 
             return sb.ToString();

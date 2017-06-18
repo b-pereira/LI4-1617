@@ -9,21 +9,10 @@ public class SampleCenterControl
     {
         try
         {
-            //CreateBasedeDadosMMDatabaseSchema.Main(args);
-            //CreateBasedeDadosMMData.Main(args);
-            //RetrieveAndUpdateBasedeDadosMMData.Main(args);
-            //ListBasedeDadosMMData.Main(args);
-            //DeleteBasedeDadosMMData.Main(args);
-            //DropBasedeDadosMMDatabaseSchema.Main(args);
+          
 
             Console.WriteLine("A iniciar ... aguarde!");
-
-            //AreaCliente cl = new AreaCliente(1);
-
-            //cl.RegistarCliente("fljaljfla", "mm", "José Lopes da Silva");
-            // cl.GerarPedido("Beef");
-            //cl.EscolherIguaria(2, 1);
-            //cl.EscolherIguaria(1, 1);
+            
             List<Horario> horarios = new List<Horario>();
 
             for (byte i = 1; i < 8; i++)
@@ -31,11 +20,11 @@ public class SampleCenterControl
 
                 horarios.Add(new Horario(i, new TimeSpan(9, 0, 0), new TimeSpan(23, 59, 00)));
             }
-           
 
 
-            AreaEstabelecimento es = new AreaEstabelecimento();
-            
+
+            /*AreaEstabelecimento es = new AreaEstabelecimento();
+
             es.RegistarEstabelecimento("ze@boavista.pt", "pantera", "Acolhedor. Informal.", "Tasca do Zé", 226185325, horarios, new Endereco("4100-031", 41.1664667m, "Porto", -8.6577359m, 437, "R. Dr. Alberto de Macedo"), 1);
             es.Login("ze@boavista.pt", "pantera");
 
@@ -47,18 +36,127 @@ public class SampleCenterControl
             menu.Add(4, new Business.Iguaria("Bacalhau à Gomes de Sá", foto, 5.5M, 4, es.AreaEstabelecimentoEstabelecimento.IdEstabelecimento, IguariaStatus.ToInsert));
             menu.Add(5, new Business.Iguaria("Cabrito Assado", foto, 5.5M, 5, es.AreaEstabelecimentoEstabelecimento.IdEstabelecimento, IguariaStatus.ToInsert));
             menu.Add(6, new Business.Iguaria("Tripas à moda do Porto", foto, 5.5M, 6, es.AreaEstabelecimentoEstabelecimento.IdEstabelecimento, IguariaStatus.ToInsert));
-            //menu.Add(8, new Business.Iguaria("Francesinha Especial", foto, 5.5M, 8, es.AreaEstabelecimentoEstabelecimento.IdEstabelecimento, IguariaStatus.ToInsert));
+            menu.Add(7, new Business.Iguaria("Francesinha Especial", foto, 5.5M, 8, es.AreaEstabelecimentoEstabelecimento.IdEstabelecimento, IguariaStatus.ToInsert));
 
             es.RegistarEditarEmenta(menu);
-            
+
             es.CarregarEmenta();
 
-            
+
             Dictionary<int, Business.Iguaria> list = es.AreaEstabelecimentoEstabelecimento.IguariasMap;
             foreach (var item in list)
             {
                 Console.WriteLine("Iguaria : {0}", item.Value.Nome);
             }
+
+            */
+
+            AreaCliente cl = new AreaCliente();
+
+            cl.RegistarCliente("to_silva@mail.com", "mm", "António Silva");
+
+            cl.Login("to_silva@mail.com", "m1");
+            Console.WriteLine(cl.AreaClienteCliente.ToString());
+            Business.Iguaria[] igu = cl.GerarPedido("Bife").ToArray();
+             foreach (var item in igu)
+             {
+                 Console.WriteLine(item.ToString());
+             }
+
+             int idIguaria = 2;
+             int idEstabelecimento = 1;
+             Console.WriteLine("Digite um ID iguaria");
+             idIguaria =  Int32.Parse(Console.ReadLine());
+             Console.WriteLine("Digite um ID Estabelecimento");
+             idEstabelecimento = Int32.Parse(Console.ReadLine());
+            Business.Estabelecimento estab = cl.EscolherIguaria(idIguaria, idEstabelecimento);
+
+            Console.WriteLine(estab.ToString());
+            Console.ReadLine();
+            Console.WriteLine("Publicar critica??(0-N, 1-S)");
+            int pub = Int32.Parse(Console.ReadLine());
+            decimal ratingEstabelecimento = 0;
+            decimal ratingIgu = 5;
+            string descricao = "Excelente!";
+              switch (pub)
+              {
+                  case 0:
+                      break;
+
+                  case 1:
+                      Console.WriteLine("Escreva a critica!");
+                      descricao = Console.ReadLine();
+                      Console.WriteLine("Avalie o estabelecimento!");
+                      ratingEstabelecimento = Decimal.Parse(Console.ReadLine());
+                      Console.WriteLine("Avalie a Iguaria!");
+                      ratingIgu= Decimal.Parse(Console.ReadLine());
+            cl.PublicarCritica(estab.IguariasMap[idIguaria].IdIguaria, estab.IdEstabelecimento, descricao, ratingEstabelecimento, ratingIgu);
+                 break;
+          }
+            Console.WriteLine("Consultar preferências");
+            cl.ConsultarPreferencias();
+
+            Console.WriteLine("Editar preferências");
+            
+            cl.EditarPreferencias(0, 0, 0, 1, 2);
+            Console.WriteLine(cl.AreaClienteCliente.ToString());
+            Console.ReadLine();
+            Console.WriteLine("Consultar preferências");
+            cl.ConsultarPreferencias();
+            Console.WriteLine(cl.AreaClienteCliente.ListaPreferencias.ToString());
+            Console.WriteLine("Atualizar Cliente");
+            cl.AtualizarCliente("m1", "António Lopes da Silva");
+            Console.WriteLine(cl.AreaClienteCliente.ToString());
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Histórico");
+
+            Business.Iguaria[] ls = cl.ConsultarHistorico().ToArray();
+
+            foreach (var item in ls)
+            {
+                Console.WriteLine(item.ToString());
+                Console.WriteLine();
+            }
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            List<string>[] matrix = cl.ListarTendencias().ToArray();
+
+            Console.WriteLine("Rating Iguarias\n --------------");
+            foreach (var item in matrix[0])
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Popularidade Iguarias\n --------------");
+            foreach (var item in matrix[1])
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Rating Estabelecimentos\n --------------");
+            foreach (var item in matrix[2])
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Popularidade Estabelecimentos\n --------------");
+            foreach (var item in matrix[3])
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            
+
+            
+
+            Console.WriteLine(estab.ToString());
 
             Console.ReadLine();
         }

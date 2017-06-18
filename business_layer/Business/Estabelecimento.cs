@@ -16,15 +16,15 @@ namespace Business
         private Dictionary<int, Iguaria> _iguarias;
         private Endereco _endereco;
         private int _id_estabelecimento;
-        
+
         private int _id_categoria;
-     
+
 
         public Estabelecimento()
          : base()
         {
             Ambiente = "";
-            Nome ="";
+            Nome = "";
             RatingMedio = 0;
             Telefone = 0;
             TotalVisualizacoes = 0;
@@ -35,62 +35,32 @@ namespace Business
             IdCategoria = _id_categoria;
         }
 
-        public Estabelecimento(string _email, string _password, string _ambiente, string _nome,  int _telefone,  List<Horario> _horarios, Endereco _endereco, int _id_estabelecimento, int _id_categoria)
-           : base(_email, _password, 1)
+       
+        public Estabelecimento(string email, string password, string ambiente, string nome, decimal ratingMedio, int telefone,
+            int totalVisualizacoes,
+            List<Horario> horarios,
+            Endereco endereco,
+            int id_estabelecimento,
+            int id_categoria)
+            : base(email, password, 1)
         {
 
-            Ambiente = _ambiente;
-            Nome = _nome;
-            RatingMedio = 0;
-            Telefone = _telefone;
-            TotalVisualizacoes = 0;
-            Horarios = _horarios;
+            Ambiente = ambiente;
+            Nome = nome;
+            RatingMedio = ratingMedio;
+            Telefone = telefone;
+            TotalVisualizacoes = totalVisualizacoes;
+            Horarios = horarios;
             _iguarias = new Dictionary<int, Iguaria>();
-            Endereco = _endereco;
-            IdEstabelecimento = _id_estabelecimento;
-            IdCategoria = _id_categoria;
+            Endereco = endereco;
+            IdEstabelecimento = id_estabelecimento;
+            IdCategoria = id_categoria;
 
         }
 
-        public Estabelecimento(string _email, string _password, string _ambiente, string _nome, decimal _ratingMedio, int _telefone, 
-            int _totalVisualizacoes, 
-            List<Horario> _horarios,  
-            Endereco _endereco, 
-            int _id_estabelecimento, 
-            int _id_categoria)
-            : base(_email, _password, 1)
-        {
 
-            Ambiente = _ambiente;
-            Nome = _nome;
-            RatingMedio = _ratingMedio;
-            Telefone = _telefone;
-            TotalVisualizacoes = _totalVisualizacoes;
-            Horarios = _horarios;
-            _iguarias = new Dictionary<int, Iguaria>();
-            Endereco = _endereco;
-            IdEstabelecimento = _id_estabelecimento;
-            IdCategoria = _id_categoria;
-           
-        }
       
 
-        public Estabelecimento(string _email, string _password, string _ambiente, string _nome, int telefone, List<Horario> horarios, Endereco endereco, int categoria) 
-            : base(_email, _password, 1)
-        {
-            IdEstabelecimento = 0;
-            Ambiente = _ambiente;
-            Nome = _nome;
-            RatingMedio = 0;
-            Telefone = _telefone;
-            TotalVisualizacoes = 0;
-            Horarios = _horarios;
-            _iguarias = new Dictionary<int, Iguaria>();
-            Endereco = _endereco;
-            IdEstabelecimento = _id_estabelecimento;
-        }
-
-      
 
         public string Nome
         {
@@ -158,26 +128,27 @@ namespace Business
             }
         }
 
-      
 
-        public List<Horario> Horarios {
+
+        public List<Horario> Horarios
+        {
 
             get
             {
-               
 
-                return _horarios; 
+
+                return _horarios;
             }
-            
 
 
 
-           
+
+
 
             set
             {
-
-                _horarios.Clear();
+                
+                   _horarios = new List<Horario>();
                 foreach (Horario h in value)
                 {
 
@@ -185,44 +156,45 @@ namespace Business
 
 
                 }
-                
+
             }
 
         }
 
         public Dictionary<int, Iguaria> IguariasMap
         {
-            get {
+            get
+            {
 
-                
-               
+
+
                 return _iguarias;
-            } 
+            }
             set
             {
-               
+
                 _iguarias.Clear();
                 foreach (KeyValuePair<int, Iguaria> entry in value)
                 {
                     _iguarias.Add(entry.Key, entry.Value.Clone());
                 }
 
-               
+
             }
         }
 
 
-       
+
 
         public Endereco Endereco
         {
             get
             {
-                return _endereco.Clone();
+                return _endereco;
             }
             set
             {
-                _endereco = value.Clone();
+                _endereco = value;
             }
         }
 
@@ -255,23 +227,26 @@ namespace Business
         {
             StringBuilder sb = new StringBuilder();
 
-
-            sb.Append("Nome ........ :").Append(Nome).AppendLine();
             
+            sb.Append("Nome ........ :").Append(Nome).AppendLine();
+
             sb.Append("Rating ...... : ").Append(RatingMedio).AppendLine();
             sb.Append("Visualizações : ").Append(TotalVisualizacoes).AppendLine();
             sb.Append("Telefone  ... : ").Append(Telefone).AppendLine();
             sb.Append("Ambiente  ... : ").Append(Ambiente).AppendLine();
-            sb.Append("Endereço  ... : ").Append(this._endereco.ToString()).AppendLine();
+            sb.Append(" ... Endereço  ... ").AppendLine();
+            sb.Append(this._endereco.ToString()).AppendLine();
+            sb.Append("ID : ").Append(IdEstabelecimento).Append(" ").Append("Categoria : ").Append(IdCategoria).AppendLine();
+            sb.Append("\n ------------ Horário ------------- \n").AppendLine();
             foreach (var item in _horarios)
             {
                 sb.Append(item.ToString());
             }
 
 
-            sb.Append("Fotografia .. :").Append(Fotografia.Length).Append("bytes").AppendLine();
-            sb.Append("ID : ").Append(IdEstabelecimento).Append(" ").Append("Categoria : ").Append(IdCategoria).AppendLine();
-            sb.Append(" ------------ Criticas ------------- :").AppendLine();
+
+           
+            sb.Append("\n ------------ Iguarias ------------- \n").AppendLine();
             foreach (var item in _iguarias.Values)
             {
                 sb.Append(item.ToString());
@@ -281,11 +256,10 @@ namespace Business
 
             return sb.ToString();
         }
-        
-           
-          
-        }
 
 
-}
+
+    }
+
+
 }

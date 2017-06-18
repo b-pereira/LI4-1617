@@ -15,11 +15,11 @@ namespace Business
 
         public Preferencias(byte _ordem_rating_iguaria, byte _ordem_rating_estabelecimento, byte _ordem_distancia, byte _ordem_popularidade_iguaria, byte _ordem_popularidade_estabelecimento)
         {
-            _ordem_rating_iguaria = OrdemRatingIguaria;
-            _ordem_rating_estabelecimento = OrdemRatingEstabelecimento;
-            _ordem_distancia = OrdemDistancia;
-            _ordem_popularidade_iguaria = OrdemPopularidadeIguaria;
-            _ordem_popularidade_estabelecimento = OrdemPopularidadeEstabelecimento;
+            OrdemRatingIguaria = _ordem_rating_iguaria;
+            OrdemRatingEstabelecimento = _ordem_rating_estabelecimento;
+            OrdemDistancia = _ordem_distancia;
+            OrdemPopularidadeIguaria = _ordem_popularidade_iguaria;
+            OrdemPopularidadeEstabelecimento = _ordem_popularidade_estabelecimento;
         }
         public Preferencias()
         {
@@ -112,7 +112,7 @@ namespace Business
             sb.Append("Ordem Rating Estabelecimento ...... : ").Append(OrdemRatingEstabelecimento).AppendLine();
             sb.Append("Ordem Distancia ................... : ").Append(OrdemDistancia).AppendLine();
             sb.Append("Ordem Popularidade Iguaria ........ : ").Append(OrdemPopularidadeIguaria).AppendLine();
-            sb.Append(" Ordem Popularidade Estabelecimento : ").Append(OrdemRatingEstabelecimento).AppendLine();
+            sb.Append("Ordem Popularidade Estabelecimento  : ").Append(OrdemPopularidadeEstabelecimento).AppendLine();
 
             return sb.ToString();
         }

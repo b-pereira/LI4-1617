@@ -16,11 +16,11 @@ namespace Business
             throw new System.NotImplementedException();
         }
 
-        public Critica(string _descricao, DateTime _data, decimal _rating)
+        public Critica(string descricao, DateTime data, decimal rating)
         {
-            _descricao = DescricaoCritica;
-            _data = DataCritica;
-            _rating = RatingIguaria;
+            DescricaoCritica = descricao;
+            DataCritica = data;
+            RatingIguaria = rating;
         }
         public Critica(Critica _other)
         {
@@ -80,8 +80,8 @@ namespace Business
             StringBuilder sb = new StringBuilder();
             sb.Append("Data .... : ").Append(DataCritica).AppendLine();
             sb.Append("Rating .. : ").Append(RatingIguaria).AppendLine();
-            sb.Append("Descrição : ").Append(RatingIguaria).AppendLine();
-            sb.Append(" --------------------------- :").AppendLine();
+            sb.Append("Descrição : ").Append(DescricaoCritica).AppendLine();
+            sb.AppendLine();
 
             return sb.ToString();
         }

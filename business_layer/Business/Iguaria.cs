@@ -24,43 +24,34 @@ namespace Business
         }
 
 
-        public Iguaria(string _nome, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento, IguariaStatus _status)
-        {
-            this._nome = _nome;
-            this._visualizacoes = 0;
-            this._rating_medio = 0;
-            this._fotografia = _fotografia;
-            this._preco = _preco;
-            this._id_iguaria = _id_iguaria;
-            this._id_estabelecimento = _id_estabelecimento;
-            this._criticas = null;
-            this._crud_status = _status;
-        }
+       
 
 
-        public Iguaria(string _nome, int _visualizacoes, decimal _rating_medio, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento)
+        public Iguaria(string nome, int visualizacoes, decimal rating_medio, byte[] fotografia, decimal preco, int id_iguaria, 
+            int id_estabelecimento)
         {
-            this._nome = _nome;
-            this._visualizacoes = _visualizacoes;
-            this._rating_medio = _rating_medio;
-            this._fotografia = _fotografia;
-            this._preco = _preco;
-            this._id_iguaria = _id_iguaria;
-            this._id_estabelecimento = _id_estabelecimento;
-            this._criticas = null;
+            this._nome = nome;
+            this._visualizacoes = visualizacoes;
+            this._rating_medio = rating_medio;
+            this._fotografia = fotografia;
+            this._preco = preco;
+            this._id_iguaria = id_iguaria;
+            this._id_estabelecimento = id_estabelecimento;
+            this._criticas = new List<Critica>();
             this._crud_status = IguariaStatus.Default;
         }
 
-        public Iguaria(string _nome, int _visualizacoes, decimal _rating_medio, byte[] _fotografia, decimal _preco, int _id_iguaria, int _id_estabelecimento, List<Critica> _criticas)
+        public Iguaria(string nome, int visualizacoes, decimal rating_medio, byte[] fotografia, decimal preco, int id_iguaria, int id_estabelecimento, 
+            List<Critica> criticas)
         {
-            this._nome = _nome;
-            this._visualizacoes = _visualizacoes;
-            this._rating_medio = _rating_medio;
-            this._fotografia = _fotografia;
-            this._preco = _preco;
-            this._id_iguaria = _id_iguaria;
-            this._id_estabelecimento = _id_estabelecimento;
-            this._criticas = _criticas;
+            this._nome = nome;
+            this._visualizacoes = visualizacoes;
+            this._rating_medio = rating_medio;
+            this._fotografia = fotografia;
+            this._preco = preco;
+            this._id_iguaria = id_iguaria;
+            this._id_estabelecimento = id_estabelecimento;
+            this._criticas = criticas;
             this._crud_status = IguariaStatus.Default;
         }
 
@@ -243,11 +234,15 @@ namespace Business
             sb.Append("Visualizações : ").Append(VisualizacoesIguaria).AppendLine();
             sb.Append("Fotografia .. : ").Append(Fotografia.Length).Append(" bytes ").AppendLine();
             sb.Append("ID : ").Append(IdIguaria).Append(" ").Append("Estabelecimento : ").Append(IdEstabelecimento).AppendLine();
-            sb.Append(" ------------ Criticas ------------- :").AppendLine();
-            foreach (var item in _criticas)
+            if(_criticas.Count > 0)
             {
-                sb.Append(item.ToString());
+                sb.Append("\n ------------ Criticas ------------- \n").AppendLine();
+                foreach (var item in _criticas)
+                {
+                    sb.Append(item.ToString());
+                }
             }
+          
          
 
 

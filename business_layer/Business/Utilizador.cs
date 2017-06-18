@@ -18,11 +18,11 @@ namespace Business
             this._tipo = 0;
         }
 
-        public Utilizador(string _email, string _password, byte _tipo)
+        public Utilizador(string email, string password, byte tipo)
         {
-            this._email = Email;
-            this._password = Password;
-            this._tipo = Tipo;
+            Email = email;
+            Password = password;
+            Tipo = tipo;
         }
         public Utilizador(Utilizador _other)
         {

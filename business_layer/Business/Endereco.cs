@@ -137,7 +137,7 @@ namespace Business
             sb.Append("Cód-Postal : " ).Append(CodPostal).AppendLine();
             sb.Append("Localidade : " ).Append(Localidade).AppendLine();
             sb.Append(new GPSVal(Latitude, Longitude).ToString());
-            sb.Append(" --------------------------- :").AppendLine();
+            
 
             return sb.ToString();
         }
