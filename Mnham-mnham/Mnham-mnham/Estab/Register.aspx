@@ -106,7 +106,7 @@
             </div>
             <div class="panel form-group" style="background: rgba(255,255,255,0.3)">
                 <p>Categoria</p>
-                <asp:DropDownList ID="Category" runat="server" CssClass="fa dropdown-toggle" Height="31px" Width="1200px">
+                <asp:DropDownList ID="Category" runat="server" CssClass="fa dropdown-toggle" Height="31px" Width="200px">
                     <asp:ListItem Value="0">
                         Restaurante
                     </asp:ListItem>

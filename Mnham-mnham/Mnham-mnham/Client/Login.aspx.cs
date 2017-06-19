@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Mnham_mnham.Models;
 using System.Security.Principal;
-using MM;
+using Business;
 
 namespace Mnham_mnham.Client
 {
@@ -32,7 +32,7 @@ namespace Mnham_mnham.Client
                 
                 if (a.Login(Email.Text, Password.Text))
                 {
-                    Session["User"] = new GenericPrincipal(new GenericIdentity(a.user), new string[1] { "Client" });
+                    Session["User"] = new GenericPrincipal(new GenericIdentity(a.AreaClienteCliente.Nome), new string[1] { "Client" });
                     Context.User = (GenericPrincipal)Session["User"];
                     Response.Write("Sucesso no login");
                     Response.Redirect("/Client/Main");

@@ -10,13 +10,13 @@ namespace Mnham_mnham.Client
 {
     public partial class MainClient : System.Web.UI.Page
     {
-        protected List<Item> pedido;
+        protected List<Iguaria> pedido;
         protected void Page_Load(object sender, EventArgs e)
         {
-            MM.AreaCliente a = (MM.AreaCliente)Session["ClientArea"];
+            AreaCliente a = (AreaCliente)Session["ClientArea"];
             if(a==null)
             {
-                Session["ClientArea"] = new MM.AreaCliente();
+                Session["ClientArea"] = new AreaCliente();
             }
             Context.User = (GenericPrincipal)Session["User"];
             if (User != null && !User.IsInRole("Client"))
@@ -32,7 +32,7 @@ namespace Mnham_mnham.Client
         //     int startRowIndex
         //     out int totalRowCount
         //     string sortByExpression
-        public IQueryable<Business.Iguaria> DvQuery_GetData()
+        public IQueryable<Iguaria> DvQuery_GetData()
         {
             return pedido.AsQueryable();
         }
