@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Mnham_mnham.Models;
 using System.Web.UI.WebControls;
-using MM;
+using Business;
 
 namespace Mnham_mnham.Estab
 {
@@ -34,7 +34,7 @@ namespace Mnham_mnham.Estab
             {
                 AreaEstabelecimento es = (AreaEstabelecimento)Session["EstabArea"];
 
-                if (es.RegistarEstabelecimento())
+                if (es.RegistarEstabelecimento(Email.Text,Password.Text,null,Nome.Text,Int32.Parse(Contact.Text),null,null,Category.SelectedIndex))
                 {
                     Response.Write("Sucesso no registo");
                     Response.Redirect("/Estab/Login");

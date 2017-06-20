@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Mnham_mnham.Models;
-using MM;
+using Business;
 
 namespace Mnham_mnham.Client
 {
@@ -26,7 +26,7 @@ namespace Mnham_mnham.Client
             if(IsValid)
             {
                 AreaCliente a = (AreaCliente)Session["ClientArea"];
-                if (a.RegistarCliente(Email.Text, Password.Text, 0, Nome.Text))
+                if (a.RegistarCliente(Email.Text, Password.Text, Nome.Text))
                 {
                     Response.Write("Sucesso no registo");
                     Response.Redirect("/Client/Login");
