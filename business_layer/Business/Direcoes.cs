@@ -5,9 +5,15 @@ using System.Text;
 
 namespace Business
 {
-    public struct Direcoes
+    public class Direcoes
     {
-        private List<string> _direcoes;
+        private List<string> _lista_direcoes;
+
+        public Direcoes()
+        {
+            this._lista_direcoes = new List<string>();
+
+        }
 
 
         public List<string> ListaDirecoes
@@ -16,16 +22,16 @@ namespace Business
             {
 
              
-                return _direcoes;
+                return _lista_direcoes;
 
             }
             set
             {
-                _direcoes.Clear();
+                _lista_direcoes.Clear();
 
                 foreach (string item in value)
                 {
-                    _direcoes.Add(item);
+                    _lista_direcoes.Add(item);
                 }
 
             }
@@ -33,7 +39,7 @@ namespace Business
 
         public void AdicionarDirecao(string direcao)
         {
-            _direcoes.Add(direcao);
+            _lista_direcoes.Add(direcao);
         }
 
 
@@ -41,7 +47,7 @@ namespace Business
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("----- Direções -----").AppendLine();
-            foreach (var item in _direcoes)
+            foreach (var item in _lista_direcoes)
             {
                 sb.Append(item).AppendLine();
             }

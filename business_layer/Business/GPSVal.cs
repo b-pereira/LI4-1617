@@ -7,17 +7,17 @@ namespace Business
 {
     public struct GPSVal
     {
-        private decimal _latitude;
-        private decimal _longitude;
+        private double _latitude;
+        private double _longitude;
         private static double MAJOR_AXIS_RADIO = 6378137;
 
-        public GPSVal(decimal latitude, decimal longitude) :this()
+        public GPSVal(double latitude, double longitude) :this()
         {
             Longitude = longitude;
             Latitude = latitude;
         }
 
-        public decimal Longitude
+        public double Longitude
         {
             get { return _longitude; }
             set
@@ -26,7 +26,7 @@ namespace Business
             }
         }
 
-        public decimal Latitude
+        public double Latitude
         {
             get { return _latitude; }
             set
@@ -42,7 +42,7 @@ namespace Business
             return Math.PI * angle / 180.0;
         }
 
-        public decimal DistanceTo(double latitude, double longitude)
+        public double DistanceTo(double latitude, double longitude)
         {
 
             //if (latitude > 90 && latitude < -90)
@@ -52,10 +52,10 @@ namespace Business
         
             double LatB = ToRadians(latitude);
             double LngB = ToRadians(longitude);
-            double LatA = ToRadians((double)Latitude);
-            double LngA = ToRadians((double)Longitude);
+            double LatA = ToRadians(Latitude);
+            double LngA = ToRadians(Longitude);
 
-            return (decimal)(MAJOR_AXIS_RADIO
+            return (MAJOR_AXIS_RADIO
                     * Math.Acos((Math.Cos(LatA) * Math.Cos(LatB)
                             * Math.Cos(LngB - LngA) + Math.Sin(LatA)
                             * Math.Sin(LatB))));
@@ -74,7 +74,8 @@ namespace Business
                 cardinal = "W";
             else
                 cardinal = "";
-            return deg + "°" + ((int)min) + "'" + sec.ToString("0.########") + "\"" + cardinal;
+            
+            return String.Format("{0,-3:F0}° {1,-2:F0}' {2,-8}\" {3:F0}", deg, ((int)min), sec.ToString("0.########"), cardinal);
 
         }
 
@@ -92,7 +93,7 @@ namespace Business
                 cardinal = "N";
             else
                 cardinal = "";
-            return deg + "°" + ((int)min) + "'" + sec.ToString("0.########") + "\"" + cardinal;
+            return String.Format("{0,-3:F0}° {1,-2:F0}' {2,-8}\" {3:F0}", deg, ((int)min), sec.ToString("0.########"), cardinal);
 
         }
 

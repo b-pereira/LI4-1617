@@ -33,6 +33,18 @@ namespace Business
             Numero = _numero;
             Rua = _rua;
         }
+
+
+        public Endereco(string _cod_postal, string _localidade, int _numero, string _rua)
+        {
+            CodPostal = _cod_postal;
+            Latitude = 0;
+            Localidade = _localidade;
+            Longitude = 0;
+            Numero = _numero;
+            Rua = _rua;
+        }
+
         public Endereco(Endereco _other)
         {
             _cod_postal = _other.CodPostal;
@@ -136,7 +148,7 @@ namespace Business
             sb.Append("Número ... : " ).Append(Numero).AppendLine();
             sb.Append("Cód-Postal : " ).Append(CodPostal).AppendLine();
             sb.Append("Localidade : " ).Append(Localidade).AppendLine();
-            sb.Append(new GPSVal(Latitude, Longitude).ToString());
+            sb.Append(new GPSVal(Convert.ToDouble(Latitude), Convert.ToDouble(Longitude)).ToString());
             
 
             return sb.ToString();

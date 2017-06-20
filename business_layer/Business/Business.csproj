@@ -40,8 +40,14 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\..\camada_dados\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="BingMapsRESTToolkit, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\camada_dados\src\packages\BingMapsRESTToolkit.1.0.5\lib\net45\BingMapsRESTToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\camada_dados\lib\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\camada_dados\src\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\camada_dados\lib\NHibernate.dll</HintPath>
@@ -53,6 +59,7 @@
       <HintPath>..\..\camada_dados\lib\Remotion.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BingMapsWrapper.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Critica.cs" />
     <Compile Include="Dias.cs" />
@@ -75,10 +83,18 @@
     <Compile Include="Preferencias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilizador.cs" />
+    <Compile Include="YelpWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="DiagramaClasses.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Yelp.Api\Yelp.Api\Yelp.Api.csproj">
+      <Project>{200a88e3-8b18-4fa8-896e-638ea6f65c19}</Project>
+      <Name>Yelp.Api</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

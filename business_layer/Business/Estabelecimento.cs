@@ -16,6 +16,7 @@ namespace Business
         private Dictionary<int, Iguaria> _iguarias;
         private Endereco _endereco;
         private int _id_estabelecimento;
+        
 
         private int _id_categoria;
 
@@ -33,6 +34,7 @@ namespace Business
             Endereco = new Endereco();
             IdEstabelecimento = _id_estabelecimento;
             IdCategoria = _id_categoria;
+           
         }
 
        
@@ -55,6 +57,7 @@ namespace Business
             Endereco = endereco;
             IdEstabelecimento = id_estabelecimento;
             IdCategoria = id_categoria;
+          
 
         }
 
@@ -222,6 +225,7 @@ namespace Business
             }
         }
 
+      
 
         public override string ToString()
         {

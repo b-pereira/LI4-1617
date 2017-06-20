@@ -16,7 +16,8 @@ namespace Business
         private int _id_estabelecimento;
         private List<Critica> _criticas;
         private IguariaStatus _crud_status;
-       
+        private decimal _distancia;
+
 
         public Iguaria()
         {
@@ -24,10 +25,10 @@ namespace Business
         }
 
 
-       
 
 
-        public Iguaria(string nome, int visualizacoes, decimal rating_medio, byte[] fotografia, decimal preco, int id_iguaria, 
+
+        public Iguaria(string nome, int visualizacoes, decimal rating_medio, byte[] fotografia, decimal preco, int id_iguaria,
             int id_estabelecimento)
         {
             this._nome = nome;
@@ -39,9 +40,10 @@ namespace Business
             this._id_estabelecimento = id_estabelecimento;
             this._criticas = new List<Critica>();
             this._crud_status = IguariaStatus.Default;
+            Distancia = 0;
         }
 
-        public Iguaria(string nome, int visualizacoes, decimal rating_medio, byte[] fotografia, decimal preco, int id_iguaria, int id_estabelecimento, 
+        public Iguaria(string nome, int visualizacoes, decimal rating_medio, byte[] fotografia, decimal preco, int id_iguaria, int id_estabelecimento,
             List<Critica> criticas)
         {
             this._nome = nome;
@@ -53,6 +55,7 @@ namespace Business
             this._id_estabelecimento = id_estabelecimento;
             this._criticas = criticas;
             this._crud_status = IguariaStatus.Default;
+            Distancia = 0;
         }
 
         public Iguaria(Iguaria _other)
@@ -66,9 +69,18 @@ namespace Business
             this._id_estabelecimento = _other.IdEstabelecimento;
             this._criticas = _other.ListaCriticas;
             this._crud_status = _other.CrudStatus;
+            this._distancia = _other.Distancia;
         }
 
-      
+        public Iguaria(string nome, byte[] fotografia, decimal preco, int id_iguaria, int idEstabelecimento, IguariaStatus crudStatus)
+        {
+            this._nome = nome;
+            this._fotografia = fotografia;
+            this._preco = preco;
+            this._id_iguaria = id_iguaria;
+            this._id_estabelecimento = idEstabelecimento;
+            this._crud_status = crudStatus;
+        }
 
         public string Nome
         {
@@ -122,11 +134,13 @@ namespace Business
         }
 
 
-        public byte[] Fotografia {
+        public byte[] Fotografia
+        {
 
 
 
-            get {
+            get
+            {
 
                 byte[] tmp = new byte[_fotografia.Length];
                 for (int i = 0; i < _fotografia.Length; i++)
@@ -143,14 +157,15 @@ namespace Business
 
 
 
-            set {
+            set
+            {
                 Array.Clear(_fotografia, 0, _fotografia.Length);
                 for (int i = 0; i < value.Length; i++)
                 {
                     _fotografia[i] = value[i];
                 }
 
-                
+
 
 
 
@@ -186,11 +201,12 @@ namespace Business
 
         public List<Critica> ListaCriticas
         {
-            get {
+            get
+            {
 
-                return _criticas; 
-        }
-        
+                return _criticas;
+            }
+
             set
             {
                 _criticas.Clear();
@@ -198,7 +214,7 @@ namespace Business
                 {
                     _criticas.Add(c.Clone());
                 }
-                
+
             }
         }
 
@@ -210,11 +226,24 @@ namespace Business
                 return _crud_status;
 
             }
-            
-            
+
+
             set
             {
                 _crud_status = value;
+            }
+        }
+
+        public decimal Distancia
+        {
+            get
+            {
+
+                return _distancia;
+            }
+            set
+            {
+                _distancia = value;
             }
         }
 
@@ -233,8 +262,12 @@ namespace Business
             sb.Append("Rating ...... : ").Append(RatingMedioIguaria).AppendLine();
             sb.Append("Visualizações : ").Append(VisualizacoesIguaria).AppendLine();
             sb.Append("Fotografia .. : ").Append(Fotografia.Length).Append(" bytes ").AppendLine();
+            if (Distancia > 0)
+            {
+                sb.Append("Distância .... : ").Append(Distancia.ToString("0.##")).Append(" m ").AppendLine();
+            }
             sb.Append("ID : ").Append(IdIguaria).Append(" ").Append("Estabelecimento : ").Append(IdEstabelecimento).AppendLine();
-            if(_criticas.Count > 0)
+            if (_criticas.Count > 0)
             {
                 sb.Append("\n ------------ Criticas ------------- \n").AppendLine();
                 foreach (var item in _criticas)
@@ -242,8 +275,8 @@ namespace Business
                     sb.Append(item.ToString());
                 }
             }
-          
-         
+
+
 
 
             return sb.ToString();
