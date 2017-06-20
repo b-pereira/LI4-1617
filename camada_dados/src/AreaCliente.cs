@@ -7,6 +7,7 @@ using NHibernate.Criterion;
 using NHibernate.Criterion.Lambda;
 using System.Collections;
 using NHibernate.Transform;
+using Business;
 
 public class AreaCliente
 {
@@ -37,11 +38,11 @@ public class AreaCliente
             _cliente.Nome = cliente.Nome_cliente;
             _cliente.Password = ut.Password;
             _cliente.Email = ut.Email;
-            _cliente.ListaPreferencias = new Business.Preferencias(cliente.Ord_rat_igu, cliente.Ord_rat_est, 
-                                                                   cliente.Ord_dist,    cliente.Ord_pop_igu, 
+            _cliente.ListaPreferencias = new Business.Preferencias(cliente.Ord_rat_igu, cliente.Ord_rat_est,
+                                                                   cliente.Ord_dist, cliente.Ord_pop_igu,
                                                                    cliente.Ord_pop_est);
 
-           
+
 
 
             IsLoginValidated = true;
@@ -62,7 +63,7 @@ public class AreaCliente
             ClienteCriteria clienteCriteria = new ClienteCriteria();
             clienteCriteria.Id_cliente.Eq(_cliente.IdCliente);
             Cliente cli = clienteCriteria.UniqueCliente();
-          
+
 
             IguariaCriteria iguariaCriteria = new IguariaCriteria();
             iguariaCriteria.Id_iguaria.Eq(idIguaria);
@@ -70,7 +71,7 @@ public class AreaCliente
 
             Iguaria ig = iguariaCriteria.UniqueIguaria();
 
-            
+
 
             EstabelecimentoCriteria estabelecimentoCiteria = new EstabelecimentoCriteria();
             estabelecimentoCiteria.Id_estabelecimento.Eq(idEstabelecimento);
@@ -104,7 +105,7 @@ public class AreaCliente
 
 
             cliente_critica_Iguaria.Save();
-          
+
 
             // NOTE : Rating de estabelecimento é opcional. No entanto, a critica aqui pode ser atualizada
             if (ratingEstabelecimento != 0)
@@ -140,6 +141,20 @@ public class AreaCliente
         }
 
 
+    }
+
+    public Direcoes PedirDirecoes(Business.Estabelecimento est, double latitudeLocal, double longitudeLocal)
+    {
+        
+            Business.GPSVal local = new Business.GPSVal(latitudeLocal, longitudeLocal);
+            Business.GPSVal destino = new Business.GPSVal(System.Convert.ToDouble(est.Endereco.Latitude) , System.Convert.ToDouble(est.Endereco.Longitude));
+
+            Business.Direcoes dir = new Business.Direcoes();
+
+            dir = Business.BingMapsWrapper.ObterDirecoes(local, destino);
+
+            return dir;
+       
     }
 
     public bool RegistarCliente(string email, string password, string nome)
@@ -367,12 +382,61 @@ public class AreaCliente
 
             HorarioEstabelecimento[] hor = est.horarioEstabelecimento.ToArray();
             Categoria cat = est.Categoria1;
-            Cliente_avalia_EstabelecimentoCriteria cliente_avalia_EstabelecimentoCriteria = new Cliente_avalia_EstabelecimentoCriteria();
 
+
+            Cliente_avalia_EstabelecimentoCriteria cliente_avalia_EstabelecimentoCriteria = new Cliente_avalia_EstabelecimentoCriteria();
             cliente_avalia_EstabelecimentoCriteria.Estabelecimento_id_estabelecimento.Eq(idEstabelecimento);
-            cliente_avalia_EstabelecimentoCriteria.SetProjection(Projections.Avg(Cliente_avalia_Estabelecimento.PROP_RATING_EST)); decimal rating = Convert.ToDecimal(cliente_avalia_EstabelecimentoCriteria.UniqueResult());
+            cliente_avalia_EstabelecimentoCriteria.SetProjection(Projections.Avg(Cliente_avalia_Estabelecimento.PROP_RATING_EST));
+            decimal ratingSistema = 0.0M;
+            object temp2 = cliente_avalia_EstabelecimentoCriteria.UniqueResult();
+            if (temp2!=null)
+            {
+               ratingSistema = Convert.ToDecimal(cliente_avalia_EstabelecimentoCriteria.UniqueResult());
+            }
+
+            
+
+
+
+            /**
+             * TODO: Adicionar rating do Yelp
+             */
+            //Console.WriteLine("A Obter Rating .. Aguarde! {0}", ratingSistema);
+            //double rating = ObterRatingYelp(idEstabelecimento, (double)ratingSistema, (double)est.Latitude, (double)est.Longitude, est.Nome_estabelecimento);
+            //Console.WriteLine("Rating = {0}", rating);
+
+            Cliente_avalia_EstabelecimentoCriteria cliente_avalia_EstabelecimentoCriteria2 = new Cliente_avalia_EstabelecimentoCriteria();
+            cliente_avalia_EstabelecimentoCriteria2.Estabelecimento_id_estabelecimento.Eq(idEstabelecimento);
+            cliente_avalia_EstabelecimentoCriteria2.SetProjection(Projections.RowCount());
+
+            object temp = cliente_avalia_EstabelecimentoCriteria2.UniqueResult();
+            decimal rating = 0.0M;
+            int n = 0;
+            if (temp != null)
+            {
+                n = (int)temp;
+
+                if (est.Rating_medio_estabelecimento >0 && ratingSistema > 0)
+                {
+                    decimal mmmen = (est.Rating_medio_estabelecimento - ratingSistema) * (2 / (n + 1) + ratingSistema);
+                    rating = mmmen;
+                }
+                else
+                {
+                    rating = ratingSistema;
+                }
+               
+                
+            }
+            else
+            {
+                rating = ratingSistema;
+            }
+
 
             est.Rating_medio_estabelecimento = rating;
+
+
             Cliente_critica_IguariaCriteria cliente_critica_IguariaCriteria = new Cliente_critica_IguariaCriteria();
 
             cliente_critica_IguariaCriteria.Iguaria_Estabelecimento.Eq(idEstabelecimento);
@@ -388,28 +452,28 @@ public class AreaCliente
 
             foreach (var item in hor)
             {
-                _horarios.Add(new Business.Horario(item.Dia, new TimeSpan(item.Hora_abertura.Hour, 
-                                                                          item.Hora_abertura.Minute, 
-                                                                          item.Hora_abertura.Second), 
-                                                             new TimeSpan(item.Hora_fecho.Hour, 
-                                                                          item.Hora_fecho.Minute, 
+                _horarios.Add(new Business.Horario(item.Dia, new TimeSpan(item.Hora_abertura.Hour,
+                                                                          item.Hora_abertura.Minute,
+                                                                          item.Hora_abertura.Second),
+                                                             new TimeSpan(item.Hora_fecho.Hour,
+                                                                          item.Hora_fecho.Minute,
                                                                           item.Hora_fecho.Second)));
             }
 
-            estabelecimento = new Business.Estabelecimento(ut.Email, ut.Password, 
-                                                            est.Desc_ambiente, 
-                                                            est.Nome_estabelecimento, 
-                                                            est.Rating_medio_estabelecimento, 
+            estabelecimento = new Business.Estabelecimento(ut.Email, ut.Password,
+                                                            est.Desc_ambiente,
+                                                            est.Nome_estabelecimento,
+                                                            est.Rating_medio_estabelecimento,
                                                             est.Telefone,
-                                                            est.Visual_estabelecimento,  
+                                                            est.Visual_estabelecimento,
                                                             _horarios, new Business.Endereco(
-                                                                            est.Cod_postal, 
-                                                                            est.Latitude, 
-                                                                            est.Localidade, 
-                                                                            est.Longitude, 
-                                                                            est.Numero, 
-                                                                            est.Rua), 
-                                                            idEstabelecimento, 
+                                                                            est.Cod_postal,
+                                                                            est.Latitude,
+                                                                            est.Localidade,
+                                                                            est.Longitude,
+                                                                            est.Numero,
+                                                                            est.Rua),
+                                                            idEstabelecimento,
                                                             cat.Id_categoria);
 
 
@@ -420,14 +484,18 @@ public class AreaCliente
             foreach (Cliente_critica_Iguaria critica in crits)
             {
                 _criticas.Add(new Business.Critica(critica.Desc_critica, critica.Data_critica, critica.Rating_igu));
-               
+
             }
 
 
 
-            Business.Iguaria iguaria =
+           
 
-            estabelecimento.IguariasMap[ig.Id_iguaria] = new Business.Iguaria(ig.Nome_iguaria, ig.Visual_iguaria, ig.Rating_medio_iguaria, ig.Fotografia, ig.Preco, ig.Id_iguaria, ig.Estabelecimento_id_estabelecimento, _criticas);
+            estabelecimento.IguariasMap[ig.Id_iguaria] = new Business.Iguaria(ig.Nome_iguaria, ig.Visual_iguaria,
+                                                                              ig.Rating_medio_iguaria, ig.Fotografia,
+                                                                              ig.Preco, ig.Id_iguaria,
+                                                                              ig.Estabelecimento_id_estabelecimento,
+                                                                              _criticas);
 
 
 
@@ -448,7 +516,7 @@ public class AreaCliente
 
     }
 
-    public List<Business.Iguaria> GerarPedido(string pedido)
+    public List<Business.Iguaria> GerarPedido(string pedido, double latitudeLocal, double longitudeLocal)
     {
 
         List<Business.Iguaria> iguarias = new List<Business.Iguaria>();
@@ -464,6 +532,8 @@ public class AreaCliente
 
             IguariaCriteria iguariaCriteria = new IguariaCriteria();
             iguariaCriteria.Nome_iguaria.Like("%" + pedido + "%");
+
+            
 
 
 
@@ -516,10 +586,31 @@ public class AreaCliente
 
             foreach (var item in igs)
             {
-                iguariaCriteria.Estabelecimento_id_estabelecimento.Eq(item.Estabelecimento_id_estabelecimento);
+                EstabelecimentoCriteria estCrit = new EstabelecimentoCriteria();
+                estCrit.Id_estabelecimento.Eq(item.Estabelecimento_id_estabelecimento);
+                Estabelecimento est = estCrit.UniqueEstabelecimento();
 
+                Business.GPSVal local = new Business.GPSVal(latitudeLocal, longitudeLocal);
+                GPSVal destino = new GPSVal(Convert.ToDouble(est.Latitude), Convert.ToDouble(est.Longitude));
 
-                iguarias.Add(new Business.Iguaria(item.Nome_iguaria, item.Visual_iguaria, item.Rating_medio_iguaria, item.Fotografia, item.Preco, item.Id_iguaria, item.Estabelecimento_id_estabelecimento));
+                Business.Iguaria iguaria = new Business.Iguaria(item.Nome_iguaria, item.Visual_iguaria,
+                                                                item.Rating_medio_iguaria, item.Fotografia,
+                                                                item.Preco, item.Id_iguaria,
+                                                                item.Estabelecimento_id_estabelecimento)
+                {
+                    Distancia = Convert.ToDecimal(destino.DistanceTo(latitudeLocal, longitudeLocal))
+                };
+                iguarias.Add(iguaria);
+            }
+
+            if (cli.Ord_dist == 1)
+            {
+                iguarias.Sort((l, r) => l.Distancia.CompareTo(r.Distancia));
+            }
+            else if (cli.Ord_dist == 2)
+            {
+                iguarias.Sort((l, r) => l.Distancia.CompareTo(r.Distancia));
+                iguarias.Reverse();
             }
 
 
@@ -555,12 +646,12 @@ public class AreaCliente
 
             Cliente cli = clienteCriteria.UniqueCliente();
 
-           
-            _cliente.ListaPreferencias = new Business.Preferencias(cli.Ord_rat_igu, cli.Ord_rat_est, 
-                                                                   cli.Ord_dist,    cli.Ord_pop_igu, 
-                                                                   cli.Ord_rat_est);
-           
-            
+
+            _cliente.ListaPreferencias = new Business.Preferencias(cli.Ord_rat_igu, cli.Ord_rat_est,
+                                                                   cli.Ord_dist, cli.Ord_pop_igu,
+                                                                   cli.Ord_pop_est);
+
+
 
 
 
@@ -591,11 +682,11 @@ public class AreaCliente
             cli.Ord_pop_igu = _ordem_popularidade_iguaria;
             cli.Ord_pop_est = _ordem_popularidade_estabelecimento;
 
-            _cliente.ListaPreferencias = new Business.Preferencias(cli.Ord_rat_igu, 
-                                                                   cli.Ord_rat_est, 
-                                                                   cli.Ord_dist, 
-                                                                   cli.Ord_pop_igu, 
-                                                                   cli.Ord_rat_est);
+            _cliente.ListaPreferencias = new Business.Preferencias(cli.Ord_rat_igu,
+                                                                   cli.Ord_rat_est,
+                                                                   cli.Ord_dist,
+                                                                   cli.Ord_pop_igu,
+                                                                   cli.Ord_pop_est);
 
             cli.Save();
             t.Commit();
@@ -714,6 +805,64 @@ public class AreaCliente
             Console.WriteLine(e);
             Console.ReadLine();
         }
+
+    }
+
+   
+
+
+    private double ObterRatingYelp(int idEstabelecimento, double ratingSistema, double latitude, double longitude, string nomeEstabelecimento)
+    {
+
+        double rating = 0;
+        if (ratingSistema == 0)
+        {
+
+            rating = Business.YelpWrapper.ObterRating(latitude, longitude, nomeEstabelecimento);
+
+
+
+
+        }
+        else
+        {
+            rating = Business.YelpWrapper.ObterRating(latitude, longitude, nomeEstabelecimento);
+            Console.WriteLine("Rating = {0}", rating);
+
+            if (rating != 0)
+            {
+                Cliente_avalia_EstabelecimentoCriteria cliente_avalia_EstabelecimentoCriteria2 = new Cliente_avalia_EstabelecimentoCriteria();
+                cliente_avalia_EstabelecimentoCriteria2.Estabelecimento_id_estabelecimento.Eq(idEstabelecimento);
+                cliente_avalia_EstabelecimentoCriteria2.SetProjection(Projections.RowCount());
+
+                object temp = cliente_avalia_EstabelecimentoCriteria2.UniqueResult();
+
+                if (temp != null)
+                {
+                    int n = (int)temp;
+
+                    Console.WriteLine("n = {0}", n);
+                    double mmmen = (rating - ratingSistema) * (2 / (n + 1) + ratingSistema);
+
+                    rating = mmmen;
+                }
+               
+
+            }
+            else
+            {
+
+                rating = ratingSistema;
+            }
+
+
+        }
+
+
+
+
+        return rating;
+
 
     }
 }

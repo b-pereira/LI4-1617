@@ -72,7 +72,7 @@ public class AreaEstabelecimento
                 _estabelecimento.RatingMedio = es.Rating_medio_estabelecimento;
                 _estabelecimento.Telefone = es.Telefone;
                 _estabelecimento.TotalVisualizacoes = es.Visual_estabelecimento;
-               
+
             }
         }
 
@@ -88,6 +88,7 @@ public class AreaEstabelecimento
     {
 
         bool isRegistered = false;
+        double rating = 0;
         PersistentTransaction t = BasedeDadosMMPersistentManager.Instance().GetSession().BeginTransaction();
         try
         {
@@ -114,6 +115,13 @@ public class AreaEstabelecimento
                 /**
                  * Rating medio e visualizações têm valor por defeito
                  */
+                Console.WriteLine("A Obter Coordenadas .. Aguarde!");
+                double[] coord = BingMapsWrapper.ObterCoordenadas(_endereco);
+
+                Console.WriteLine("Latitude {0} Longitude {1}!", coord[0], coord[1]);
+                _endereco.Latitude = System.Convert.ToDecimal(coord[0]);
+                _endereco.Longitude = System.Convert.ToDecimal(coord[1]);
+
                 Estabelecimento estabelecimento = Estabelecimento.CreateEstabelecimento();
                 estabelecimento.Nome_estabelecimento = _nome;
                 estabelecimento.Desc_ambiente = _ambiente;
@@ -125,6 +133,15 @@ public class AreaEstabelecimento
                 estabelecimento.Localidade = _endereco.Localidade;
                 estabelecimento.Cod_postal = _endereco.CodPostal;
                 estabelecimento.Utilizador = utilizador;
+
+                Console.WriteLine("A Obter Rating .. Aguarde!");
+                rating = YelpWrapper.ObterRating(Convert.ToDouble(_endereco.Latitude), Convert.ToDouble(_endereco.Longitude), _nome);
+                if (rating != 0)
+                {
+                    estabelecimento.Rating_medio_estabelecimento = (decimal)rating;
+                }
+                Console.WriteLine("Rating = {0}", rating);
+
 
 
                 CategoriaCriteria categoriaCriteria = new CategoriaCriteria();
@@ -193,6 +210,9 @@ public class AreaEstabelecimento
             estabelecimento.Numero = _endereco.Numero;
             estabelecimento.Localidade = _endereco.Localidade;
             estabelecimento.Cod_postal = _endereco.CodPostal;
+
+
+            
 
 
 

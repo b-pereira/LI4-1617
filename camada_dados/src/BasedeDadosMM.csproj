@@ -33,6 +33,9 @@
       <Name>Antlr3.Runtime</Name>
       <HintPath>..\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="BingMapsRESTToolkit, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\BingMapsRESTToolkit.1.0.5\lib\net45\BingMapsRESTToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <Name>Iesi.Collections</Name>
       <HintPath>..\lib\Iesi.Collections.dll</HintPath>
@@ -195,11 +198,16 @@
     <EmbeddedResource Include="ormmapping\SelecaoEstabelecimento.hbm.xml" />
     <None Include="App.config" />
     <None Include="hibernate.cfg.xml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\business_layer\Business\Business.csproj">
       <Project>{5f4016ff-0366-4c9c-a220-d06305fa099e}</Project>
       <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Yelp.Api\Yelp.Api\Yelp.Api.csproj">
+      <Project>{200a88e3-8b18-4fa8-896e-638ea6f65c19}</Project>
+      <Name>Yelp.Api</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
